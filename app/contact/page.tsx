@@ -1,0 +1,351 @@
+"use client"
+
+import { useState } from "react"
+import { motion } from "framer-motion"
+import { Phone, Mail, MapPin, MessageSquare, Clock, Send, Check } from "lucide-react"
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
+import { Button } from "@/components/ui/button"
+
+const contactMethods = [
+  {
+    icon: Phone,
+    title: "Sales",
+    description: "Talk to our sales team about your requirements",
+    contact: "+1-800-ALFACALL",
+    action: "Call us",
+  },
+  {
+    icon: Mail,
+    title: "Email",
+    description: "Send us an email and we&apos;ll respond within 24 hours",
+    contact: "sales@alfacall.net",
+    action: "Email us",
+  },
+  {
+    icon: MessageSquare,
+    title: "Live Chat",
+    description: "Chat with our support team in real-time",
+    contact: "Available 24/7",
+    action: "Start chat",
+  },
+]
+
+const offices = [
+  {
+    city: "New York",
+    address: "350 Fifth Avenue, Suite 4500",
+    country: "United States",
+  },
+  {
+    city: "London",
+    address: "30 St Mary Axe",
+    country: "United Kingdom",
+  },
+  {
+    city: "Singapore",
+    address: "1 Raffles Place, Tower 2",
+    country: "Singapore",
+  },
+]
+
+const faqs = [
+  {
+    question: "What are your minimum volume requirements?",
+    answer: "We have no minimum volume requirements. Our pricing scales with your usage, making us suitable for businesses of all sizes.",
+  },
+  {
+    question: "How quickly can I get started?",
+    answer: "Most customers are up and running within 24 hours. API access is instant, and number provisioning is typically completed in minutes.",
+  },
+  {
+    question: "Do you offer a free trial?",
+    answer: "Yes! We offer a free trial with $25 in credits so you can test our platform before committing.",
+  },
+  {
+    question: "What kind of support do you offer?",
+    answer: "We provide 24/7 support via phone, email, and live chat. Enterprise customers also get a dedicated account manager.",
+  },
+]
+
+export default function ContactPage() {
+  const [formState, setFormState] = useState({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    interest: "",
+    message: "",
+  })
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitted(true)
+  }
+
+  return (
+    <>
+      <Header />
+      <main>
+        {/* Hero */}
+        <section 
+          className="pt-32 pb-20 relative overflow-hidden"
+          style={{ background: "linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%)" }}
+        >
+          <div className="absolute inset-0 opacity-10">
+            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+                  <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" strokeWidth="1" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+          </div>
+          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-4xl lg:text-6xl font-bold text-white text-balance"
+            >
+              Contact Us
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="mt-4 text-xl text-white/70 max-w-2xl mx-auto"
+            >
+              Get in touch with our team to discuss your telecom needs
+            </motion.p>
+          </div>
+        </section>
+
+        {/* Contact Methods */}
+        <section className="py-16 bg-background">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-3 gap-6">
+              {contactMethods.map((method, index) => (
+                <motion.div
+                  key={method.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="p-6 rounded-2xl bg-card border border-border text-center"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                    <method.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="font-semibold text-foreground">{method.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{method.description}</p>
+                  <p className="mt-3 font-medium text-primary">{method.contact}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Form + Offices */}
+        <section className="py-24 bg-secondary/50">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-12">
+              {/* Form */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-2xl font-bold text-foreground">Send us a message</h2>
+                <p className="mt-2 text-muted-foreground">
+                  Fill out the form below and we&apos;ll get back to you within 24 hours.
+                </p>
+
+                {submitted ? (
+                  <div className="mt-8 p-8 rounded-2xl bg-card border border-border text-center">
+                    <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                      <Check className="w-8 h-8 text-green-600" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-foreground">Message sent!</h3>
+                    <p className="mt-2 text-muted-foreground">
+                      Thank you for reaching out. Our team will contact you shortly.
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+                    <div className="grid sm:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                          Full Name *
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          required
+                          value={formState.name}
+                          onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                          placeholder="John Smith"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                          Email *
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          required
+                          value={formState.email}
+                          onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                          placeholder="john@company.com"
+                        />
+                      </div>
+                    </div>
+                    <div className="grid sm:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
+                          Company
+                        </label>
+                        <input
+                          type="text"
+                          id="company"
+                          value={formState.company}
+                          onChange={(e) => setFormState({ ...formState, company: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                          placeholder="Your Company"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
+                          Phone
+                        </label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          value={formState.phone}
+                          onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                          placeholder="+1 (555) 000-0000"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label htmlFor="interest" className="block text-sm font-medium text-foreground mb-2">
+                        I&apos;m interested in *
+                      </label>
+                      <select
+                        id="interest"
+                        required
+                        value={formState.interest}
+                        onChange={(e) => setFormState({ ...formState, interest: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      >
+                        <option value="">Select an option</option>
+                        <option value="wholesale-voice">Wholesale Voice</option>
+                        <option value="wholesale-did">Wholesale DID</option>
+                        <option value="wholesale-sms">Wholesale SMS</option>
+                        <option value="sip-trunking">SIP Trunking</option>
+                        <option value="api">APIs & Integration</option>
+                        <option value="enterprise">Enterprise Solutions</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                        Message *
+                      </label>
+                      <textarea
+                        id="message"
+                        required
+                        rows={4}
+                        value={formState.message}
+                        onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
+                        placeholder="Tell us about your requirements..."
+                      />
+                    </div>
+                    <Button type="submit" size="lg" className="w-full">
+                      Send Message
+                      <Send className="ml-2 w-4 h-4" />
+                    </Button>
+                  </form>
+                )}
+              </motion.div>
+
+              {/* Offices */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-2xl font-bold text-foreground">Our Offices</h2>
+                <p className="mt-2 text-muted-foreground">
+                  Visit us at one of our global office locations.
+                </p>
+                <div className="mt-8 space-y-6">
+                  {offices.map((office) => (
+                    <div key={office.city} className="p-6 rounded-2xl bg-card border border-border">
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <MapPin className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-foreground">{office.city}</h3>
+                          <p className="mt-1 text-sm text-muted-foreground">{office.address}</p>
+                          <p className="text-sm text-muted-foreground">{office.country}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 p-6 rounded-2xl bg-primary/5 border border-primary/20">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Clock className="w-5 h-5 text-primary" />
+                    <span className="font-semibold text-foreground">Support Hours</span>
+                  </div>
+                  <p className="text-muted-foreground">
+                    Our support team is available 24/7 to assist you with any questions or issues.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQs */}
+        <section className="py-24 bg-background">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
+                Frequently Asked Questions
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Quick answers to common questions
+              </p>
+            </div>
+            <div className="max-w-3xl mx-auto space-y-6">
+              {faqs.map((faq, index) => (
+                <motion.div
+                  key={faq.question}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="p-6 rounded-2xl bg-card border border-border"
+                >
+                  <h3 className="font-semibold text-foreground">{faq.question}</h3>
+                  <p className="mt-2 text-muted-foreground">{faq.answer}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  )
+}
