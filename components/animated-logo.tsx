@@ -18,33 +18,6 @@ export function AnimatedLogo({ size = "md", showText = true, href = "/" }: Anima
 
   const config = sizes[size]
 
-  // Signal wave rings animation
-  const waveRingVariants = {
-    animate: (i: number) => ({
-      scale: [1, 1.5, 1.9],
-      opacity: [0.6, 0.25, 0],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        ease: "easeOut",
-        delay: i * 0.5,
-      },
-    }),
-  }
-
-  // Glow pulse animation
-  const glowVariants = {
-    animate: {
-      opacity: [0.6, 1, 0.6],
-      scale: [1, 1.02, 1],
-      transition: {
-        duration: 2.5,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  }
-
   const LogoContent = () => (
     <div className="flex items-center gap-3 group">
       {/* Animated Icon Container */}
@@ -54,27 +27,13 @@ export function AnimatedLogo({ size = "md", showText = true, href = "/" }: Anima
         whileHover={{ scale: 1.08 }}
         transition={{ type: "spring", stiffness: 400, damping: 10 }}
       >
-        {/* Animated wave rings emanating outward */}
-        {[0, 1, 2].map((i) => (
-          <motion.div
-            key={i}
-            className="absolute inset-0 rounded-xl"
-            style={{ border: "2px solid rgba(255, 190, 50, 0.5)" }}
-            custom={i}
-            variants={waveRingVariants}
-            animate="animate"
-          />
-        ))}
-
-        {/* Main icon background - Deep Navy Blue */}
-        <motion.div
+        {/* Main icon background - Deep Navy Blue (static, no boundary highlight) */}
+        <div
           className="absolute inset-0 rounded-xl"
           style={{
             background: "linear-gradient(145deg, #0d1f38 0%, #152a4a 50%, #0a1628 100%)",
-            boxShadow: "0 0 30px rgba(255, 190, 50, 0.35), 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255,255,255,0.1)",
+            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255,255,255,0.1)",
           }}
-          variants={glowVariants}
-          animate="animate"
         />
 
         {/* Inner highlight */}
