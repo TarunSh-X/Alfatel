@@ -10,15 +10,58 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Alfacall - Global Telecom Solutions',
-  description: 'Enterprise-grade wholesale voice, DID, SMS, and SIP trunking solutions. Connect globally with 99.99% uptime and powerful APIs.',
-  keywords: 'wholesale voice, DID numbers, SMS API, SIP trunking, telecom, VoIP, cloud communications',
+  metadataBase: new URL('https://alfacall.net'),
+  title: {
+    default: 'Alfacall - Global Telecom Solutions | Wholesale Voice, DID, SMS & SIP',
+    template: '%s | Alfacall',
+  },
+  description: 'Enterprise-grade wholesale voice, DID numbers, SMS API, and SIP trunking solutions. Connect globally with 99.99% uptime, powerful APIs, and 24/7 support.',
+  keywords: ['wholesale voice', 'DID numbers', 'SMS API', 'SIP trunking', 'telecom SaaS', 'VoIP', 'cloud communications', 'telecom API', 'bulk SMS', 'international calling'],
+  authors: [{ name: 'Alfacall' }],
+  creator: 'Alfacall',
+  publisher: 'Alfacall',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     title: 'Alfacall - Global Telecom Solutions',
-    description: 'Enterprise-grade wholesale voice, DID, SMS, and SIP trunking solutions.',
+    description: 'Enterprise-grade wholesale voice, DID, SMS, and SIP trunking solutions. Connect globally with 99.99% uptime.',
     url: 'https://alfacall.net',
     siteName: 'Alfacall',
     type: 'website',
+    locale: 'en_US',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Alfacall - Global Telecom Solutions',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Alfacall - Global Telecom Solutions',
+    description: 'Enterprise-grade wholesale voice, DID, SMS, and SIP trunking solutions.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
   },
 }
 

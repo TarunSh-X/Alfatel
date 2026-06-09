@@ -2,7 +2,8 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Phone, Mail, MapPin, ArrowRight, Sparkles } from "lucide-react"
+import { Phone, Mail, MapPin } from "lucide-react"
+import { AnimatedLogo } from "./animated-logo"
 
 const footerLinks = {
   products: [
@@ -32,68 +33,39 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden">
-      {/* Background gradient */}
-      <div 
-        className="absolute inset-0"
-        style={{
-          background: "linear-gradient(180deg, #0a0f1a 0%, #0f172a 50%, #030712 100%)",
-        }}
-      />
-
-      {/* Subtle glow effects */}
-      <div 
-        className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full blur-3xl opacity-10"
-        style={{ background: "radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, transparent 70%)" }}
-      />
-      <div 
-        className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full blur-3xl opacity-10"
-        style={{ background: "radial-gradient(circle, rgba(249, 115, 22, 0.3) 0%, transparent 70%)" }}
-      />
-
+    <footer className="relative overflow-hidden bg-[#0f2744]">
       <div className="relative z-10">
         {/* Main Footer */}
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 lg:gap-12">
             {/* Brand */}
             <div className="col-span-2 md:col-span-3 lg:col-span-2">
-              <Link href="/" className="flex items-center gap-3">
-                <div 
-                  className="flex items-center justify-center w-12 h-12 rounded-xl"
-                  style={{
-                    background: "linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)",
-                    boxShadow: "0 0 20px rgba(6, 182, 212, 0.4)",
-                  }}
-                >
-                  <Phone className="w-6 h-6 text-white" />
-                </div>
-                <span className="text-2xl font-bold text-foreground">Alfacall</span>
-              </Link>
-              <p className="mt-5 text-muted-foreground max-w-sm leading-relaxed">
+              <AnimatedLogo size="lg" showText={true} href="/" />
+              <p className="mt-5 text-white/70 max-w-sm leading-relaxed">
                 Enterprise-grade wholesale voice, DID, SMS, and SIP trunking solutions 
                 powering global communications for businesses worldwide.
               </p>
               <div className="mt-8 space-y-4">
                 <a
                   href="mailto:info@alfacall.net"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-cyan-400 transition-colors group"
+                  className="flex items-center gap-3 text-white/70 hover:text-[#FFBE32] transition-colors group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-cyan-500/10 transition-colors">
+                  <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-[#FFBE32]/20 transition-colors">
                     <Mail className="w-5 h-5" />
                   </div>
                   info@alfacall.net
                 </a>
                 <a
                   href="tel:+1-800-ALFACALL"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-cyan-400 transition-colors group"
+                  className="flex items-center gap-3 text-white/70 hover:text-[#FFBE32] transition-colors group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-cyan-500/10 transition-colors">
+                  <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-[#FFBE32]/20 transition-colors">
                     <Phone className="w-5 h-5" />
                   </div>
                   +1-800-ALFACALL
                 </a>
-                <div className="flex items-center gap-3 text-muted-foreground">
-                  <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center">
+                <div className="flex items-center gap-3 text-white/70">
+                  <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
                     <MapPin className="w-5 h-5" />
                   </div>
                   Global Operations
@@ -103,13 +75,13 @@ export function Footer() {
 
             {/* Products */}
             <div>
-              <h3 className="font-semibold text-foreground mb-5">Products</h3>
+              <h3 className="font-semibold text-white mb-5">Products</h3>
               <ul className="space-y-4">
                 {footerLinks.products.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-muted-foreground hover:text-cyan-400 transition-colors"
+                      className="text-white/70 hover:text-[#FFBE32] transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -120,13 +92,13 @@ export function Footer() {
 
             {/* Services */}
             <div>
-              <h3 className="font-semibold text-foreground mb-5">Services</h3>
+              <h3 className="font-semibold text-white mb-5">Services</h3>
               <ul className="space-y-4">
                 {footerLinks.services.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-muted-foreground hover:text-cyan-400 transition-colors"
+                      className="text-white/70 hover:text-[#FFBE32] transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -137,13 +109,13 @@ export function Footer() {
 
             {/* Company */}
             <div>
-              <h3 className="font-semibold text-foreground mb-5">Company</h3>
+              <h3 className="font-semibold text-white mb-5">Company</h3>
               <ul className="space-y-4">
                 {footerLinks.company.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-muted-foreground hover:text-cyan-400 transition-colors"
+                      className="text-white/70 hover:text-[#FFBE32] transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -154,13 +126,13 @@ export function Footer() {
 
             {/* Legal */}
             <div>
-              <h3 className="font-semibold text-foreground mb-5">Legal</h3>
+              <h3 className="font-semibold text-white mb-5">Legal</h3>
               <ul className="space-y-4">
                 {footerLinks.legal.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-muted-foreground hover:text-cyan-400 transition-colors"
+                      className="text-white/70 hover:text-[#FFBE32] transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -175,7 +147,7 @@ export function Footer() {
         <div className="border-t border-white/10">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-              <p className="text-muted-foreground text-sm">
+              <p className="text-white/60 text-sm">
                 &copy; {new Date().getFullYear()} Alfacall. All rights reserved.
               </p>
               
@@ -185,7 +157,7 @@ export function Footer() {
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-muted-foreground hover:text-cyan-400 hover:bg-cyan-500/10 transition-all"
+                  className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/70 hover:text-[#FFBE32] hover:bg-[#FFBE32]/20 transition-all"
                   aria-label="LinkedIn"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -196,7 +168,7 @@ export function Footer() {
                   href="https://twitter.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-muted-foreground hover:text-cyan-400 hover:bg-cyan-500/10 transition-all"
+                  className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/70 hover:text-[#FFBE32] hover:bg-[#FFBE32]/20 transition-all"
                   aria-label="X (Twitter)"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -207,7 +179,7 @@ export function Footer() {
                   href="https://github.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-muted-foreground hover:text-cyan-400 hover:bg-cyan-500/10 transition-all"
+                  className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/70 hover:text-[#FFBE32] hover:bg-[#FFBE32]/20 transition-all"
                   aria-label="GitHub"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

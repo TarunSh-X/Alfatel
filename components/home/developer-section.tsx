@@ -1,11 +1,9 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Code, Terminal, Zap, BookOpen, ArrowRight, Copy, Check, Blocks, Webhook } from "lucide-react"
+import { Code, Terminal, Zap, BookOpen, ArrowRight, Copy, Check, Blocks, Webhook, ExternalLink } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
 import { useState } from "react"
-import { GlassCard, GradientBorder, PulsingGlow } from "./animated-elements"
 
 const codeExample = `// Initialize Alfacall client
 import { Alfacall } from '@alfacall/sdk';
@@ -23,31 +21,38 @@ const message = await client.sms.send({
 
 console.log('Message sent:', message.id);`
 
-const features = [
+const apiFeatures = [
   {
-    icon: Terminal,
+    number: "01",
     title: "RESTful APIs",
-    description: "Clean, well-documented REST APIs with predictable resource-oriented URLs.",
-    color: "#06b6d4",
+    description: "Clean, well-documented REST APIs with predictable resource-oriented URLs and comprehensive error handling.",
+    icon: Terminal,
   },
   {
-    icon: Webhook,
+    number: "02",
     title: "Webhooks",
-    description: "Real-time event notifications for call status, SMS delivery, and more.",
-    color: "#f97316",
+    description: "Real-time event notifications for call status, SMS delivery, and more. Never miss an update.",
+    icon: Webhook,
   },
   {
+    number: "03",
+    title: "SDKs & Libraries",
+    description: "Official SDKs for Node.js, Python, PHP, Ruby, Go, and Java. Get started in minutes.",
     icon: Blocks,
-    title: "SDKs",
-    description: "Official SDKs for Node.js, Python, PHP, Ruby, and more languages.",
-    color: "#10b981",
   },
   {
-    icon: BookOpen,
+    number: "04",
     title: "Documentation",
-    description: "Comprehensive guides, tutorials, and API references to get you started.",
-    color: "#8b5cf6",
+    description: "Comprehensive guides, tutorials, code samples, and API references to accelerate your development.",
+    icon: BookOpen,
   },
+]
+
+const quickLinks = [
+  { label: "API Reference", href: "/services" },
+  { label: "Quick Start Guide", href: "/services" },
+  { label: "Code Samples", href: "/services" },
+  { label: "SDKs", href: "/services" },
 ]
 
 export function DeveloperSection() {
@@ -61,130 +66,128 @@ export function DeveloperSection() {
 
   const highlightCode = (line: string) => {
     return line
-      .replace(/(\/\/.*)/g, '<span class="text-emerald-400/80">$1</span>')
-      .replace(/\b(import|from|const|await|new|process)\b/g, '<span class="text-cyan-400">$1</span>')
-      .replace(/('.*?')/g, '<span class="text-amber-400">$1</span>')
-      .replace(/\b(client|message|Alfacall|console|env)\b/g, '<span class="text-violet-400">$1</span>')
-      .replace(/\b(sms|send|log)\b/g, '<span class="text-orange-400">$1</span>')
+      .replace(/(\/\/.*)/g, '<span class="text-slate-500">$1</span>')
+      .replace(/\b(import|from|const|await|new|process)\b/g, '<span class="text-blue-600">$1</span>')
+      .replace(/('.*?')/g, '<span class="text-amber-600">$1</span>')
+      .replace(/\b(client|message|Alfacall|console|env)\b/g, '<span class="text-violet-600">$1</span>')
+      .replace(/\b(sms|send|log)\b/g, '<span class="text-emerald-600">$1</span>')
   }
 
   return (
-    <section className="py-32 relative overflow-hidden">
-      {/* Background */}
-      <div 
-        className="absolute inset-0"
-        style={{
-          background: "linear-gradient(180deg, rgba(17, 24, 39, 0.8) 0%, rgba(15, 23, 42, 1) 100%)",
-        }}
-      />
-      
-      {/* Gradient orbs */}
-      <PulsingGlow color="rgba(249, 115, 22, 0.15)" size="600px" className="top-0 right-0" />
-      <PulsingGlow color="rgba(6, 182, 212, 0.1)" size="500px" className="bottom-0 left-0" />
+    <section className="py-20 relative overflow-x-hidden bg-white">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-50">
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(15, 39, 68, 0.03) 1px, transparent 0)`,
+            backgroundSize: '40px 40px',
+          }}
+        />
+      </div>
       
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Content */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-orange-500/30 mb-8"
-              style={{
-                background: "linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(249, 115, 22, 0.05) 100%)",
-                boxShadow: "0 0 20px rgba(249, 115, 22, 0.2)",
-              }}
+        {/* Header */}
+        <div className="text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0f2744]/5 border border-[#0f2744]/10 mb-6"
+          >
+            <Code className="w-4 h-4 text-[#0f2744]" />
+            <span className="text-sm font-medium text-[#0f2744]">For Developers</span>
+          </motion.div>
+          
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl lg:text-5xl font-bold text-[#0f2744] mb-6"
+          >
+            Build with{" "}
+            <span 
+              className="text-transparent bg-clip-text"
+              style={{ backgroundImage: "linear-gradient(135deg, #FFBE32, #e5a82e)" }}
             >
-              <Code className="w-4 h-4 text-orange-400" />
-              <span className="text-sm font-medium text-foreground">For Developers</span>
-            </motion.div>
-            
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl lg:text-5xl font-bold text-foreground mb-6"
-            >
-              Build with
-              <br />
-              <span 
-                className="text-transparent bg-clip-text"
-                style={{
-                  backgroundImage: "linear-gradient(135deg, #f97316 0%, #06b6d4 100%)",
-                  filter: "drop-shadow(0 0 30px rgba(249, 115, 22, 0.3))",
-                }}
-              >
-                Powerful APIs
-              </span>
-            </motion.h2>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-lg text-muted-foreground mb-10"
-            >
-              Integrate voice, SMS, and number management into your applications 
-              with our developer-friendly APIs and comprehensive SDKs.
-            </motion.p>
+              Powerful APIs
+            </span>
+          </motion.h2>
+          
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-lg text-muted-foreground max-w-2xl mx-auto"
+          >
+            Integrate voice, SMS, and number management into your applications 
+            with our developer-friendly APIs and comprehensive SDKs.
+          </motion.p>
+        </div>
 
-            {/* Feature grid */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="grid sm:grid-cols-2 gap-4 mb-10"
-            >
-              {features.map((feature, index) => (
-                <motion.div 
-                  key={feature.title}
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <GlassCard 
-                    className="p-5 h-full"
-                    glowColor={`${feature.color}40`}
-                    tiltEnabled={false}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div 
-                        className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center"
-                        style={{ background: `${feature.color}20` }}
-                      >
-                        <feature.icon className="w-5 h-5" style={{ color: feature.color }} />
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+          {/* Left: API Features with numbers like BTS */}
+          <div className="space-y-8 overflow-hidden">
+            {apiFeatures.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group"
+              >
+                <div className="flex items-start gap-4 sm:gap-6 pr-2">
+                  {/* Number */}
+                  <div className="flex-shrink-0 w-10 sm:w-16">
+                    <span 
+                      className="text-3xl sm:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text"
+                      style={{ backgroundImage: "linear-gradient(180deg, #0f2744 0%, rgba(15, 39, 68, 0.2) 100%)" }}
+                    >
+                      {feature.number}
+                    </span>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1 min-w-0 pt-1">
+                    <div className="flex items-center gap-2 sm:gap-3 mb-2 flex-wrap">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#FFBE32]/10 flex items-center justify-center flex-shrink-0">
+                        <feature.icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFBE32]" />
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-foreground mb-1">{feature.title}</h3>
-                        <p className="text-sm text-muted-foreground">{feature.description}</p>
-                      </div>
+                      <h3 className="text-sm sm:text-xl font-bold text-[#0f2744]">{feature.title}</h3>
                     </div>
-                  </GlassCard>
-                </motion.div>
-              ))}
-            </motion.div>
+                    <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
+                      {feature.description}
+                    </p>
+                    {/* Underline accent */}
+                    <div className="mt-4 h-px bg-gradient-to-r from-[#FFBE32]/50 via-[#0f2744]/10 to-transparent w-full" />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
 
-            {/* CTA */}
+            {/* Quick Links */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.5 }}
+              className="pt-8"
             >
-              <Link
-                href="/services"
-                className="group inline-flex items-center gap-2 px-8 py-4 font-semibold rounded-xl transition-all duration-300 hover:scale-105"
-                style={{
-                  background: "linear-gradient(135deg, #f97316 0%, #ea580c 100%)",
-                  boxShadow: "0 0 30px rgba(249, 115, 22, 0.4), 0 0 60px rgba(249, 115, 22, 0.2)",
-                }}
-              >
-                <span className="text-white">View Documentation</span>
-                <ArrowRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform" />
-              </Link>
+              <div className="flex flex-wrap gap-3">
+                {quickLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#0f2744] bg-white border border-[#0f2744]/10 rounded-lg hover:border-[#FFBE32] hover:bg-[#FFBE32]/5 transition-all duration-300"
+                  >
+                    {link.label}
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </Link>
+                ))}
+              </div>
             </motion.div>
           </div>
 
@@ -194,88 +197,89 @@ export function DeveloperSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="relative"
+            className="relative lg:sticky lg:top-32"
           >
-            {/* Developer image floating */}
+            {/* Code card */}
+            <div className="relative rounded-2xl overflow-hidden border border-[#0f2744]/10 shadow-xl bg-[#0f2744]">
+              {/* Window header */}
+              <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-[#0a1929]">
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-red-500" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                    <div className="w-3 h-3 rounded-full bg-green-500" />
+                  </div>
+                  <span className="text-xs text-white/50 font-mono ml-2">example.js</span>
+                </div>
+                <motion.button
+                  onClick={handleCopy}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-xs text-white/70"
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {copied ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      <span className="text-emerald-400">Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Copy code</span>
+                    </>
+                  )}
+                </motion.button>
+              </div>
+              
+              {/* Code content */}
+              <div className="p-6 overflow-x-auto bg-[#0f2744]">
+                <pre className="text-sm font-mono leading-7">
+                  <code>
+                    {codeExample.split('\n').map((line, i) => (
+                      <div key={i} className="flex hover:bg-white/5 -mx-6 px-6 transition-colors">
+                        <span className="text-white/20 w-8 text-right mr-6 select-none text-xs">
+                          {i + 1}
+                        </span>
+                        <span
+                          className="text-white/90"
+                          dangerouslySetInnerHTML={{ __html: highlightCode(line) || '&nbsp;' }}
+                        />
+                      </div>
+                    ))}
+                  </code>
+                </pre>
+              </div>
+            </div>
+
+            {/* CTA below code */}
             <motion.div
-              className="absolute -top-8 -right-4 w-28 h-28 rounded-2xl overflow-hidden border-2 border-orange-500/30 z-20 hidden lg:block"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="mt-6 text-center"
             >
-              <Image
-                src="/images/developer-coding.png"
-                alt="Developer coding"
-                fill
-                className="object-cover"
-              />
+              <Link
+                href="/services"
+                className="group inline-flex items-center gap-2 px-8 py-4 font-semibold rounded-xl text-[#0f2744] transition-all duration-300 hover:scale-105"
+                style={{
+                  background: "linear-gradient(135deg, #FFBE32, #e5a82e)",
+                  boxShadow: "0 4px 20px rgba(255, 190, 50, 0.3)",
+                }}
+              >
+                <span>View Documentation</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </motion.div>
 
-            {/* Code card with gradient border */}
-            <GradientBorder>
-              <div className="relative">
-                {/* Window header */}
-                <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-black/30">
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                      <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                      <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                    </div>
-                    <span className="text-xs text-muted-foreground font-mono ml-2">example.js</span>
-                  </div>
-                  <motion.button
-                    onClick={handleCopy}
-                    className="p-2 rounded-lg hover:bg-white/10 transition-colors"
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {copied ? (
-                      <Check className="w-4 h-4 text-emerald-400" />
-                    ) : (
-                      <Copy className="w-4 h-4 text-muted-foreground" />
-                    )}
-                  </motion.button>
-                </div>
-                
-                {/* Code content */}
-                <div 
-                  className="p-6 overflow-x-auto"
-                  style={{ background: "rgba(0,0,0,0.4)" }}
-                >
-                  <pre className="text-sm font-mono leading-7">
-                    <code>
-                      {codeExample.split('\n').map((line, i) => (
-                        <div key={i} className="flex hover:bg-white/5 -mx-6 px-6 transition-colors">
-                          <span className="text-muted-foreground/40 w-8 text-right mr-6 select-none text-xs">
-                            {i + 1}
-                          </span>
-                          <span
-                            className="text-foreground/90"
-                            dangerouslySetInnerHTML={{ __html: highlightCode(line) || '&nbsp;' }}
-                          />
-                        </div>
-                      ))}
-                    </code>
-                  </pre>
-                </div>
-              </div>
-            </GradientBorder>
-
-            {/* Glow effect behind code */}
+            {/* Decorative glow */}
             <div 
-              className="absolute -inset-4 rounded-3xl blur-3xl -z-10"
+              className="absolute -inset-4 rounded-3xl blur-3xl -z-10 opacity-20"
               style={{
-                background: "linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(249, 115, 22, 0.1) 100%)",
+                background: "linear-gradient(135deg, rgba(15, 39, 68, 0.3) 0%, rgba(255, 190, 50, 0.15) 100%)",
               }}
             />
           </motion.div>
         </div>
-      </div>
-
-      {/* Section divider */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 60" fill="none" className="w-full h-auto" preserveAspectRatio="none">
-          <path d="M0 60V40C360 20 720 50 1080 30C1260 20 1380 10 1440 10V60H0Z" fill="var(--background)" />
-        </svg>
       </div>
     </section>
   )

@@ -2,8 +2,9 @@
 
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { Menu, X, ChevronDown, Phone } from "lucide-react"
+import { Menu, X, ChevronDown } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import { AnimatedLogo } from "./animated-logo"
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -54,12 +55,7 @@ export function Header() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 lg:h-20 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary">
-              <Phone className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <span className="text-xl font-bold text-foreground">Alfacall</span>
-          </Link>
+          <AnimatedLogo size="md" showText={true} href="/" />
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex lg:items-center lg:gap-1">
@@ -114,7 +110,7 @@ export function Header() {
             </Link>
             <Link
               href="/contact"
-              className="px-5 py-2.5 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:scale-105 transition-transform glow-cyan"
+              className="px-5 py-2.5 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:scale-105 transition-transform shadow-medium"
             >
               Get Started
             </Link>

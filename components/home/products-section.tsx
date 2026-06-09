@@ -1,10 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { motion } from "framer-motion"
 import { Phone, Hash, MessageSquare, Radio, ArrowRight, Wifi, CheckCircle } from "lucide-react"
-import { useRef } from "react"
-import { PulsingGlow } from "./animated-elements"
 
 const products = [
   {
@@ -13,9 +11,9 @@ const products = [
     description: "High-quality voice termination with global coverage. Crystal-clear HD audio across 180+ countries with real-time analytics.",
     href: "/products/wholesale-voice",
     features: ["Global Coverage", "HD Quality", "Real-time Analytics", "Competitive Rates"],
-    gradient: "from-cyan-500 to-blue-600",
-    glowColor: "rgba(6, 182, 212, 0.4)",
-    iconBg: "rgba(6, 182, 212, 0.15)",
+    iconBg: "bg-[#0f2744]",
+    iconColor: "text-white",
+    accentColor: "text-[#0f2744]",
   },
   {
     icon: Hash,
@@ -23,9 +21,9 @@ const products = [
     description: "Local and toll-free numbers from 100+ countries. Instant provisioning with full number portability and management.",
     href: "/products/wholesale-did",
     features: ["100+ Countries", "Instant Setup", "Number Porting", "API Access"],
-    gradient: "from-orange-500 to-amber-500",
-    glowColor: "rgba(249, 115, 22, 0.4)",
-    iconBg: "rgba(249, 115, 22, 0.15)",
+    iconBg: "bg-[#FFBE32]",
+    iconColor: "text-[#0f2744]",
+    accentColor: "text-[#FFBE32]",
   },
   {
     icon: MessageSquare,
@@ -33,9 +31,9 @@ const products = [
     description: "Global SMS delivery with high throughput and delivery rates. Two-way messaging with delivery receipts.",
     href: "/products/wholesale-sms",
     features: ["Global Reach", "High Delivery", "Two-Way SMS", "Webhooks"],
-    gradient: "from-emerald-500 to-teal-500",
-    glowColor: "rgba(16, 185, 129, 0.4)",
-    iconBg: "rgba(16, 185, 129, 0.15)",
+    iconBg: "bg-emerald-500",
+    iconColor: "text-white",
+    accentColor: "text-emerald-600",
   },
   {
     icon: Radio,
@@ -43,135 +41,90 @@ const products = [
     description: "Scalable SIP trunk connections with unlimited channels. Seamless PBX integration with failover support.",
     href: "/products/sip-trunking",
     features: ["Unlimited Channels", "PBX Integration", "Failover", "24/7 Support"],
-    gradient: "from-violet-500 to-purple-600",
-    glowColor: "rgba(139, 92, 246, 0.4)",
-    iconBg: "rgba(139, 92, 246, 0.15)",
+    iconBg: "bg-blue-500",
+    iconColor: "text-white",
+    accentColor: "text-blue-600",
   },
 ]
 
 function ProductCard({ product, index }: { product: typeof products[0]; index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null)
-  
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-  
-  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 })
-  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 })
-  
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"])
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"])
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return
-    const rect = cardRef.current.getBoundingClientRect()
-    const width = rect.width
-    const height = rect.height
-    const mouseX = e.clientX - rect.left
-    const mouseY = e.clientY - rect.top
-    const xPct = mouseX / width - 0.5
-    const yPct = mouseY / height - 0.5
-    x.set(xPct)
-    y.set(yPct)
-  }
-
-  const handleMouseLeave = () => {
-    x.set(0)
-    y.set(0)
-  }
-
   return (
     <motion.div
-      ref={cardRef}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1, duration: 0.6 }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
       className="relative group"
     >
       <Link href={product.href} className="block">
-        {/* Card glow effect */}
-        <motion.div
-          className="absolute -inset-1 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
-          style={{ background: `linear-gradient(135deg, ${product.glowColor}, transparent)` }}
-        />
-        
-        {/* Main card */}
-        <div 
-          className="relative h-full p-8 rounded-2xl border border-white/10 overflow-hidden transition-all duration-500 group-hover:border-white/20"
-          style={{
-            background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            transformStyle: "preserve-3d",
-          }}
-        >
-          {/* Inner gradient glow */}
+        {/* Main card with enhanced hover effects */}
+        <div className="relative h-full p-8 rounded-2xl bg-white border border-border shadow-soft overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:border-[#FFBE32]/30 group-hover:-translate-y-2">
+          
+          {/* Animated gradient border on hover */}
           <div 
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
             style={{
-              background: `radial-gradient(circle at 50% 0%, ${product.glowColor}, transparent 70%)`,
-            }}
-          />
-
-          {/* Shimmer effect */}
-          <motion.div
-            className="absolute inset-0 opacity-0 group-hover:opacity-100"
-            style={{
-              background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)",
-              backgroundSize: "200% 100%",
-            }}
-            animate={{
-              backgroundPosition: ["200% 0", "-200% 0"],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "linear",
+              background: "linear-gradient(135deg, transparent 0%, rgba(255, 190, 50, 0.1) 50%, rgba(15, 39, 68, 0.05) 100%)",
             }}
           />
           
-          <div className="relative" style={{ transform: "translateZ(50px)" }}>
-            {/* Icon */}
+          {/* Animated corner accent */}
+          <div 
+            className="absolute top-0 right-0 w-32 h-32 translate-x-16 -translate-y-16 group-hover:translate-x-8 group-hover:-translate-y-8 transition-transform duration-500 rounded-full opacity-0 group-hover:opacity-100"
+            style={{
+              background: "radial-gradient(circle, rgba(255, 190, 50, 0.3) 0%, transparent 70%)",
+            }}
+          />
+          
+          {/* Bottom line accent that expands on hover */}
+          <div 
+            className="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-500 ease-out"
+            style={{
+              background: "linear-gradient(90deg, #FFBE32 0%, #0f2744 100%)",
+            }}
+          />
+
+          <div className="relative z-10">
+            {/* Icon with enhanced hover animation */}
             <motion.div 
-              className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6"
-              style={{ background: product.iconBg }}
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 ${product.iconBg} transition-all duration-300 group-hover:scale-110 group-hover:rotate-3`}
+              style={{
+                boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+              }}
             >
-              <product.icon className={`w-8 h-8 bg-gradient-to-r ${product.gradient} bg-clip-text`} style={{ color: product.glowColor.replace("0.4", "1") }} />
+              <product.icon className={`w-8 h-8 ${product.iconColor} transition-transform duration-300 group-hover:scale-110`} />
             </motion.div>
 
-            {/* Title */}
-            <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300" style={{ backgroundImage: `linear-gradient(135deg, white, ${product.glowColor.replace("0.4", "1")})` }}>
+            {/* Title with color transition */}
+            <h3 className="text-xl font-bold text-[#0f2744] mb-3 transition-colors duration-300 group-hover:text-[#0f2744]">
               {product.title}
             </h3>
 
             {/* Description */}
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="text-muted-foreground leading-relaxed mb-6 transition-colors duration-300">
               {product.description}
             </p>
 
-            {/* Features */}
+            {/* Features with staggered hover effect */}
             <div className="space-y-2 mb-6">
-              {product.features.map((feature) => (
-                <div key={feature} className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-emerald-400" />
-                  <span className="text-foreground/80">{feature}</span>
+              {product.features.map((feature, featureIndex) => (
+                <div 
+                  key={feature} 
+                  className="flex items-center gap-2 text-sm transition-all duration-300"
+                  style={{
+                    transitionDelay: `${featureIndex * 50}ms`,
+                  }}
+                >
+                  <CheckCircle className="w-4 h-4 text-emerald-500 transition-transform duration-300 group-hover:scale-110" />
+                  <span className="text-foreground/80 group-hover:text-foreground transition-colors duration-300">{feature}</span>
                 </div>
               ))}
             </div>
 
-            {/* CTA */}
-            <div className="flex items-center gap-2 text-sm font-medium group-hover:gap-3 transition-all">
-              <span style={{ color: product.glowColor.replace("0.4", "1") }}>Learn more</span>
-              <ArrowRight className="w-4 h-4" style={{ color: product.glowColor.replace("0.4", "1") }} />
+            {/* CTA with animated arrow */}
+            <div className={`flex items-center gap-2 text-sm font-semibold transition-all duration-300 ${product.accentColor}`}>
+              <span className="group-hover:underline underline-offset-4">Learn more</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-2" />
             </div>
           </div>
         </div>
@@ -182,37 +135,18 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
 
 export function ProductsSection() {
   return (
-    <section className="py-32 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-background" />
-      
-      {/* Subtle gradient orbs */}
-      <PulsingGlow 
-        color="rgba(6, 182, 212, 0.15)" 
-        size="600px" 
-        className="top-0 left-1/4" 
-      />
-      <PulsingGlow 
-        color="rgba(249, 115, 22, 0.1)" 
-        size="500px" 
-        className="bottom-0 right-1/4" 
-      />
-      
+    <section className="py-24 relative overflow-hidden bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cyan-500/30 mb-8"
-            style={{
-              background: "linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(6, 182, 212, 0.05) 100%)",
-              boxShadow: "0 0 20px rgba(6, 182, 212, 0.2)",
-            }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-secondary mb-8"
           >
-            <Wifi className="w-4 h-4 text-cyan-400" />
-            <span className="text-sm font-medium text-foreground">Our Products</span>
+            <Wifi className="w-4 h-4 text-[#0f2744]" />
+            <span className="text-sm font-medium text-[#0f2744]">Our Products</span>
           </motion.div>
           
           <motion.h2
@@ -220,17 +154,11 @@ export function ProductsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl lg:text-6xl font-bold text-foreground mb-6"
+            className="text-4xl lg:text-5xl font-bold text-[#0f2744] mb-6"
           >
             Enterprise Communication
             <br />
-            <span 
-              className="text-transparent bg-clip-text"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #06b6d4 0%, #f97316 100%)",
-                filter: "drop-shadow(0 0 30px rgba(6, 182, 212, 0.3))",
-              }}
-            >
+            <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #0f2744 0%, #FFBE32 100%)" }}>
               Infrastructure
             </span>
           </motion.h2>
@@ -248,18 +176,11 @@ export function ProductsSection() {
         </div>
 
         {/* Product Cards Grid */}
-        <div className="grid md:grid-cols-2 gap-8" style={{ perspective: "1000px" }}>
+        <div className="grid md:grid-cols-2 gap-8">
           {products.map((product, index) => (
             <ProductCard key={product.title} product={product} index={index} />
           ))}
         </div>
-      </div>
-
-      {/* Section divider */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 60" fill="none" className="w-full h-auto" preserveAspectRatio="none">
-          <path d="M0 60V30C480 50 960 10 1440 30V60H0Z" fill="var(--secondary)" fillOpacity="0.3" />
-        </svg>
       </div>
     </section>
   )

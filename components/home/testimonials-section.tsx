@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion"
 import { Star, Quote, MessageSquare } from "lucide-react"
-import Image from "next/image"
 import { GlassCard, PulsingGlow } from "./animated-elements"
+import { AnimatedWaveBackground } from "./animated-wave-bg"
 
 const testimonials = [
   {
@@ -34,9 +34,8 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden bg-secondary/30">
       {/* Background */}
-      <div className="absolute inset-0 bg-background" />
       
       {/* Floating orbs */}
       <PulsingGlow color="rgba(6, 182, 212, 0.1)" size="500px" className="top-0 left-1/4" />
@@ -143,7 +142,7 @@ export function TestimonialsSection() {
           ))}
         </div>
 
-        {/* Featured image section */}
+        {/* Featured section with text overlaying animated wave */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -151,52 +150,63 @@ export function TestimonialsSection() {
           transition={{ delay: 0.3 }}
           className="mt-24 relative"
         >
-          <div 
-            className="relative rounded-3xl overflow-hidden border border-white/10"
-            style={{
-              background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)",
-            }}
-          >
-            <div className="relative h-[350px] lg:h-[450px]">
-              <Image
-                src="/images/telecom-team.png"
-                alt="Global telecom team"
-                fill
-                className="object-cover"
-              />
-              {/* Overlay gradients */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-transparent" />
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+            {/* Full width animated wave background */}
+            <div className="relative h-[400px] lg:h-[500px]">
+              <AnimatedWaveBackground />
               
-              {/* Content overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-10 lg:p-16">
-                <motion.h3
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="text-3xl lg:text-4xl font-bold text-foreground mb-4"
-                >
-                  Join{" "}
-                  <span 
-                    className="text-transparent bg-clip-text"
-                    style={{ backgroundImage: "linear-gradient(135deg, #06b6d4, #f97316)" }}
+              {/* Content overlay - positioned on left */}
+              <div className="absolute inset-0 z-10 flex items-center">
+                <div className="w-full lg:w-2/3 p-10 lg:p-16">
+                  <motion.h3
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-3xl lg:text-5xl font-bold text-white mb-6 leading-tight drop-shadow-lg"
                   >
-                    500+ companies
-                  </span>
-                  {" "}building the
-                  <br />
-                  future of communication
-                </motion.h3>
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                  className="text-lg text-muted-foreground max-w-2xl"
-                >
-                  From startups to Fortune 500 enterprises, teams trust Alfacall 
-                  to power their global telecommunications infrastructure.
-                </motion.p>
+                    Join{" "}
+                    <span 
+                      className="text-transparent bg-clip-text"
+                      style={{ backgroundImage: "linear-gradient(135deg, #FFBE32, #FFD700)" }}
+                    >
+                      500+ companies
+                    </span>
+                    <br />
+                    building the future
+                    <br />
+                    of communication
+                  </motion.h3>
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                    className="text-lg text-white/90 max-w-lg mb-8 drop-shadow-md"
+                  >
+                    From startups to Fortune 500 enterprises, teams trust Alfacall 
+                    to power their global telecommunications infrastructure.
+                  </motion.p>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <a 
+                      href="/contact"
+                      className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-[#0f2744] transition-all hover:scale-105"
+                      style={{
+                        background: "linear-gradient(135deg, #FFBE32, #e5a82e)",
+                        boxShadow: "0 4px 20px rgba(255, 190, 50, 0.5)",
+                      }}
+                    >
+                      Get Started Today
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </a>
+                  </motion.div>
+                </div>
               </div>
             </div>
           </div>
@@ -205,7 +215,7 @@ export function TestimonialsSection() {
           <div 
             className="absolute -inset-4 rounded-3xl blur-3xl -z-10 opacity-30"
             style={{
-              background: "linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(249, 115, 22, 0.1) 100%)",
+              background: "linear-gradient(135deg, rgba(15, 39, 68, 0.4) 0%, rgba(255, 190, 50, 0.2) 100%)",
             }}
           />
         </motion.div>
