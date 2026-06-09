@@ -97,8 +97,33 @@ export default function ProductsPage() {
         <PageHero
           eyebrow="Our Products"
           eyebrowIcon={Boxes}
-          title="Our Products"
-          description="Complete telecom infrastructure for enterprises of all sizes"
+          title="Telecom Infrastructure Products"
+          highlightLastWord
+          description="Carrier-grade voice, messaging, numbering, and connectivity — engineered for enterprises that demand reliability at global scale."
+          align="left"
+          breadcrumbs={[
+            { name: "Home", href: "/" },
+            { name: "Products", href: "/products" },
+          ]}
+          highlights={["180+ Countries", "99.99% Uptime SLA", "Carrier-Grade Routing", "24/7 NOC"]}
+          aside={
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { value: "180+", label: "Countries Covered" },
+                { value: "10B+", label: "API Calls / Day" },
+                { value: "99.99%", label: "Network Uptime" },
+                { value: "<50ms", label: "Avg. Latency" },
+              ].map((s) => (
+                <div
+                  key={s.label}
+                  className="rounded-2xl bg-white/5 border border-white/10 p-6 backdrop-blur-sm"
+                >
+                  <div className="text-3xl font-bold text-[#FFBE32]">{s.value}</div>
+                  <div className="mt-1 text-sm text-white/70">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          }
         />
 
         {/* Products Grid */}

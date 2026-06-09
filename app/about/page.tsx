@@ -7,6 +7,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { PageHero } from "@/components/page-hero"
+import { StaticLogo } from "@/components/static-logo"
 
 const stats = [
   { value: "2015", label: "Founded" },
@@ -63,7 +64,15 @@ export default function AboutPage() {
           eyebrow="About Alfacall"
           eyebrowIcon={Sparkles}
           title="About Alfacall"
-          description="Empowering businesses with enterprise-grade telecom infrastructure since 2015"
+          highlightLastWord
+          description="Empowering businesses with enterprise-grade telecom infrastructure since 2015 — connecting people across 180+ countries."
+          align="left"
+          breadcrumbs={[
+            { name: "Home", href: "/" },
+            { name: "About Us", href: "/about" },
+          ]}
+          highlights={["Founded 2015", "500+ Enterprise Clients", "200+ Team Members"]}
+          topSlot={<StaticLogo size="lg" showText variant="onDark" />}
         />
 
         {/* Stats */}

@@ -1,33 +1,63 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, type Variants } from "framer-motion"
+import Link from "next/link"
+import { ChevronRight } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
+import type { ReactNode } from "react"
+
+interface Breadcrumb {
+  name: string
+  href: string
+}
 
 interface PageHeroProps {
   eyebrow?: string
   eyebrowIcon?: LucideIcon
   title: string
+  /** Highlight the last word of the title in gold */
+  highlightLastWord?: boolean
   description?: string
   align?: "center" | "left"
+  breadcrumbs?: Breadcrumb[]
+  /** small feature chips shown under the description */
+  highlights?: string[]
+  /** optional slot rendered above the eyebrow (e.g. a logo) */
+  topSlot?: ReactNode
+  /** optional slot rendered to the right on large screens */
+  aside?: ReactNode
+}
+
+const container: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+}
+const item: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 }
 
 export function PageHero({
   eyebrow,
   eyebrowIcon: EyebrowIcon,
   title,
+  highlightLastWord = false,
   description,
   align = "center",
+  breadcrumbs,
+  highlights,
+  topSlot,
+  aside,
 }: PageHeroProps) {
   const isCenter = align === "center"
+  const words = title.split(" ")
 
   return (
-    <section className="pt-32 pb-20 relative overflow-hidden bg-[#0f2744]">
+    <section className="pt-28 pb-24 relative overflow-hidden bg-[#0f2744]">
       {/* Brand gradient base */}
       <div
         className="absolute inset-0"
-        style={{
-          background: "linear-gradient(135deg, #0f2744 0%, #16335a 55%, #0a1c33 100%)",
-        }}
+        style={{ background: "linear-gradient(135deg, #0f2744 0%, #16335a 55%, #0a1c33 100%)" }}
       />
 
       {/* Soft brand glows */}
@@ -47,36 +77,104 @@ export function PageHero({
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className={isCenter ? "max-w-3xl mx-auto text-center" : "max-w-3xl"}>
-          {eyebrow && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFBE32]/15 border border-[#FFBE32]/30 text-[#FFBE32] text-sm font-medium mb-6 ${
-                isCenter ? "" : ""
-              }`}
-            >
-              {EyebrowIcon && <EyebrowIcon className="w-4 h-4" />}
-              {eyebrow}
-            </motion.div>
-          )}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+        {/* Breadcrumbs */}
+        {breadcrumbs && breadcrumbs.length > 0 && (
+          <motion.nav
+            aria-label="Breadcrumb"
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl lg:text-6xl font-bold text-white text-balance"
+            className={`flex items-center gap-1.5 text-sm text-white/50 mb-8 ${isCenter ? "justify-center" : ""}`}
           >
-            {title}
-          </motion.h1>
-          {description && (
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className={`mt-6 text-xl text-white/70 ${isCenter ? "max-w-2xl mx-auto" : ""}`}
+            {breadcrumbs.map((crumb, i) => (
+              <span key={crumb.href} className="flex items-center gap-1.5">
+                {i > 0 && <ChevronRight className="w-3.5 h-3.5 text-white/30" />}
+                {i === breadcrumbs.length - 1 ? (
+                  <span className="text-[#FFBE32]">{crumb.name}</span>
+                ) : (
+                  <Link href={crumb.href} className="hover:text-white transition-colors">
+                    {crumb.name}
+                  </Link>
+                )}
+              </span>
+            ))}
+          </motion.nav>
+        )}
+
+        <div className={`grid gap-12 items-center ${aside ? "lg:grid-cols-2" : "lg:grid-cols-1"}`}>
+          <motion.div
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className={isCenter && !aside ? "max-w-3xl mx-auto text-center" : "max-w-2xl"}
+          >
+            {topSlot && (
+              <motion.div variants={item} className={`mb-6 flex ${isCenter && !aside ? "justify-center" : ""}`}>
+                {topSlot}
+              </motion.div>
+            )}
+
+            {eyebrow && (
+              <motion.div
+                variants={item}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFBE32]/15 border border-[#FFBE32]/30 text-[#FFBE32] text-sm font-medium mb-6"
+              >
+                {EyebrowIcon && <EyebrowIcon className="w-4 h-4" />}
+                {eyebrow}
+              </motion.div>
+            )}
+
+            <h1 className="text-4xl lg:text-6xl font-bold text-white text-balance leading-[1.05]">
+              {words.map((word, i) => (
+                <motion.span
+                  key={`${word}-${i}`}
+                  variants={item}
+                  className={`inline-block mr-[0.25em] ${
+                    highlightLastWord && i === words.length - 1 ? "text-[#FFBE32]" : ""
+                  }`}
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </h1>
+
+            {description && (
+              <motion.p
+                variants={item}
+                className={`mt-6 text-lg lg:text-xl text-white/70 leading-relaxed ${
+                  isCenter && !aside ? "max-w-2xl mx-auto" : ""
+                }`}
+              >
+                {description}
+              </motion.p>
+            )}
+
+            {highlights && highlights.length > 0 && (
+              <motion.ul
+                variants={item}
+                className={`mt-8 flex flex-wrap gap-3 ${isCenter && !aside ? "justify-center" : ""}`}
+              >
+                {highlights.map((h) => (
+                  <li
+                    key={h}
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-sm text-white/80"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FFBE32]" />
+                    {h}
+                  </li>
+                ))}
+              </motion.ul>
+            )}
+          </motion.div>
+
+          {aside && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="hidden lg:block"
             >
-              {description}
-            </motion.p>
+              {aside}
+            </motion.div>
           )}
         </div>
       </div>

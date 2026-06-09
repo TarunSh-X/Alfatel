@@ -95,8 +95,15 @@ export default function ContactPage() {
         <PageHero
           eyebrow="Contact Us"
           eyebrowIcon={MessageSquare}
-          title="Contact Us"
-          description="Get in touch with our team to discuss your telecom needs"
+          title="Let's Build Something Together"
+          highlightLastWord
+          description="Get in touch with our team to discuss your telecom needs. We typically respond within 24 hours."
+          align="left"
+          breadcrumbs={[
+            { name: "Home", href: "/" },
+            { name: "Contact", href: "/contact" },
+          ]}
+          highlights={["24/7 Support", "Global Offices", "Dedicated Account Manager"]}
         />
 
         {/* Contact Methods */}
