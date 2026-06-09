@@ -2,10 +2,11 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Phone, Mail, MapPin, MessageSquare, Clock, Send, Check } from "lucide-react"
+import { Phone, Mail, MapPin, MessageSquare, Clock, Send, Check, ArrowRight } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { PageHero } from "@/components/page-hero"
 
 const contactMethods = [
   {
@@ -14,13 +15,15 @@ const contactMethods = [
     description: "Talk to our sales team about your requirements",
     contact: "+1-800-ALFACALL",
     action: "Call us",
+    href: "tel:+18002532225",
   },
   {
     icon: Mail,
     title: "Email",
-    description: "Send us an email and we&apos;ll respond within 24 hours",
+    description: "Send us an email and we'll respond within 24 hours",
     contact: "sales@alfacall.net",
     action: "Email us",
+    href: "mailto:sales@alfacall.net",
   },
   {
     icon: MessageSquare,
@@ -28,6 +31,7 @@ const contactMethods = [
     description: "Chat with our support team in real-time",
     contact: "Available 24/7",
     action: "Start chat",
+    href: "#contact-form",
   },
 ]
 
@@ -88,67 +92,52 @@ export default function ContactPage() {
     <>
       <Header />
       <main>
-        {/* Hero */}
-        <section 
-          className="pt-32 pb-20 relative overflow-hidden"
-          style={{ background: "linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%)" }}
-        >
-          <div className="absolute inset-0 opacity-10">
-            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                  <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" strokeWidth="1" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
-          </div>
-          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-4xl lg:text-6xl font-bold text-white text-balance"
-            >
-              Contact Us
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="mt-4 text-xl text-white/70 max-w-2xl mx-auto"
-            >
-              Get in touch with our team to discuss your telecom needs
-            </motion.p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="Contact Us"
+          eyebrowIcon={MessageSquare}
+          title="Let's Build Something Together"
+          highlightLastWord
+          description="Get in touch with our team to discuss your telecom needs. We typically respond within 24 hours."
+          align="left"
+          breadcrumbs={[
+            { name: "Home", href: "/" },
+            { name: "Contact", href: "/contact" },
+          ]}
+          highlights={["24/7 Support", "Global Offices", "Dedicated Account Manager"]}
+        />
 
         {/* Contact Methods */}
         <section className="py-16 bg-background">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-3 gap-6">
               {contactMethods.map((method, index) => (
-                <motion.div
+                <motion.a
                   key={method.title}
+                  href={method.href}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-6 rounded-2xl bg-card border border-border text-center"
+                  className="group block p-6 rounded-2xl bg-card border border-border text-center hover:border-[#FFBE32]/40 hover:shadow-soft hover:-translate-y-1 transition-all duration-300"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <method.icon className="w-6 h-6 text-primary" />
+                  <div className="w-12 h-12 rounded-xl bg-[#0f2744]/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-[#0f2744] transition-colors duration-300">
+                    <method.icon className="w-6 h-6 text-[#0f2744] group-hover:text-white transition-colors duration-300" />
                   </div>
                   <h3 className="font-semibold text-foreground">{method.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{method.description}</p>
-                  <p className="mt-3 font-medium text-primary">{method.contact}</p>
-                </motion.div>
+                  <p className="mt-3 font-medium text-[#0f2744]">{method.contact}</p>
+                  <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[#0f2744] group-hover:gap-2 transition-all">
+                    {method.action}
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </motion.a>
               ))}
             </div>
           </div>
         </section>
 
         {/* Contact Form + Offices */}
-        <section className="py-24 bg-secondary/50">
+        <section id="contact-form" className="py-24 bg-secondary/50 scroll-mt-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Form */}

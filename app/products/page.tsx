@@ -2,10 +2,11 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { Phone, Hash, MessageSquare, Radio, Code, Headphones, ArrowRight, Check } from "lucide-react"
+import { Phone, Hash, MessageSquare, Radio, Code, Headphones, ArrowRight, Check, Boxes } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { PageHero } from "@/components/page-hero"
 
 const products = [
   {
@@ -93,39 +94,37 @@ export default function ProductsPage() {
     <>
       <Header />
       <main>
-        {/* Hero */}
-        <section 
-          className="pt-32 pb-20 relative overflow-hidden"
-          style={{ background: "linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%)" }}
-        >
-          <div className="absolute inset-0 opacity-10">
-            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                  <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" strokeWidth="1" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
-          </div>
-          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-4xl lg:text-6xl font-bold text-white text-balance"
-            >
-              Our Products
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="mt-4 text-xl text-white/70 max-w-2xl mx-auto"
-            >
-              Complete telecom infrastructure for enterprises of all sizes
-            </motion.p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="Our Products"
+          eyebrowIcon={Boxes}
+          title="Telecom Infrastructure Products"
+          highlightLastWord
+          description="Carrier-grade voice, messaging, numbering, and connectivity — engineered for enterprises that demand reliability at global scale."
+          align="left"
+          breadcrumbs={[
+            { name: "Home", href: "/" },
+            { name: "Products", href: "/products" },
+          ]}
+          highlights={["180+ Countries", "99.99% Uptime SLA", "Carrier-Grade Routing", "24/7 NOC"]}
+          aside={
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { value: "180+", label: "Countries Covered" },
+                { value: "10B+", label: "API Calls / Day" },
+                { value: "99.99%", label: "Network Uptime" },
+                { value: "<50ms", label: "Avg. Latency" },
+              ].map((s) => (
+                <div
+                  key={s.label}
+                  className="rounded-2xl bg-white/5 border border-white/10 p-6 backdrop-blur-sm"
+                >
+                  <div className="text-3xl font-bold text-[#FFBE32]">{s.value}</div>
+                  <div className="mt-1 text-sm text-white/70">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          }
+        />
 
         {/* Products Grid */}
         <section className="py-24 bg-background">
@@ -141,12 +140,12 @@ export default function ProductsPage() {
                 >
                   <Link
                     href={product.href}
-                    className="group block h-full p-8 rounded-2xl bg-card border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
+                    className="group block h-full p-8 rounded-2xl bg-card border border-border hover:border-[#FFBE32]/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                   >
-                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all duration-300 mb-6">
-                      <product.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors" />
+                    <div className="w-14 h-14 rounded-xl bg-[#0f2744]/10 flex items-center justify-center group-hover:bg-[#0f2744] group-hover:scale-110 transition-all duration-300 mb-6">
+                      <product.icon className="w-7 h-7 text-[#0f2744] group-hover:text-white transition-colors" />
                     </div>
-                    <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-xl font-semibold text-foreground group-hover:text-[#0f2744] transition-colors">
                       {product.title}
                     </h3>
                     <p className="mt-2 text-muted-foreground">
@@ -155,12 +154,12 @@ export default function ProductsPage() {
                     <ul className="mt-6 space-y-2">
                       {product.features.map((feature) => (
                         <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <Check className="w-4 h-4 text-primary" />
+                          <Check className="w-4 h-4 text-[#FFBE32]" />
                           {feature}
                         </li>
                       ))}
                     </ul>
-                    <div className="mt-6 inline-flex items-center text-primary font-medium group-hover:gap-3 gap-2 transition-all">
+                    <div className="mt-6 inline-flex items-center text-[#0f2744] font-medium group-hover:gap-3 gap-2 transition-all">
                       Learn more
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </div>

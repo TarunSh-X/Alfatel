@@ -2,10 +2,12 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { Users, Target, Award, Globe, ArrowRight, Check } from "lucide-react"
+import { Users, Target, Award, Globe, ArrowRight, Check, Sparkles } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { PageHero } from "@/components/page-hero"
+import { StaticLogo } from "@/components/static-logo"
 
 const stats = [
   { value: "2015", label: "Founded" },
@@ -18,7 +20,7 @@ const values = [
   {
     icon: Target,
     title: "Customer First",
-    description: "We prioritize our customers&apos; success above all else, building solutions that solve real problems.",
+    description: "We prioritize our customers' success above all else, building solutions that solve real problems.",
   },
   {
     icon: Award,
@@ -58,39 +60,20 @@ export default function AboutPage() {
     <>
       <Header />
       <main>
-        {/* Hero */}
-        <section 
-          className="pt-32 pb-20 relative overflow-hidden"
-          style={{ background: "linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%)" }}
-        >
-          <div className="absolute inset-0 opacity-10">
-            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                  <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" strokeWidth="1" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
-          </div>
-          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-4xl lg:text-6xl font-bold text-white text-balance"
-            >
-              About Alfacall
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="mt-4 text-xl text-white/70 max-w-2xl mx-auto"
-            >
-              Empowering businesses with enterprise-grade telecom infrastructure since 2015
-            </motion.p>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="About Alfacall"
+          eyebrowIcon={Sparkles}
+          title="About Alfacall"
+          highlightLastWord
+          description="Empowering businesses with enterprise-grade telecom infrastructure since 2015 — connecting people across 180+ countries."
+          align="left"
+          breadcrumbs={[
+            { name: "Home", href: "/" },
+            { name: "About Us", href: "/about" },
+          ]}
+          highlights={["Founded 2015", "500+ Enterprise Clients", "200+ Team Members"]}
+          topSlot={<StaticLogo size="lg" showText variant="onDark" />}
+        />
 
         {/* Stats */}
         <section className="py-16 bg-background">
@@ -105,7 +88,7 @@ export default function AboutPage() {
                   transition={{ delay: index * 0.1 }}
                   className="text-center p-6 rounded-2xl bg-card border border-border"
                 >
-                  <div className="text-4xl font-bold text-primary">{stat.value}</div>
+                  <div className="text-4xl font-bold text-[#0f2744]">{stat.value}</div>
                   <div className="mt-2 text-muted-foreground">{stat.label}</div>
                 </motion.div>
               ))}

@@ -18,33 +18,6 @@ export function AnimatedLogo({ size = "md", showText = true, href = "/" }: Anima
 
   const config = sizes[size]
 
-  // Signal wave rings animation
-  const waveRingVariants = {
-    animate: (i: number) => ({
-      scale: [1, 1.5, 1.9],
-      opacity: [0.6, 0.25, 0],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        ease: "easeOut",
-        delay: i * 0.5,
-      },
-    }),
-  }
-
-  // Glow pulse animation
-  const glowVariants = {
-    animate: {
-      opacity: [0.6, 1, 0.6],
-      scale: [1, 1.02, 1],
-      transition: {
-        duration: 2.5,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  }
-
   const LogoContent = () => (
     <div className="flex items-center gap-3 group">
       {/* Animated Icon Container */}
@@ -54,27 +27,13 @@ export function AnimatedLogo({ size = "md", showText = true, href = "/" }: Anima
         whileHover={{ scale: 1.08 }}
         transition={{ type: "spring", stiffness: 400, damping: 10 }}
       >
-        {/* Animated wave rings emanating outward */}
-        {[0, 1, 2].map((i) => (
-          <motion.div
-            key={i}
-            className="absolute inset-0 rounded-xl"
-            style={{ border: "2px solid rgba(255, 190, 50, 0.5)" }}
-            custom={i}
-            variants={waveRingVariants}
-            animate="animate"
-          />
-        ))}
-
-        {/* Main icon background - Deep Navy Blue */}
-        <motion.div
+        {/* Main icon background - Deep Navy Blue (static, no boundary highlight) */}
+        <div
           className="absolute inset-0 rounded-xl"
           style={{
             background: "linear-gradient(145deg, #0d1f38 0%, #152a4a 50%, #0a1628 100%)",
-            boxShadow: "0 0 30px rgba(255, 190, 50, 0.35), 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255,255,255,0.1)",
+            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255,255,255,0.1)",
           }}
-          variants={glowVariants}
-          animate="animate"
         />
 
         {/* Inner highlight */}
@@ -197,21 +156,13 @@ export function AnimatedLogo({ size = "md", showText = true, href = "/" }: Anima
       {showText && (
         <div className="flex flex-col">
           <motion.span
-            className={`font-bold text-foreground ${config.text} leading-none tracking-tight`}
+            className={`font-bold ${config.text} leading-none tracking-tight`}
+            style={{ color: "#FFBE32" }}
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <span style={{ color: "#FFBE32" }}>Alfa</span>
-            <span className="text-foreground">call</span>
-          </motion.span>
-          <motion.span
-            className={`${config.tagline} text-muted-foreground tracking-widest uppercase`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            Telecom Solutions
+            Alfacall
           </motion.span>
         </div>
       )}
