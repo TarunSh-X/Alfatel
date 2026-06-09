@@ -314,7 +314,14 @@ export default function ServicesPage() {
           eyebrow="Developer Services"
           eyebrowIcon={Code}
           title="APIs for Modern Communications"
+          highlightLastWord
           description="Build powerful voice and messaging applications with our developer-friendly APIs and SDKs. Try the live examples below."
+          align="left"
+          breadcrumbs={[
+            { name: "Home", href: "/" },
+            { name: "Services", href: "/services" },
+          ]}
+          highlights={["Voice API", "Messaging API", "Number Management", "Official SDKs"]}
         />
 
         {/* Services with interactive terminals */}

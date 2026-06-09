@@ -22,7 +22,6 @@ export function StaticLogo({
   }
 
   const config = sizes[size]
-  const onDark = variant === "onDark"
 
   const LogoContent = () => (
     <div className="flex items-center gap-3">
@@ -85,16 +84,8 @@ export function StaticLogo({
       {/* Text */}
       {showText && (
         <div className="flex flex-col">
-          <span className={`font-bold ${config.text} leading-none tracking-tight`}>
-            <span style={{ color: "#FFBE32" }}>Alfa</span>
-            <span className={onDark ? "text-white" : "text-foreground"}>call</span>
-          </span>
-          <span
-            className={`${config.tagline} tracking-widest uppercase ${
-              onDark ? "text-white/60" : "text-muted-foreground"
-            }`}
-          >
-            Telecom Solutions
+          <span className={`font-bold ${config.text} leading-none tracking-tight`} style={{ color: "#FFBE32" }}>
+            Alfacall
           </span>
         </div>
       )}

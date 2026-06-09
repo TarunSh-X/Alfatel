@@ -6,6 +6,7 @@ import { MessageSquare, Globe, Zap, BarChart3, Shield, ArrowLeftRight, Check, Ar
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { PageHero } from "@/components/page-hero"
 
 const features = [
   {
@@ -63,63 +64,20 @@ export default function WholesaleSMSPage() {
     <>
       <Header />
       <main>
-        {/* Hero */}
-        <section 
-          className="pt-32 pb-20 relative overflow-hidden"
-          style={{ background: "linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%)" }}
-        >
-          <div className="absolute inset-0 opacity-10">
-            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                  <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" strokeWidth="1" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
-          </div>
-          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-sm font-medium mb-6"
-              >
-                <MessageSquare className="w-4 h-4" />
-                Wholesale SMS
-              </motion.div>
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="text-4xl lg:text-6xl font-bold text-white text-balance"
-              >
-                Global SMS Delivery at Scale
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="mt-6 text-xl text-white/70"
-              >
-                Reach customers in 200+ countries with exceptional delivery rates. High throughput, real-time analytics, and full compliance support.
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="mt-8 flex flex-col sm:flex-row gap-4"
-              >
-                <Button size="lg" asChild className="bg-white text-primary hover:bg-white/90">
-                  <Link href="/contact">Get Started</Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild className="border-white/30 text-white hover:bg-white/10 bg-transparent">
-                  <Link href="/contact">View Pricing</Link>
-                </Button>
-              </motion.div>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          eyebrow="Wholesale SMS"
+          eyebrowIcon={MessageSquare}
+          title="Global SMS Delivery at Scale"
+          highlightLastWord
+          description="Reach customers in 200+ countries with exceptional delivery rates. High throughput, real-time analytics, and full compliance support."
+          align="left"
+          breadcrumbs={[
+            { name: "Home", href: "/" },
+            { name: "Products", href: "/products" },
+            { name: "Wholesale SMS", href: "/products/wholesale-sms" },
+          ]}
+          highlights={["200+ Countries", "High Throughput", "Delivery Reports", "Two-Way Messaging"]}
+        />
 
         {/* Features */}
         <section className="py-24 bg-background">
@@ -140,10 +98,10 @@ export default function WholesaleSMSPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-6 rounded-2xl bg-card border border-border"
+                  className="p-6 rounded-2xl bg-card border border-border hover:border-[#FFBE32]/40 transition-colors"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                    <feature.icon className="w-6 h-6 text-primary" />
+                  <div className="w-12 h-12 rounded-xl bg-[#0f2744]/10 flex items-center justify-center mb-4">
+                    <feature.icon className="w-6 h-6 text-[#0f2744]" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">{feature.title}</h3>
                   <p className="mt-2 text-muted-foreground">{feature.description}</p>
@@ -179,7 +137,7 @@ export default function WholesaleSMSPage() {
                   <ul className="mt-6 space-y-3">
                     {useCase.examples.map((example) => (
                       <li key={example} className="flex items-center gap-2 text-sm">
-                        <Check className="w-4 h-4 text-primary" />
+                        <Check className="w-4 h-4 text-[#FFBE32]" />
                         <span className="text-foreground">{example}</span>
                       </li>
                     ))}

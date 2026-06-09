@@ -60,21 +60,37 @@ export function PageHero({
         style={{ background: "linear-gradient(135deg, #0f2744 0%, #16335a 55%, #0a1c33 100%)" }}
       />
 
-      {/* Soft brand glows */}
-      <div className="absolute -top-24 -right-16 w-96 h-96 rounded-full bg-[#FFBE32]/10 blur-3xl" />
-      <div className="absolute bottom-0 -left-24 w-96 h-96 rounded-full bg-[#FFBE32]/5 blur-3xl" />
+      {/* Light animated brand glows (replaces the blocky grid pattern) */}
+      <motion.div
+        aria-hidden="true"
+        className="absolute -top-32 -right-20 w-[28rem] h-[28rem] rounded-full bg-[#FFBE32]/10 blur-3xl"
+        animate={{ x: [0, 30, 0], y: [0, 20, 0], opacity: [0.5, 0.8, 0.5] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        aria-hidden="true"
+        className="absolute -bottom-32 -left-24 w-[26rem] h-[26rem] rounded-full bg-sky-400/10 blur-3xl"
+        animate={{ x: [0, -24, 0], y: [0, -18, 0], opacity: [0.4, 0.7, 0.4] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
+      <motion.div
+        aria-hidden="true"
+        className="absolute top-1/3 left-1/4 w-72 h-72 rounded-full bg-[#FFBE32]/5 blur-3xl"
+        animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.55, 0.3] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      />
 
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.07]">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="page-hero-grid" width="60" height="60" patternUnits="userSpaceOnUse">
-              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" strokeWidth="1" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#page-hero-grid)" />
-        </svg>
-      </div>
+      {/* Soft animated diagonal sheen */}
+      <motion.div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage: "linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.6) 50%, transparent 70%)",
+          backgroundSize: "200% 100%",
+        }}
+        animate={{ backgroundPosition: ["120% 0%", "-20% 0%"] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+      />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Breadcrumbs */}

@@ -156,21 +156,13 @@ export function AnimatedLogo({ size = "md", showText = true, href = "/" }: Anima
       {showText && (
         <div className="flex flex-col">
           <motion.span
-            className={`font-bold text-foreground ${config.text} leading-none tracking-tight`}
+            className={`font-bold ${config.text} leading-none tracking-tight`}
+            style={{ color: "#FFBE32" }}
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <span style={{ color: "#FFBE32" }}>Alfa</span>
-            <span className="text-foreground">call</span>
-          </motion.span>
-          <motion.span
-            className={`${config.tagline} text-muted-foreground tracking-widest uppercase`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            Telecom Solutions
+            Alfacall
           </motion.span>
         </div>
       )}
