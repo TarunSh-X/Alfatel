@@ -126,7 +126,7 @@ export function HeroSection() {
               {[
                 { end: 180, suffix: "+", label: "Countries", color: "text-[#0f2744]" },
                 { end: 99.99, suffix: "%", label: "Uptime SLA", color: "text-emerald-600" },
-                { end: 10, suffix: "B+", label: "API Calls/Day", color: "text-[#FFBE32]" },
+                { end: 100, suffix: "K+", label: "API Calls/Day", color: "text-[#FFBE32]" },
               ].map((stat, i) => (
                 <motion.div 
                   key={stat.label}

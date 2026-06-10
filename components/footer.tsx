@@ -50,9 +50,9 @@ export function Footer() {
       <div className="relative z-10">
         {/* Main Footer */}
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-10 lg:gap-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-10 lg:gap-12">
             {/* Brand */}
-            <div className="col-span-2 md:col-span-3 lg:col-span-2">
+            <div className="col-span-2 md:col-span-3 lg:col-span-3">
               <AnimatedLogo size="lg" showText={true} href="/" />
               <p className="mt-5 text-white/70 max-w-sm leading-relaxed">
                 Enterprise-grade wholesale voice, DID, SMS, and SIP trunking solutions 
@@ -81,7 +81,7 @@ export function Footer() {
             </div>
 
             {/* Products */}
-            <div>
+            <div className="lg:col-span-2">
               <h3 className="font-semibold text-white mb-5">Products</h3>
               <ul className="space-y-4">
                 {footerLinks.products.map((link) => (
@@ -98,7 +98,7 @@ export function Footer() {
             </div>
 
             {/* Services */}
-            <div>
+            <div className="lg:col-span-2">
               <h3 className="font-semibold text-white mb-5">Services</h3>
               <ul className="space-y-4">
                 {footerLinks.services.map((link) => (
@@ -115,7 +115,7 @@ export function Footer() {
             </div>
 
             {/* Company */}
-            <div>
+            <div className="lg:col-span-2">
               <h3 className="font-semibold text-white mb-5">Company</h3>
               <ul className="space-y-4">
                 {footerLinks.company.map((link) => (
@@ -131,8 +131,8 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Legal */}
-            <div>
+            {/* Legal + Global Offices */}
+            <div className="col-span-2 md:col-span-3 lg:col-span-3">
               <h3 className="font-semibold text-white mb-5">Legal</h3>
               <ul className="space-y-4">
                 {footerLinks.legal.map((link) => (
@@ -146,11 +146,8 @@ export function Footer() {
                   </li>
                 ))}
               </ul>
-            </div>
 
-            {/* Global Offices */}
-            <div className="col-span-2 md:col-span-3 lg:col-span-2">
-              <h3 className="font-semibold text-white mb-5">Global Offices</h3>
+              <h3 className="font-semibold text-white mt-8 mb-5">Global Offices</h3>
               <ul className="space-y-6">
                 {offices.map((office) => (
                   <li key={office.name} className="flex items-start gap-3 text-white/70">
