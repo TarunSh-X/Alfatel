@@ -4,15 +4,16 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { Phone, Mail } from "lucide-react"
 import { AnimatedLogo } from "./animated-logo"
+import { Flag } from "./flag"
 
 const offices = [
   {
-    flag: "🇺🇸",
+    code: "us",
     name: "USA (Registered Office)",
     lines: ["1309 Coffeen Avenue, Ste 1200", "Sheridan, WY 82801", "United States"],
   },
   {
-    flag: "🇭🇰",
+    code: "hk",
     name: "Hong Kong (Asia Pacific)",
     lines: ["RM 603, South China Industrial Building", "Chun Pin Street, Kwai Chung", "Hong Kong SAR, China"],
   },
@@ -151,9 +152,7 @@ export function Footer() {
               <ul className="space-y-6">
                 {offices.map((office) => (
                   <li key={office.name} className="flex items-start gap-3 text-white/70">
-                    <span className="text-xl leading-none mt-0.5" aria-hidden="true">
-                      {office.flag}
-                    </span>
+                    <Flag code={office.code} className="w-6 h-auto rounded-sm shadow-sm mt-1 shrink-0" />
                     <div className="text-sm leading-relaxed">
                       <div className="font-medium text-white">{office.name}</div>
                       {office.lines.map((line) => (

@@ -7,15 +7,16 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { PageHero } from "@/components/page-hero"
 import { AnimatedLogo } from "@/components/animated-logo"
+import { Flag } from "@/components/flag"
 
 const offices = [
   {
-    flag: "🇺🇸",
+    code: "us",
     name: "USA (Registered Office)",
     lines: ["1309 Coffeen Avenue, Ste 1200", "Sheridan, WY 82801", "United States"],
   },
   {
-    flag: "🇭🇰",
+    code: "hk",
     name: "Hong Kong (Asia Pacific)",
     lines: ["RM 603, South China Industrial Building", "Chun Pin Street, Kwai Chung", "Hong Kong SAR, China"],
   },
@@ -164,8 +165,8 @@ export default function ContactPage() {
                           <MapPin className="w-5 h-5 text-[#00D4FF]" />
                         </span>
                         <div className="text-sm leading-relaxed text-white/80">
-                          <div className="font-medium text-white">
-                            <span className="mr-2" aria-hidden="true">{office.flag}</span>
+                          <div className="font-medium text-white flex items-center gap-2">
+                            <Flag code={office.code} className="w-5 h-auto rounded-sm shadow-sm" />
                             {office.name}
                           </div>
                           {office.lines.map((line) => (
