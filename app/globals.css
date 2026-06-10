@@ -274,3 +274,23 @@
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(15, 39, 68, 0.12), 0 6px 16px rgba(15, 39, 68, 0.08);
 }
+
+/* Partner logo carousel - infinite horizontal auto-scroll */
+@keyframes partner-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-partner-scroll {
+  animation: partner-scroll 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-partner-scroll {
+    animation: none;
+  }
+}

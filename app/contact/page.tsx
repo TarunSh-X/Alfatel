@@ -205,7 +205,7 @@ export default function ContactPage() {
               </div>
 
               {/* RIGHT — Contact form */}
-              <div className="lg:col-span-3 rounded-2xl bg-[#13294d] p-8 lg:p-10">
+              <div className="lg:col-span-3 min-w-0 rounded-2xl bg-[#13294d] p-8 lg:p-10">
                 {submitted ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.96 }}
@@ -278,7 +278,7 @@ export default function ContactPage() {
                       </div>
 
                       {/* Phone */}
-                      <div>
+                      <div className="min-w-0">
                         <label htmlFor="phone" className="block text-sm font-medium text-white/80 mb-1.5">
                           Phone Number
                         </label>
@@ -287,7 +287,7 @@ export default function ContactPage() {
                             aria-label="Country code"
                             value={form.countryCode}
                             onChange={(e) => update("countryCode", e.target.value)}
-                            className={`${inputClasses} w-24 shrink-0`}
+                            className="w-24 shrink-0 rounded-lg bg-[#0D1F3C] border border-white/10 px-3 py-3 text-white transition-all focus:outline-none focus:border-[#00D4FF] focus:ring-2 focus:ring-[#00D4FF]/30"
                           >
                             {countryCodes.map((code) => (
                               <option key={code} value={code} className="bg-[#0D1F3C]">
@@ -300,7 +300,7 @@ export default function ContactPage() {
                             type="tel"
                             value={form.phone}
                             onChange={(e) => update("phone", e.target.value)}
-                            className={inputClasses}
+                            className={`${inputClasses} flex-1 min-w-0`}
                             placeholder="(208) 244-7477"
                           />
                         </div>

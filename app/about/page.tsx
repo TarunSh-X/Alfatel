@@ -1,11 +1,9 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Link from "next/link"
-import { Users, Target, Award, Globe, ArrowRight, Check, Sparkles } from "lucide-react"
+import { Users, Target, Award, Globe, Check, Sparkles } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Button } from "@/components/ui/button"
 import { PageHero } from "@/components/page-hero"
 import { StaticLogo } from "@/components/static-logo"
 
@@ -13,7 +11,7 @@ const stats = [
   { value: "2015", label: "Founded" },
   { value: "500+", label: "Enterprise Clients" },
   { value: "180+", label: "Countries Served" },
-  { value: "200+", label: "Team Members" },
+  { value: "100+", label: "Team Members" },
 ]
 
 const values = [
@@ -48,13 +46,6 @@ const milestones = [
   { year: "2024", event: "Launched next-generation AI-powered voice features" },
 ]
 
-const team = [
-  { name: "Alex Thompson", role: "CEO & Co-Founder", initials: "AT" },
-  { name: "Sarah Chen", role: "CTO & Co-Founder", initials: "SC" },
-  { name: "Michael Rodriguez", role: "VP of Engineering", initials: "MR" },
-  { name: "Emily Watson", role: "VP of Sales", initials: "EW" },
-]
-
 export default function AboutPage() {
   return (
     <>
@@ -71,7 +62,7 @@ export default function AboutPage() {
             { name: "Home", href: "/" },
             { name: "About Us", href: "/about" },
           ]}
-          highlights={["Founded 2015", "500+ Enterprise Clients", "200+ Team Members"]}
+          highlights={["Founded 2015", "500+ Enterprise Clients", "100+ Team Members"]}
           topSlot={<StaticLogo size="lg" showText variant="onDark" />}
         />
 
