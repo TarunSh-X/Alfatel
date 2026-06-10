@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     canonical: "https://alfacall.net/products/sip-trunking",
   },
   openGraph: {
-    title: "Scalable SIP Trunking | Alfacall",
+    title: "Scalable SIP Trunking | AlfaCall",
     description:
       "Connect your PBX to our global network with unlimited SIP trunk channels, automatic failover, and enterprise-grade security.",
     url: "https://alfacall.net/products/sip-trunking",

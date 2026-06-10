@@ -110,7 +110,7 @@ export default function ProductsPage() {
             <div className="grid grid-cols-2 gap-4">
               {[
                 { value: "180+", label: "Countries Covered" },
-                { value: "10B+", label: "API Calls / Day" },
+                { value: "100K+", label: "API Calls / Day" },
                 { value: "99.99%", label: "Network Uptime" },
                 { value: "<50ms", label: "Avg. Latency" },
               ].map((s) => (

@@ -1,11 +1,9 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Link from "next/link"
-import { Users, Target, Award, Globe, ArrowRight, Check, Sparkles } from "lucide-react"
+import { Users, Target, Award, Globe, Check, Sparkles } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Button } from "@/components/ui/button"
 import { PageHero } from "@/components/page-hero"
 import { StaticLogo } from "@/components/static-logo"
 
@@ -13,7 +11,7 @@ const stats = [
   { value: "2015", label: "Founded" },
   { value: "500+", label: "Enterprise Clients" },
   { value: "180+", label: "Countries Served" },
-  { value: "200+", label: "Team Members" },
+  { value: "100+", label: "Team Members" },
 ]
 
 const values = [
@@ -40,19 +38,12 @@ const values = [
 ]
 
 const milestones = [
-  { year: "2015", event: "Alfacall founded with a mission to democratize enterprise telecom" },
+  { year: "2015", event: "AlfaCall founded with a mission to democratize enterprise telecom" },
   { year: "2017", event: "Reached 100+ countries coverage for voice termination" },
   { year: "2019", event: "Launched our developer API platform and SDK suite" },
   { year: "2021", event: "Expanded to 500+ enterprise clients globally" },
   { year: "2023", event: "Achieved 180+ countries coverage with 99.99% uptime" },
   { year: "2024", event: "Launched next-generation AI-powered voice features" },
-]
-
-const team = [
-  { name: "Alex Thompson", role: "CEO & Co-Founder", initials: "AT" },
-  { name: "Sarah Chen", role: "CTO & Co-Founder", initials: "SC" },
-  { name: "Michael Rodriguez", role: "VP of Engineering", initials: "MR" },
-  { name: "Emily Watson", role: "VP of Sales", initials: "EW" },
 ]
 
 export default function AboutPage() {
@@ -61,9 +52,9 @@ export default function AboutPage() {
       <Header />
       <main>
         <PageHero
-          eyebrow="About Alfacall"
+          eyebrow="About AlfaCall"
           eyebrowIcon={Sparkles}
-          title="About Alfacall"
+          title="About AlfaCall"
           highlightLastWord
           description="Empowering businesses with enterprise-grade telecom infrastructure since 2015 — connecting people across 180+ countries."
           align="left"
@@ -71,7 +62,7 @@ export default function AboutPage() {
             { name: "Home", href: "/" },
             { name: "About Us", href: "/about" },
           ]}
-          highlights={["Founded 2015", "500+ Enterprise Clients", "200+ Team Members"]}
+          highlights={["Founded 2015", "500+ Enterprise Clients", "100+ Team Members"]}
           topSlot={<StaticLogo size="lg" showText variant="onDark" />}
         />
 
@@ -105,7 +96,7 @@ export default function AboutPage() {
                   Our Mission
                 </h2>
                 <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                  At Alfacall, we believe that world-class telecommunications infrastructure should be accessible to businesses of all sizes. Our mission is to provide enterprise-grade voice, messaging, and number services that enable companies to connect with their customers anywhere in the world.
+                  At AlfaCall, we believe that world-class telecommunications infrastructure should be accessible to businesses of all sizes. Our mission is to provide enterprise-grade voice, messaging, and number services that enable companies to connect with their customers anywhere in the world.
                 </p>
                 <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                   We combine cutting-edge technology with exceptional customer service to deliver reliable, scalable solutions that grow with your business.
@@ -173,58 +164,6 @@ export default function AboutPage() {
                   </div>
                 </motion.div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Team */}
-        <section id="team" className="py-24 bg-secondary/50">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
-                Leadership Team
-              </h2>
-              <p className="mt-4 text-lg text-muted-foreground">
-                Meet the people driving Alfacall&apos;s mission forward
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {team.map((member, index) => (
-                <motion.div
-                  key={member.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="text-center p-6 rounded-2xl bg-card border border-border"
-                >
-                  <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-primary">
-                    {member.initials}
-                  </div>
-                  <h3 className="font-semibold text-foreground">{member.name}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{member.role}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Careers CTA */}
-        <section id="careers" className="py-20 bg-background">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
-              Join Our Team
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              We&apos;re always looking for talented individuals who are passionate about building the future of communications.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" asChild>
-                <Link href="/contact">
-                  View Open Positions
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
-              </Button>
             </div>
           </div>
         </section>

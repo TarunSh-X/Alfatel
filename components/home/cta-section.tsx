@@ -53,7 +53,7 @@ export function CTASection() {
             transition={{ delay: 0.2 }}
             className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-10"
           >
-            Join 500+ enterprises using Alfacall to power their global communications. 
+            Join 500+ enterprises using AlfaCall to power their global communications. 
             Start with our free tier and scale as you grow.
           </motion.p>
 

@@ -7,7 +7,7 @@ import { AnimatedWaveBackground } from "./animated-wave-bg"
 
 const testimonials = [
   {
-    content: "Alfacall transformed our global communications infrastructure. The API integration was seamless, and we saw a 40% reduction in costs within the first quarter.",
+    content: "AlfaCall transformed our global communications infrastructure. The API integration was seamless, and we saw a 40% reduction in costs within the first quarter.",
     author: "Sarah Chen",
     role: "CTO",
     company: "TechCorp Global",
@@ -15,7 +15,7 @@ const testimonials = [
     color: "#06b6d4",
   },
   {
-    content: "The 99.99% uptime they promise is real. We process millions of calls monthly, and Alfacall has never let us down. Their support team is exceptional.",
+    content: "The 99.99% uptime they promise is real. We process millions of calls monthly, and AlfaCall has never let us down. Their support team is exceptional.",
     author: "Marcus Johnson",
     role: "VP of Engineering",
     company: "CloudSystems Inc",
@@ -23,7 +23,7 @@ const testimonials = [
     color: "#f97316",
   },
   {
-    content: "Moving to Alfacall for our SMS infrastructure was the best decision we made. Delivery rates improved dramatically, and the analytics are incredibly detailed.",
+    content: "Moving to AlfaCall for our SMS infrastructure was the best decision we made. Delivery rates improved dramatically, and the analytics are incredibly detailed.",
     author: "Emily Rodriguez",
     role: "Director of Operations",
     company: "DataFlow Networks",
@@ -183,7 +183,7 @@ export function TestimonialsSection() {
                     transition={{ delay: 0.1 }}
                     className="text-lg text-white/90 max-w-lg mb-8 drop-shadow-md"
                   >
-                    From startups to Fortune 500 enterprises, teams trust Alfacall 
+                    From startups to Fortune 500 enterprises, teams trust AlfaCall 
                     to power their global telecommunications infrastructure.
                   </motion.p>
                   <motion.div

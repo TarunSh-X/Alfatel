@@ -3,15 +3,7 @@
 import { motion } from "framer-motion"
 import { Globe, Users, TrendingUp, Headphones, Zap, Shield } from "lucide-react"
 import { AnimatedCounter } from "./animated-elements"
-
-const logos = [
-  { name: "TechCorp", initials: "TC" },
-  { name: "GlobalNet", initials: "GN" },
-  { name: "CloudSystems", initials: "CS" },
-  { name: "DataFlow", initials: "DF" },
-  { name: "NetWorks", initials: "NW" },
-  { name: "CommHub", initials: "CH" },
-]
+import { PartnerCarousel } from "./partner-carousel"
 
 const stats = [
   { icon: Globe, value: 180, suffix: "+", label: "Countries Covered", color: "#0f2744" },
@@ -42,27 +34,15 @@ export function TrustSection() {
           </h2>
         </motion.div>
 
-        {/* Logo cloud */}
+        {/* Partner logo carousel */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="grid grid-cols-3 md:grid-cols-6 gap-4 mb-20"
+          className="mb-20"
         >
-          {logos.map((logo, index) => (
-            <motion.div
-              key={logo.name}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="flex items-center justify-center h-16 rounded-xl border border-border bg-white text-muted-foreground font-bold text-lg hover:text-[#0f2744] hover:border-[#0f2744]/30 hover:shadow-soft transition-all cursor-pointer"
-            >
-              {logo.initials}
-            </motion.div>
-          ))}
+          <PartnerCarousel />
         </motion.div>
 
         {/* Stats Grid */}
