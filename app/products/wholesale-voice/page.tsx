@@ -7,6 +7,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { PageHero } from "@/components/page-hero"
+import { Flag } from "@/components/flag"
 
 const features = [
   {
@@ -42,26 +43,26 @@ const features = [
 ]
 
 const coverageCountries = [
-  { flag: "🇺🇸", name: "United States", badge: "Premium Route" },
-  { flag: "🇬🇧", name: "United Kingdom", badge: "HD Quality" },
-  { flag: "🇨🇳", name: "China", badge: "Premium Route" },
-  { flag: "🇮🇳", name: "India", badge: "HD Quality" },
-  { flag: "🇦🇺", name: "Australia", badge: "Premium Route" },
-  { flag: "🇨🇦", name: "Canada", badge: "HD Quality" },
-  { flag: "🇩🇪", name: "Germany", badge: "Premium Route" },
-  { flag: "🇫🇷", name: "France", badge: "HD Quality" },
-  { flag: "🇧🇷", name: "Brazil", badge: "Premium Route" },
-  { flag: "🇲🇽", name: "Mexico", badge: "HD Quality" },
-  { flag: "🇯🇵", name: "Japan", badge: "Premium Route" },
-  { flag: "🇸🇬", name: "Singapore", badge: "HD Quality" },
-  { flag: "🇦🇪", name: "UAE", badge: "Premium Route" },
-  { flag: "🇿🇦", name: "South Africa", badge: "HD Quality" },
-  { flag: "🇳🇬", name: "Nigeria", badge: "Premium Route" },
-  { flag: "🇵🇭", name: "Philippines", badge: "HD Quality" },
-  { flag: "🇮🇩", name: "Indonesia", badge: "Premium Route" },
-  { flag: "🇰🇷", name: "South Korea", badge: "HD Quality" },
-  { flag: "🇮🇹", name: "Italy", badge: "Premium Route" },
-  { flag: "🇪🇸", name: "Spain", badge: "HD Quality" },
+  { code: "us", name: "United States", badge: "Premium Route" },
+  { code: "gb", name: "United Kingdom", badge: "HD Quality" },
+  { code: "cn", name: "China", badge: "Premium Route" },
+  { code: "in", name: "India", badge: "HD Quality" },
+  { code: "au", name: "Australia", badge: "Premium Route" },
+  { code: "ca", name: "Canada", badge: "HD Quality" },
+  { code: "de", name: "Germany", badge: "Premium Route" },
+  { code: "fr", name: "France", badge: "HD Quality" },
+  { code: "br", name: "Brazil", badge: "Premium Route" },
+  { code: "mx", name: "Mexico", badge: "HD Quality" },
+  { code: "jp", name: "Japan", badge: "Premium Route" },
+  { code: "sg", name: "Singapore", badge: "HD Quality" },
+  { code: "ae", name: "UAE", badge: "Premium Route" },
+  { code: "za", name: "South Africa", badge: "HD Quality" },
+  { code: "ng", name: "Nigeria", badge: "Premium Route" },
+  { code: "ph", name: "Philippines", badge: "HD Quality" },
+  { code: "id", name: "Indonesia", badge: "Premium Route" },
+  { code: "kr", name: "South Korea", badge: "HD Quality" },
+  { code: "it", name: "Italy", badge: "Premium Route" },
+  { code: "es", name: "Spain", badge: "HD Quality" },
 ]
 
 export default function WholesaleVoicePage() {
@@ -142,9 +143,7 @@ export default function WholesaleVoicePage() {
                   className="rounded-2xl bg-white/5 border border-white/10 p-5 hover:border-[#00D4FF]/40 transition-colors"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-3xl leading-none" aria-hidden="true">
-                      {country.flag}
-                    </span>
+                    <Flag code={country.code} className="w-8 h-auto rounded-sm shadow-sm shrink-0" />
                     <h3 className="font-semibold text-white">{country.name}</h3>
                   </div>
                   <div className="mt-4 flex flex-wrap items-center gap-2">
