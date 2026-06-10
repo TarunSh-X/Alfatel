@@ -10,7 +10,7 @@ import { CTASection } from "@/components/home/cta-section"
 import { NetworkBackground } from "@/components/home/network-background"
 
 export const metadata: Metadata = {
-  title: "Alfacall - Global Telecom Solutions | Wholesale Voice, DID, SMS & SIP Trunking",
+  title: "AlfaCall - Global Telecom Solutions | Wholesale Voice, DID, SMS & SIP Trunking",
   description: "Enterprise-grade wholesale voice termination, DID numbers, SMS API, and SIP trunking solutions. Connect globally with 99.99% uptime, powerful APIs, and 24/7 support across 180+ countries.",
   alternates: {
     canonical: "https://alfacall.net",

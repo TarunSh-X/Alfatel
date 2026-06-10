@@ -162,7 +162,7 @@ export function AnimatedLogo({ size = "md", showText = true, href = "/" }: Anima
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Alfacall
+            AlfaCall
           </motion.span>
         </div>
       )}

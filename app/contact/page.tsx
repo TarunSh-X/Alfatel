@@ -2,90 +2,104 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Phone, Mail, MapPin, MessageSquare, Clock, Send, Check, ArrowRight } from "lucide-react"
+import { Phone, Mail, MapPin, MessageSquare, Check } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Button } from "@/components/ui/button"
 import { PageHero } from "@/components/page-hero"
-
-const contactMethods = [
-  {
-    icon: Phone,
-    title: "Sales",
-    description: "Talk to our sales team about your requirements",
-    contact: "+1-800-ALFACALL",
-    action: "Call us",
-    href: "tel:+18002532225",
-  },
-  {
-    icon: Mail,
-    title: "Email",
-    description: "Send us an email and we'll respond within 24 hours",
-    contact: "sales@alfacall.net",
-    action: "Email us",
-    href: "mailto:sales@alfacall.net",
-  },
-  {
-    icon: MessageSquare,
-    title: "Live Chat",
-    description: "Chat with our support team in real-time",
-    contact: "Available 24/7",
-    action: "Start chat",
-    href: "#contact-form",
-  },
-]
+import { AnimatedLogo } from "@/components/animated-logo"
 
 const offices = [
   {
-    city: "New York",
-    address: "350 Fifth Avenue, Suite 4500",
-    country: "United States",
+    flag: "🇺🇸",
+    name: "USA (Registered Office)",
+    lines: ["1309 Coffeen Avenue, Ste 1200", "Sheridan, WY 82801", "United States"],
   },
   {
-    city: "London",
-    address: "30 St Mary Axe",
-    country: "United Kingdom",
-  },
-  {
-    city: "Singapore",
-    address: "1 Raffles Place, Tower 2",
-    country: "Singapore",
+    flag: "🇭🇰",
+    name: "Hong Kong (Asia Pacific)",
+    lines: ["RM 603, South China Industrial Building", "Chun Pin Street, Kwai Chung", "Hong Kong SAR, China"],
   },
 ]
 
-const faqs = [
-  {
-    question: "What are your minimum volume requirements?",
-    answer: "We have no minimum volume requirements. Our pricing scales with your usage, making us suitable for businesses of all sizes.",
-  },
-  {
-    question: "How quickly can I get started?",
-    answer: "Most customers are up and running within 24 hours. API access is instant, and number provisioning is typically completed in minutes.",
-  },
-  {
-    question: "Do you offer a free trial?",
-    answer: "Yes! We offer a free trial with $25 in credits so you can test our platform before committing.",
-  },
-  {
-    question: "What kind of support do you offer?",
-    answer: "We provide 24/7 support via phone, email, and live chat. Enterprise customers also get a dedicated account manager.",
-  },
+const subjects = [
+  "General Inquiry",
+  "Wholesale Voice",
+  "Wholesale DID",
+  "Wholesale SMS",
+  "SIP Trunking",
+  "Partnership",
+  "Technical Support",
+  "Other",
 ]
+
+const countryCodes = ["+1", "+44", "+91", "+852", "+61", "+86", "+49", "+33", "+971"]
+
+interface FormState {
+  fullName: string
+  company: string
+  email: string
+  countryCode: string
+  phone: string
+  subject: string
+  message: string
+  agree: boolean
+}
+
+interface FormErrors {
+  fullName?: string
+  email?: string
+  subject?: string
+  message?: string
+  agree?: string
+}
+
+const initialState: FormState = {
+  fullName: "",
+  company: "",
+  email: "",
+  countryCode: "+1",
+  phone: "",
+  subject: "",
+  message: "",
+  agree: false,
+}
+
+const inputClasses =
+  "w-full rounded-lg bg-[#0D1F3C] border border-white/10 px-4 py-3 text-white placeholder:text-white/40 transition-all focus:outline-none focus:border-[#00D4FF] focus:ring-2 focus:ring-[#00D4FF]/30 focus:shadow-[0_0_18px_rgba(0,212,255,0.25)]"
 
 export default function ContactPage() {
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    company: "",
-    phone: "",
-    interest: "",
-    message: "",
-  })
+  const [form, setForm] = useState<FormState>(initialState)
+  const [errors, setErrors] = useState<FormErrors>({})
   const [submitted, setSubmitted] = useState(false)
+
+  const validate = (): FormErrors => {
+    const next: FormErrors = {}
+    if (!form.fullName.trim()) next.fullName = "Please enter your full name."
+    if (!form.email.trim()) {
+      next.email = "Please enter your email address."
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      next.email = "Please enter a valid email address."
+    }
+    if (!form.subject) next.subject = "Please select a subject."
+    if (!form.message.trim()) next.message = "Please enter a message."
+    if (!form.agree) next.agree = "You must agree before submitting."
+    return next
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
+    const next = validate()
+    setErrors(next)
+    if (Object.keys(next).length === 0) {
+      setSubmitted(true)
+    }
+  }
+
+  const update = <K extends keyof FormState>(key: K, value: FormState[K]) => {
+    setForm((prev) => ({ ...prev, [key]: value }))
+    if (key in errors) {
+      setErrors((prev) => ({ ...prev, [key]: undefined }))
+    }
   }
 
   return (
@@ -95,241 +109,280 @@ export default function ContactPage() {
         <PageHero
           eyebrow="Contact Us"
           eyebrowIcon={MessageSquare}
-          title="Let's Build Something Together"
+          title="Get in Touch"
           highlightLastWord
-          description="Get in touch with our team to discuss your telecom needs. We typically respond within 24 hours."
+          description="Reach out to our team for wholesale voice, DID, SMS, and SIP trunking. We respond within 24 hours."
           align="left"
           breadcrumbs={[
             { name: "Home", href: "/" },
             { name: "Contact", href: "/contact" },
           ]}
-          highlights={["24/7 Support", "Global Offices", "Dedicated Account Manager"]}
         />
 
-        {/* Contact Methods */}
-        <section className="py-16 bg-background">
+        {/* Two-column contact section */}
+        <section className="py-24 bg-background">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-3 gap-6">
-              {contactMethods.map((method, index) => (
-                <motion.a
-                  key={method.title}
-                  href={method.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="group block p-6 rounded-2xl bg-card border border-border text-center hover:border-[#FFBE32]/40 hover:shadow-soft hover:-translate-y-1 transition-all duration-300"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-[#0f2744]/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-[#0f2744] transition-colors duration-300">
-                    <method.icon className="w-6 h-6 text-[#0f2744] group-hover:text-white transition-colors duration-300" />
-                  </div>
-                  <h3 className="font-semibold text-foreground">{method.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{method.description}</p>
-                  <p className="mt-3 font-medium text-[#0f2744]">{method.contact}</p>
-                  <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[#0f2744] group-hover:gap-2 transition-all">
-                    {method.action}
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </motion.a>
-              ))}
-            </div>
-          </div>
-        </section>
+            <div className="grid lg:grid-cols-5 gap-8 items-stretch">
+              {/* LEFT — Contact info panel */}
+              <div className="lg:col-span-2 rounded-2xl bg-[#0f2744] p-8 lg:p-10 text-white">
+                <AnimatedLogo size="md" showText href="/" />
 
-        {/* Contact Form + Offices */}
-        <section id="contact-form" className="py-24 bg-secondary/50 scroll-mt-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12">
-              {/* Form */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-2xl font-bold text-foreground">Send us a message</h2>
-                <p className="mt-2 text-muted-foreground">
-                  Fill out the form below and we&apos;ll get back to you within 24 hours.
+                <p className="mt-8 text-xl font-semibold text-balance">
+                  Let&apos;s connect. Our team responds within 24 hours.
                 </p>
 
-                {submitted ? (
-                  <div className="mt-8 p-8 rounded-2xl bg-card border border-border text-center">
-                    <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
-                      <Check className="w-8 h-8 text-green-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-foreground">Message sent!</h3>
-                    <p className="mt-2 text-muted-foreground">
-                      Thank you for reaching out. Our team will contact you shortly.
-                    </p>
+                <div className="mt-8 space-y-5">
+                  <a
+                    href="tel:+12082447477"
+                    className="flex items-center gap-4 text-white/80 hover:text-[#00D4FF] transition-colors group"
+                  >
+                    <span className="w-11 h-11 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-[#00D4FF]/20 transition-colors">
+                      <Phone className="w-5 h-5" />
+                    </span>
+                    +1 (208) 244-7477
+                  </a>
+                  <a
+                    href="mailto:info@alfacall.net"
+                    className="flex items-center gap-4 text-white/80 hover:text-[#00D4FF] transition-colors group"
+                  >
+                    <span className="w-11 h-11 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-[#00D4FF]/20 transition-colors">
+                      <Mail className="w-5 h-5" />
+                    </span>
+                    info@alfacall.net
+                  </a>
+                </div>
+
+                {/* Office locations */}
+                <div className="mt-10">
+                  <h2 className="text-sm font-semibold uppercase tracking-wide text-[#00D4FF]">
+                    Office Locations
+                  </h2>
+                  <div className="mt-5 space-y-6">
+                    {offices.map((office) => (
+                      <div key={office.name} className="flex items-start gap-4">
+                        <span className="w-11 h-11 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
+                          <MapPin className="w-5 h-5 text-[#00D4FF]" />
+                        </span>
+                        <div className="text-sm leading-relaxed text-white/80">
+                          <div className="font-medium text-white">
+                            <span className="mr-2" aria-hidden="true">{office.flag}</span>
+                            {office.name}
+                          </div>
+                          {office.lines.map((line) => (
+                            <div key={line}>{line}</div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
+                </div>
+
+                {/* Social */}
+                <div className="mt-10 flex items-center gap-3">
+                  <a
+                    href="https://www.linkedin.com/company/alfacall-limited/?originalSubdomain=hk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="w-11 h-11 rounded-lg bg-white/10 flex items-center justify-center text-white/80 hover:text-[#00D4FF] hover:bg-[#00D4FF]/20 transition-all"
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/alfacall_limited/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="w-11 h-11 rounded-lg bg-white/10 flex items-center justify-center text-white/80 hover:text-[#00D4FF] hover:bg-[#00D4FF]/20 transition-all"
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              {/* RIGHT — Contact form */}
+              <div className="lg:col-span-3 rounded-2xl bg-[#13294d] p-8 lg:p-10">
+                {submitted ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center justify-center text-center h-full min-h-[28rem]"
+                  >
+                    <div className="w-16 h-16 rounded-full bg-emerald-500/15 flex items-center justify-center mb-6">
+                      <Check className="w-8 h-8 text-emerald-400" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-white">Thank you!</h2>
+                    <p className="mt-3 text-white/70 max-w-md">
+                      We&apos;ll be in touch within 24 hours.
+                    </p>
+                  </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-                    <div className="grid sm:grid-cols-2 gap-6">
+                  <form onSubmit={handleSubmit} noValidate>
+                    <h2 className="text-2xl font-bold text-white">Send Us a Message</h2>
+                    <p className="mt-2 text-white/60">
+                      Fill in the details below and we&apos;ll get back to you shortly.
+                    </p>
+
+                    <div className="mt-8 grid sm:grid-cols-2 gap-5">
+                      {/* Full Name */}
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                          Full Name *
+                        <label htmlFor="fullName" className="block text-sm font-medium text-white/80 mb-1.5">
+                          Full Name <span className="text-[#00D4FF]">*</span>
                         </label>
                         <input
+                          id="fullName"
                           type="text"
-                          id="name"
-                          required
-                          value={formState.name}
-                          onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                          placeholder="John Smith"
+                          value={form.fullName}
+                          onChange={(e) => update("fullName", e.target.value)}
+                          className={inputClasses}
+                          placeholder="Jane Doe"
+                          aria-invalid={!!errors.fullName}
                         />
+                        {errors.fullName && <p className="mt-1.5 text-sm text-red-400">{errors.fullName}</p>}
                       </div>
+
+                      {/* Company */}
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                          Email *
+                        <label htmlFor="company" className="block text-sm font-medium text-white/80 mb-1.5">
+                          Company Name
                         </label>
                         <input
-                          type="email"
-                          id="email"
-                          required
-                          value={formState.email}
-                          onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                          placeholder="john@company.com"
-                        />
-                      </div>
-                    </div>
-                    <div className="grid sm:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
-                          Company
-                        </label>
-                        <input
-                          type="text"
                           id="company"
-                          value={formState.company}
-                          onChange={(e) => setFormState({ ...formState, company: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                          placeholder="Your Company"
+                          type="text"
+                          value={form.company}
+                          onChange={(e) => update("company", e.target.value)}
+                          className={inputClasses}
+                          placeholder="Acme Inc."
                         />
                       </div>
+
+                      {/* Email */}
                       <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                          Phone
+                        <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-1.5">
+                          Email Address <span className="text-[#00D4FF]">*</span>
                         </label>
                         <input
-                          type="tel"
-                          id="phone"
-                          value={formState.phone}
-                          onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                          placeholder="+1 (555) 000-0000"
+                          id="email"
+                          type="email"
+                          value={form.email}
+                          onChange={(e) => update("email", e.target.value)}
+                          className={inputClasses}
+                          placeholder="you@company.com"
+                          aria-invalid={!!errors.email}
                         />
+                        {errors.email && <p className="mt-1.5 text-sm text-red-400">{errors.email}</p>}
+                      </div>
+
+                      {/* Phone */}
+                      <div>
+                        <label htmlFor="phone" className="block text-sm font-medium text-white/80 mb-1.5">
+                          Phone Number
+                        </label>
+                        <div className="flex gap-2">
+                          <select
+                            aria-label="Country code"
+                            value={form.countryCode}
+                            onChange={(e) => update("countryCode", e.target.value)}
+                            className={`${inputClasses} w-24 shrink-0`}
+                          >
+                            {countryCodes.map((code) => (
+                              <option key={code} value={code} className="bg-[#0D1F3C]">
+                                {code}
+                              </option>
+                            ))}
+                          </select>
+                          <input
+                            id="phone"
+                            type="tel"
+                            value={form.phone}
+                            onChange={(e) => update("phone", e.target.value)}
+                            className={inputClasses}
+                            placeholder="(208) 244-7477"
+                          />
+                        </div>
                       </div>
                     </div>
-                    <div>
-                      <label htmlFor="interest" className="block text-sm font-medium text-foreground mb-2">
-                        I&apos;m interested in *
+
+                    {/* Subject */}
+                    <div className="mt-5">
+                      <label htmlFor="subject" className="block text-sm font-medium text-white/80 mb-1.5">
+                        Subject <span className="text-[#00D4FF]">*</span>
                       </label>
                       <select
-                        id="interest"
-                        required
-                        value={formState.interest}
-                        onChange={(e) => setFormState({ ...formState, interest: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        id="subject"
+                        value={form.subject}
+                        onChange={(e) => update("subject", e.target.value)}
+                        className={inputClasses}
+                        aria-invalid={!!errors.subject}
                       >
-                        <option value="">Select an option</option>
-                        <option value="wholesale-voice">Wholesale Voice</option>
-                        <option value="wholesale-did">Wholesale DID</option>
-                        <option value="wholesale-sms">Wholesale SMS</option>
-                        <option value="sip-trunking">SIP Trunking</option>
-                        <option value="api">APIs & Integration</option>
-                        <option value="enterprise">Enterprise Solutions</option>
-                        <option value="other">Other</option>
+                        <option value="" className="bg-[#0D1F3C]">
+                          Select a subject
+                        </option>
+                        {subjects.map((s) => (
+                          <option key={s} value={s} className="bg-[#0D1F3C]">
+                            {s}
+                          </option>
+                        ))}
                       </select>
+                      {errors.subject && <p className="mt-1.5 text-sm text-red-400">{errors.subject}</p>}
                     </div>
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                        Message *
+
+                    {/* Message */}
+                    <div className="mt-5">
+                      <label htmlFor="message" className="block text-sm font-medium text-white/80 mb-1.5">
+                        Message <span className="text-[#00D4FF]">*</span>
                       </label>
                       <textarea
                         id="message"
-                        required
                         rows={4}
-                        value={formState.message}
-                        onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
-                        placeholder="Tell us about your requirements..."
+                        value={form.message}
+                        onChange={(e) => update("message", e.target.value)}
+                        className={`${inputClasses} resize-y`}
+                        placeholder="Tell us how we can help..."
+                        aria-invalid={!!errors.message}
                       />
+                      {errors.message && <p className="mt-1.5 text-sm text-red-400">{errors.message}</p>}
                     </div>
-                    <Button type="submit" size="lg" className="w-full">
+
+                    {/* Agreement */}
+                    <div className="mt-5">
+                      <label htmlFor="agree" className="flex items-start gap-3 text-sm text-white/70 cursor-pointer">
+                        <input
+                          id="agree"
+                          type="checkbox"
+                          checked={form.agree}
+                          onChange={(e) => update("agree", e.target.checked)}
+                          className="mt-0.5 h-4 w-4 rounded border-white/20 bg-[#0D1F3C] text-[#00D4FF] focus:ring-[#00D4FF]/40 accent-[#00D4FF]"
+                          aria-invalid={!!errors.agree}
+                        />
+                        <span>
+                          I agree to the{" "}
+                          <a href="/privacy" className="text-[#00D4FF] hover:underline">
+                            Privacy Policy
+                          </a>{" "}
+                          and{" "}
+                          <a href="/terms" className="text-[#00D4FF] hover:underline">
+                            Terms of Service
+                          </a>
+                          .
+                        </span>
+                      </label>
+                      {errors.agree && <p className="mt-1.5 text-sm text-red-400">{errors.agree}</p>}
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="mt-8 w-full rounded-lg bg-[#00D4FF] px-6 py-3.5 font-bold text-[#0f2744] hover:bg-[#00D4FF]/90 transition-colors"
+                    >
                       Send Message
-                      <Send className="ml-2 w-4 h-4" />
-                    </Button>
+                    </button>
                   </form>
                 )}
-              </motion.div>
-
-              {/* Offices */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-2xl font-bold text-foreground">Our Offices</h2>
-                <p className="mt-2 text-muted-foreground">
-                  Visit us at one of our global office locations.
-                </p>
-                <div className="mt-8 space-y-6">
-                  {offices.map((office) => (
-                    <div key={office.city} className="p-6 rounded-2xl bg-card border border-border">
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                          <MapPin className="w-5 h-5 text-primary" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-foreground">{office.city}</h3>
-                          <p className="mt-1 text-sm text-muted-foreground">{office.address}</p>
-                          <p className="text-sm text-muted-foreground">{office.country}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-8 p-6 rounded-2xl bg-primary/5 border border-primary/20">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Clock className="w-5 h-5 text-primary" />
-                    <span className="font-semibold text-foreground">Support Hours</span>
-                  </div>
-                  <p className="text-muted-foreground">
-                    Our support team is available 24/7 to assist you with any questions or issues.
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQs */}
-        <section className="py-24 bg-background">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
-                Frequently Asked Questions
-              </h2>
-              <p className="mt-4 text-lg text-muted-foreground">
-                Quick answers to common questions
-              </p>
-            </div>
-            <div className="max-w-3xl mx-auto space-y-6">
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={faq.question}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="p-6 rounded-2xl bg-card border border-border"
-                >
-                  <h3 className="font-semibold text-foreground">{faq.question}</h3>
-                  <p className="mt-2 text-muted-foreground">{faq.answer}</p>
-                </motion.div>
-              ))}
+              </div>
             </div>
           </div>
         </section>

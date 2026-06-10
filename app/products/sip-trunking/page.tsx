@@ -131,7 +131,7 @@ export default function SIPTrunkingPage() {
                   Works with Your PBX
                 </h2>
                 <p className="mt-4 text-lg text-muted-foreground">
-                  Alfacall SIP trunking integrates seamlessly with all major PBX systems and softphones.
+                  AlfaCall SIP trunking integrates seamlessly with all major PBX systems and softphones.
                 </p>
                 <ul className="mt-8 space-y-4">
                   {["Asterisk & FreePBX", "3CX Phone System", "Microsoft Teams", "Cisco Unified CM", "Avaya IP Office", "Any SIP-compliant PBX"].map((item) => (
@@ -146,7 +146,7 @@ export default function SIPTrunkingPage() {
                 <h3 className="text-xl font-semibold text-foreground mb-6">Quick Setup</h3>
                 <ol className="space-y-4">
                   {[
-                    "Sign up for an Alfacall account",
+                    "Sign up for an AlfaCall account",
                     "Configure your SIP credentials",
                     "Add trunk settings to your PBX",
                     "Test and go live",

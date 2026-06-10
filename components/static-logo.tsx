@@ -85,7 +85,7 @@ export function StaticLogo({
       {showText && (
         <div className="flex flex-col">
           <span className={`font-bold ${config.text} leading-none tracking-tight`} style={{ color: "#FFBE32" }}>
-            Alfacall
+            AlfaCall
           </span>
         </div>
       )}

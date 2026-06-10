@@ -21,7 +21,7 @@ const KEYWORDS = new Set([
   "const", "let", "var", "await", "async", "import", "from", "new", "return",
   "function", "require", "def", "print", "public", "class", "curl",
 ])
-const NAMESPACES = new Set(["alfacall", "Alfacall", "client", "console", "process", "env", "os"])
+const NAMESPACES = new Set(["alfacall", "AlfaCall", "client", "console", "process", "env", "os"])
 const METHODS = new Set([
   "calls", "messages", "numbers", "create", "search", "buy", "send", "on", "log", "environ",
 ])

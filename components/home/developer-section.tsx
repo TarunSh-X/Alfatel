@@ -5,10 +5,10 @@ import { Code, Terminal, Zap, BookOpen, ArrowRight, Copy, Check, Blocks, Webhook
 import Link from "next/link"
 import { useState } from "react"
 
-const codeExample = `// Initialize Alfacall client
-import { Alfacall } from '@alfacall/sdk';
+const codeExample = `// Initialize AlfaCall client
+import { AlfaCall } from '@alfacall/sdk';
 
-const client = new Alfacall({
+const client = new AlfaCall({
   apiKey: process.env.ALFACALL_API_KEY
 });
 
@@ -16,7 +16,7 @@ const client = new Alfacall({
 const message = await client.sms.send({
   to: '+1234567890',
   from: '+0987654321',
-  body: 'Hello from Alfacall!'
+  body: 'Hello from AlfaCall!'
 });
 
 console.log('Message sent:', message.id);`
@@ -69,7 +69,7 @@ export function DeveloperSection() {
       .replace(/(\/\/.*)/g, '<span class="text-slate-500">$1</span>')
       .replace(/\b(import|from|const|await|new|process)\b/g, '<span class="text-blue-600">$1</span>')
       .replace(/('.*?')/g, '<span class="text-amber-600">$1</span>')
-      .replace(/\b(client|message|Alfacall|console|env)\b/g, '<span class="text-violet-600">$1</span>')
+      .replace(/\b(client|message|AlfaCall|console|env)\b/g, '<span class="text-violet-600">$1</span>')
       .replace(/\b(sms|send|log)\b/g, '<span class="text-emerald-600">$1</span>')
   }
 

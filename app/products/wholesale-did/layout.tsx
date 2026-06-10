@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     canonical: "https://alfacall.net/products/wholesale-did",
   },
   openGraph: {
-    title: "Wholesale DID Numbers On Demand | Alfacall",
+    title: "Wholesale DID Numbers On Demand | AlfaCall",
     description:
       "Local, toll-free, and mobile DID numbers from 100+ countries with instant API provisioning and full number management.",
     url: "https://alfacall.net/products/wholesale-did",

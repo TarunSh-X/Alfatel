@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     canonical: "https://alfacall.net/products/wholesale-sms",
   },
   openGraph: {
-    title: "Wholesale SMS Delivery at Scale | Alfacall",
+    title: "Wholesale SMS Delivery at Scale | AlfaCall",
     description:
       "Reach 200+ countries with high-throughput wholesale SMS, real-time analytics, and full compliance support.",
     url: "https://alfacall.net/products/wholesale-sms",

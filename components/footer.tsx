@@ -2,8 +2,21 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Phone, Mail, MapPin } from "lucide-react"
+import { Phone, Mail } from "lucide-react"
 import { AnimatedLogo } from "./animated-logo"
+
+const offices = [
+  {
+    flag: "🇺🇸",
+    name: "USA (Registered Office)",
+    lines: ["1309 Coffeen Avenue, Ste 1200", "Sheridan, WY 82801", "United States"],
+  },
+  {
+    flag: "🇭🇰",
+    name: "Hong Kong (Asia Pacific)",
+    lines: ["RM 603, South China Industrial Building", "Chun Pin Street, Kwai Chung", "Hong Kong SAR, China"],
+  },
+]
 
 const footerLinks = {
   products: [
@@ -37,7 +50,7 @@ export function Footer() {
       <div className="relative z-10">
         {/* Main Footer */}
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 lg:gap-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-10 lg:gap-12">
             {/* Brand */}
             <div className="col-span-2 md:col-span-3 lg:col-span-2">
               <AnimatedLogo size="lg" showText={true} href="/" />
@@ -56,20 +69,14 @@ export function Footer() {
                   info@alfacall.net
                 </a>
                 <a
-                  href="tel:+1-800-ALFACALL"
+                  href="tel:+12082447477"
                   className="flex items-center gap-3 text-white/70 hover:text-[#FFBE32] transition-colors group"
                 >
                   <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-[#FFBE32]/20 transition-colors">
                     <Phone className="w-5 h-5" />
                   </div>
-                  +1-800-ALFACALL
+                  +1 (208) 244-7477
                 </a>
-                <div className="flex items-center gap-3 text-white/70">
-                  <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  Global Operations
-                </div>
               </div>
             </div>
 
@@ -140,6 +147,26 @@ export function Footer() {
                 ))}
               </ul>
             </div>
+
+            {/* Global Offices */}
+            <div className="col-span-2 md:col-span-3 lg:col-span-2">
+              <h3 className="font-semibold text-white mb-5">Global Offices</h3>
+              <ul className="space-y-6">
+                {offices.map((office) => (
+                  <li key={office.name} className="flex items-start gap-3 text-white/70">
+                    <span className="text-xl leading-none mt-0.5" aria-hidden="true">
+                      {office.flag}
+                    </span>
+                    <div className="text-sm leading-relaxed">
+                      <div className="font-medium text-white">{office.name}</div>
+                      {office.lines.map((line) => (
+                        <div key={line}>{line}</div>
+                      ))}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -148,7 +175,7 @@ export function Footer() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <p className="text-white/60 text-sm">
-                &copy; {new Date().getFullYear()} Alfacall. All rights reserved.
+                &copy; {new Date().getFullYear()} AlfaCall. All rights reserved.
               </p>
               
               {/* Social links */}

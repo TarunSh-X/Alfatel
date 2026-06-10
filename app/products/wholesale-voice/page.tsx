@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { Phone, Globe, Zap, BarChart3, Shield, Clock, Check, ArrowRight } from "lucide-react"
+import { Phone, Globe, Zap, BarChart3, Shield, Clock, ArrowRight } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
@@ -41,13 +41,27 @@ const features = [
   },
 ]
 
-const pricingTiers = [
-  { destination: "United States", rate: "$0.0050" },
-  { destination: "United Kingdom", rate: "$0.0080" },
-  { destination: "Germany", rate: "$0.0090" },
-  { destination: "France", rate: "$0.0085" },
-  { destination: "Australia", rate: "$0.0120" },
-  { destination: "Japan", rate: "$0.0150" },
+const coverageCountries = [
+  { flag: "🇺🇸", name: "United States", badge: "Premium Route" },
+  { flag: "🇬🇧", name: "United Kingdom", badge: "HD Quality" },
+  { flag: "🇨🇳", name: "China", badge: "Premium Route" },
+  { flag: "🇮🇳", name: "India", badge: "HD Quality" },
+  { flag: "🇦🇺", name: "Australia", badge: "Premium Route" },
+  { flag: "🇨🇦", name: "Canada", badge: "HD Quality" },
+  { flag: "🇩🇪", name: "Germany", badge: "Premium Route" },
+  { flag: "🇫🇷", name: "France", badge: "HD Quality" },
+  { flag: "🇧🇷", name: "Brazil", badge: "Premium Route" },
+  { flag: "🇲🇽", name: "Mexico", badge: "HD Quality" },
+  { flag: "🇯🇵", name: "Japan", badge: "Premium Route" },
+  { flag: "🇸🇬", name: "Singapore", badge: "HD Quality" },
+  { flag: "🇦🇪", name: "UAE", badge: "Premium Route" },
+  { flag: "🇿🇦", name: "South Africa", badge: "HD Quality" },
+  { flag: "🇳🇬", name: "Nigeria", badge: "Premium Route" },
+  { flag: "🇵🇭", name: "Philippines", badge: "HD Quality" },
+  { flag: "🇮🇩", name: "Indonesia", badge: "Premium Route" },
+  { flag: "🇰🇷", name: "South Korea", badge: "HD Quality" },
+  { flag: "🇮🇹", name: "Italy", badge: "Premium Route" },
+  { flag: "🇪🇸", name: "Spain", badge: "HD Quality" },
 ]
 
 export default function WholesaleVoicePage() {
@@ -102,48 +116,56 @@ export default function WholesaleVoicePage() {
           </div>
         </section>
 
-        {/* Pricing Preview */}
-        <section className="py-24 bg-secondary/50">
+        {/* Global Coverage */}
+        <section className="py-24 bg-[#0A1628]">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
-                  Competitive Wholesale Rates
-                </h2>
-                <p className="mt-4 text-lg text-muted-foreground">
-                  Volume-based pricing with no minimum commitments. Pay only for what you use.
-                </p>
-                <ul className="mt-8 space-y-4">
-                  {["No setup fees", "No monthly minimums", "Real-time billing", "Volume discounts available"].map((item) => (
-                    <li key={item} className="flex items-center gap-3">
-                      <Check className="w-5 h-5 text-[#FFBE32]" />
-                      <span className="text-foreground">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button size="lg" asChild className="mt-8">
-                  <Link href="/contact">
-                    Get Custom Quote
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Link>
-                </Button>
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#00D4FF]/10 border border-[#00D4FF]/30 text-[#00D4FF] text-sm font-medium mb-6">
+                <Globe className="w-4 h-4" />
+                Global Coverage
               </div>
-              <div className="bg-card rounded-2xl border border-border overflow-hidden">
-                <div className="p-6 border-b border-border">
-                  <h3 className="font-semibold text-foreground">Sample Rates (per minute)</h3>
-                </div>
-                <div className="divide-y divide-border">
-                  {pricingTiers.map((tier) => (
-                    <div key={tier.destination} className="flex items-center justify-between p-4">
-                      <span className="text-foreground">{tier.destination}</span>
-                      <span className="font-semibold text-[#0f2744]">{tier.rate}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="p-4 bg-secondary/50 text-center text-sm text-muted-foreground">
-                  Rates vary by volume. Contact us for a custom quote.
-                </div>
-              </div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-white">
+                Premium Routes to 180+ Countries
+              </h2>
+              <p className="mt-4 text-lg text-white/60">
+                Our top destinations deliver HD voice quality on direct, premium routes — with capacity available now.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+              {coverageCountries.map((country, index) => (
+                <motion.div
+                  key={country.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: (index % 4) * 0.05 }}
+                  className="rounded-2xl bg-white/5 border border-white/10 p-5 hover:border-[#00D4FF]/40 transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-3xl leading-none" aria-hidden="true">
+                      {country.flag}
+                    </span>
+                    <h3 className="font-semibold text-white">{country.name}</h3>
+                  </div>
+                  <div className="mt-4 flex flex-wrap items-center gap-2">
+                    <span className="inline-flex items-center rounded-md bg-[#00D4FF]/15 px-2.5 py-1 text-xs font-medium text-[#00D4FF]">
+                      {country.badge}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-2.5 py-1 text-xs font-medium text-emerald-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      Available
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            <div className="mt-12 text-center">
+              <Button size="lg" asChild>
+                <Link href="/contact">
+                  Get Custom Quote
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </Button>
             </div>
           </div>
         </section>

@@ -54,9 +54,9 @@ const services: Service[] = [
         label: "Node.js",
         language: "javascript",
         filename: "outbound-call.js",
-        code: `import { Alfacall } from '@alfacall/sdk';
+        code: `import { AlfaCall } from '@alfacall/sdk';
 
-const client = new Alfacall({ apiKey: process.env.ALFACALL_API_KEY });
+const client = new AlfaCall({ apiKey: process.env.ALFACALL_API_KEY });
 
 // Place an outbound call with an IVR menu
 const call = await client.calls.create({
@@ -74,9 +74,9 @@ console.log('Status:', call.status);`,
         label: "Python",
         language: "python",
         filename: "outbound_call.py",
-        code: `from alfacall import Alfacall
+        code: `from alfacall import AlfaCall
 
-client = Alfacall(api_key=os.environ["ALFACALL_API_KEY"])
+client = AlfaCall(api_key=os.environ["ALFACALL_API_KEY"])
 
 # Place an outbound call with an IVR menu
 call = client.calls.create(
@@ -131,9 +131,9 @@ print("Status:", call.status)`,
         label: "Node.js",
         language: "javascript",
         filename: "send-sms.js",
-        code: `import { Alfacall } from '@alfacall/sdk';
+        code: `import { AlfaCall } from '@alfacall/sdk';
 
-const client = new Alfacall({ apiKey: process.env.ALFACALL_API_KEY });
+const client = new AlfaCall({ apiKey: process.env.ALFACALL_API_KEY });
 
 // Send a transactional SMS with a delivery webhook
 const message = await client.messages.create({
@@ -150,9 +150,9 @@ console.log('Segments:', message.segments);`,
         label: "Python",
         language: "python",
         filename: "send_sms.py",
-        code: `from alfacall import Alfacall
+        code: `from alfacall import AlfaCall
 
-client = Alfacall(api_key=os.environ["ALFACALL_API_KEY"])
+client = AlfaCall(api_key=os.environ["ALFACALL_API_KEY"])
 
 # Send a transactional SMS with a delivery webhook
 message = client.messages.create(
@@ -206,9 +206,9 @@ print("Segments:", message.segments)`,
         label: "Node.js",
         language: "javascript",
         filename: "buy-number.js",
-        code: `import { Alfacall } from '@alfacall/sdk';
+        code: `import { AlfaCall } from '@alfacall/sdk';
 
-const client = new Alfacall({ apiKey: process.env.ALFACALL_API_KEY });
+const client = new AlfaCall({ apiKey: process.env.ALFACALL_API_KEY });
 
 // Search and instantly provision a local number
 const [available] = await client.numbers.search({
@@ -227,9 +227,9 @@ console.log('Monthly:', number.monthlyPrice);`,
         label: "Python",
         language: "python",
         filename: "buy_number.py",
-        code: `from alfacall import Alfacall
+        code: `from alfacall import AlfaCall
 
-client = Alfacall(api_key=os.environ["ALFACALL_API_KEY"])
+client = AlfaCall(api_key=os.environ["ALFACALL_API_KEY"])
 
 # Search and instantly provision a local number
 available = client.numbers.search(
@@ -384,7 +384,7 @@ export default function ServicesPage() {
                 Built for every communication workflow
               </h2>
               <p className="mt-4 text-lg text-muted-foreground">
-                From OTP delivery to global contact centers, teams across industries build on Alfacall.
+                From OTP delivery to global contact centers, teams across industries build on AlfaCall.
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

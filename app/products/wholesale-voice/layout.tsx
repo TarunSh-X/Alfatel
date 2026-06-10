@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     canonical: "https://alfacall.net/products/wholesale-voice",
   },
   openGraph: {
-    title: "Wholesale Voice Termination Worldwide | Alfacall",
+    title: "Wholesale Voice Termination Worldwide | AlfaCall",
     description:
       "High-quality wholesale voice termination to 180+ countries with competitive A-Z rates, HD voice, and 24/7 NOC support.",
     url: "https://alfacall.net/products/wholesale-voice",
