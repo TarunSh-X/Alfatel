@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { Star, Quote, MessageSquare, ChevronLeft, ChevronRight } from "lucide-react"
 import { GlassCard, PulsingGlow } from "./animated-elements"
 import { AnimatedWaveBackground } from "./animated-wave-bg"
@@ -143,15 +143,12 @@ export function TestimonialsSection() {
           </button>
 
           <div className="overflow-hidden px-2">
-            <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={page}
-                custom={direction}
                 initial={{ opacity: 0, x: direction >= 0 ? 60 : -60 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: direction >= 0 ? -60 : 60 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="grid md:grid-cols-3 gap-8"
+                className="grid md:grid-cols-3 gap-8 items-stretch"
               >
                 {visible.map((testimonial, index) => (
                   <div key={testimonial.author}>
@@ -206,7 +203,6 @@ export function TestimonialsSection() {
                   </div>
                 ))}
               </motion.div>
-            </AnimatePresence>
           </div>
 
           {/* Pagination dots */}
