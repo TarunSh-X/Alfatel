@@ -171,13 +171,17 @@ for (let f = 0; f < FRAMES; f++) {
     }
   })
   const state = { dots, letterDY: [aDY, cDY] }
-  const svg = svgDoc({ width: hW, height: hH, withText: true, frameState: state })
+  // Render on a solid white background (no transparency). GIF transparency
+  // quantizes anti-aliased letter edges against an empty background, which
+  // produces the dark/black fringe. A solid bg removes it so the GIF matches
+  // the on-site home AnimatedLogo exactly.
+  const svg = svgDoc({ width: hW, height: hH, withText: true, frameState: state, bg: "#ffffff" })
   const png = renderPNG(svg, gifW)
   const { width, height, pixels } = png // pixels = RGBA buffer
   const data = new Uint8ClampedArray(pixels.buffer, pixels.byteOffset, pixels.length)
-  const palette = quantize(data, 256, { format: "rgba4444" })
-  const index = applyPalette(data, palette, "rgba4444")
-  enc.writeFrame(index, width, height, { palette, delay, transparent: true, transparentIndex: 0 })
+  const palette = quantize(data, 256, { format: "rgb565" })
+  const index = applyPalette(data, palette, "rgb565")
+  enc.writeFrame(index, width, height, { palette, delay })
 }
 enc.finish()
 writeFileSync(`${OUT}/alfacall-logo-animated.gif`, enc.bytes())
