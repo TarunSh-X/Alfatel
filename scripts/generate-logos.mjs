@@ -26,9 +26,12 @@ function iconGroup(x, y, { dots, letterDY }) {
   // letters baseline: center of icon
   const cx = x + ICON / 2
   const cy = y + ICON / 2
-  // Two letters side by side, centered
-  const aDX = -LETTER * 0.52
-  const cDX = LETTER * 0.0
+  // Two letters side by side, centered.
+  // Center-to-center spacing of ~0.72*LETTER matches the natural Arial Black
+  // glyph advance, so the A/C sit tight together exactly like the
+  // adjacent flex spans in components/static-logo.tsx (contact page).
+  const aDX = -LETTER * 0.36
+  const cDX = LETTER * 0.36
   const letterStyle = `font-family:'Arial','Helvetica Neue',sans-serif;font-weight:900;font-size:${LETTER}px;fill:${GOLD};letter-spacing:-0.02em;`
 
   // signal dots positions relative to icon top-right (matching component)
@@ -55,7 +58,7 @@ function iconGroup(x, y, { dots, letterDY }) {
       <rect x="${x}" y="${y}" width="${ICON}" height="${ICON}" rx="${r}" fill="url(#innerHi)"/>
       <g filter="url(#letterGlow)" text-anchor="middle" dominant-baseline="central">
         <text x="${cx + aDX}" y="${cy + letterDY[0]}" style="${letterStyle}">A</text>
-        <text x="${cx + cDX + LETTER * 0.52}" y="${cy + letterDY[1]}" style="${letterStyle}">C</text>
+        <text x="${cx + cDX}" y="${cy + letterDY[1]}" style="${letterStyle}">C</text>
       </g>
       ${dotEls}
     </g>`
