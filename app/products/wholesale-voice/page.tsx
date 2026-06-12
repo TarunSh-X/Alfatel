@@ -121,7 +121,7 @@ export default function WholesaleVoicePage() {
         <section className="py-24 bg-[#0A1628]">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#00D4FF]/10 border border-[#00D4FF]/30 text-[#00D4FF] text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFBE32]/10 border border-[#FFBE32]/30 text-[#FFBE32] text-sm font-medium mb-6">
                 <Globe className="w-4 h-4" />
                 Global Coverage
               </div>
@@ -140,14 +140,14 @@ export default function WholesaleVoicePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: (index % 4) * 0.05 }}
-                  className="rounded-2xl bg-white/5 border border-white/10 p-5 hover:border-[#00D4FF]/40 transition-colors"
+                  className="rounded-2xl bg-white/5 border border-white/10 p-5 hover:border-[#FFBE32]/40 transition-colors"
                 >
                   <div className="flex items-center gap-3">
                     <Flag code={country.code} className="w-8 h-auto rounded-sm shadow-sm shrink-0" />
                     <h3 className="font-semibold text-white">{country.name}</h3>
                   </div>
                   <div className="mt-4 flex flex-wrap items-center gap-2">
-                    <span className="inline-flex items-center rounded-md bg-[#00D4FF]/15 px-2.5 py-1 text-xs font-medium text-[#00D4FF]">
+                    <span className="inline-flex items-center rounded-md bg-[#FFBE32]/15 px-2.5 py-1 text-xs font-medium text-[#FFBE32]">
                       {country.badge}
                     </span>
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-2.5 py-1 text-xs font-medium text-emerald-400">
