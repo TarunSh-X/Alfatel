@@ -4,62 +4,47 @@ import { useState } from "react"
 
 type Partner = {
   name: string
-  logo?: string
-  domain?: string
-  // Background tone of the source logo so the card blends seamlessly
-  tone?: "dark" | "light" | "orange"
+  logo: string
 }
 
+// Only partners that have an actual logo asset are shown.
 const partners: Partner[] = [
-  { name: "Bharti Airtel", logo: "/partners/airtel.png", tone: "dark" },
-  { name: "Novatel", logo: "/partners/novatel.jpg", tone: "light" },
-  { name: "C3ntro Telecom", logo: "/partners/c3ntro.png", tone: "dark" },
-  { name: "Sify Technologies", logo: "/partners/sify.webp", tone: "dark" },
-  { name: "HOT Net Internet Services", logo: "/partners/hot.png", tone: "dark" },
-  { name: "China Mobile International", logo: "/partners/china-mobile.png", tone: "dark" },
-  { name: "Tata Communications", logo: "/partners/tata.png", tone: "dark" },
-  { name: "HKBN Enterprise Solutions", logo: "/partners/hkbn.png", tone: "light" },
-  { name: "Telecom Italia Sparkle", logo: "/partners/sparkle.jpeg", tone: "light" },
-  { name: "Spark Telecomm", logo: "/partners/spark-telecomm.webp", tone: "dark" },
-  { name: "CITIC Telecom International", logo: "/partners/citic.png", tone: "dark" },
-  { name: "Orange", logo: "/partners/orange.svg", tone: "orange" },
-  { name: "Apelby Communications", domain: "apelby.com", tone: "light" },
-  { name: "Deutsche Telekom", domain: "telekom.com", tone: "light" },
-  { name: "Primetel PLC", domain: "primetel.com.cy", tone: "light" },
+  { name: "Bharti Airtel", logo: "/partners/airtel.png" },
+  { name: "Novatel", logo: "/partners/novatel.jpg" },
+  { name: "C3ntro Telecom", logo: "/partners/c3ntro.png" },
+  { name: "Sify Technologies", logo: "/partners/sify.webp" },
+  { name: "HOT Net Internet Services", logo: "/partners/hot.png" },
+  { name: "China Mobile International", logo: "/partners/china-mobile.png" },
+  { name: "Tata Communications", logo: "/partners/tata.png" },
+  { name: "HKBN Enterprise Solutions", logo: "/partners/hkbn.png" },
+  { name: "Telecom Italia Sparkle", logo: "/partners/sparkle.jpeg" },
+  { name: "Spark Telecomm", logo: "/partners/spark-telecomm.webp" },
+  { name: "CITIC Telecom International", logo: "/partners/citic.png" },
+  { name: "Orange", logo: "/partners/orange.svg" },
 ]
-
-const toneStyles: Record<NonNullable<Partner["tone"]>, string> = {
-  dark: "border-white/10 bg-[#0A1628] hover:border-white/25",
-  light: "border-[#E6EAF0] bg-white hover:border-[#C8D2E0]",
-  orange: "border-[#FF7900]/30 bg-[#FF7900] hover:border-[#FF7900]",
-}
 
 function PartnerLogo({ partner }: { partner: Partner }) {
   const [failed, setFailed] = useState(false)
-  const tone = partner.tone ?? "light"
-  const src = partner.logo ?? (partner.domain ? `https://logo.clearbit.com/${partner.domain}` : "")
 
   return (
     <div
-      className={`group relative flex h-28 w-52 flex-shrink-0 items-center justify-center rounded-xl border px-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(10,22,40,0.18)] ${toneStyles[tone]}`}
+      className="group/item relative flex h-28 w-52 flex-shrink-0 items-center justify-center rounded-xl border border-[#E6EAF0] bg-white px-8 opacity-70 shadow-sm transition-all duration-300 hover:z-20 hover:-translate-y-1 hover:scale-105 hover:border-[#FFBE32] hover:opacity-100 hover:shadow-[0_14px_34px_rgba(10,22,40,0.18)] group-hover/carousel:opacity-40 hover:group-hover/carousel:opacity-100"
     >
-      {failed || !src ? (
-        <span className={`text-center text-sm font-semibold ${tone === "light" ? "text-[#0A1628]" : "text-white"}`}>
-          {partner.name}
-        </span>
+      {failed ? (
+        <span className="text-center text-sm font-semibold text-[#0A1628]">{partner.name}</span>
       ) : (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={src || "/placeholder.svg"}
+          src={partner.logo || "/placeholder.svg"}
           alt={`${partner.name} logo`}
-          className="max-h-12 w-auto max-w-[150px] object-contain opacity-80 transition-all duration-300 group-hover:scale-105 group-hover:opacity-100"
+          className="max-h-12 w-auto max-w-[150px] object-contain transition-transform duration-300 group-hover/item:scale-105"
           loading="lazy"
           onError={() => setFailed(true)}
         />
       )}
       <span
         role="tooltip"
-        className="pointer-events-none absolute -bottom-9 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#0A1628] px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100"
+        className="pointer-events-none absolute -bottom-9 left-1/2 z-30 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#0A1628] px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover/item:opacity-100"
       >
         {partner.name}
       </span>
