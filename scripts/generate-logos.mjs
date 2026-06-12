@@ -26,9 +26,12 @@ function iconGroup(x, y, { dots, letterDY }) {
   // letters baseline: center of icon
   const cx = x + ICON / 2
   const cy = y + ICON / 2
-  // Two letters side by side, centered
-  const aDX = -LETTER * 0.52
-  const cDX = LETTER * 0.0
+  // Two letters side by side, centered.
+  // Center-to-center spacing of ~0.72*LETTER matches the natural Arial Black
+  // glyph advance, so the A/C sit tight together exactly like the
+  // adjacent flex spans in components/static-logo.tsx (contact page).
+  const aDX = -LETTER * 0.36
+  const cDX = LETTER * 0.36
   const letterStyle = `font-family:'Arial','Helvetica Neue',sans-serif;font-weight:900;font-size:${LETTER}px;fill:${GOLD};letter-spacing:-0.02em;`
 
   // signal dots positions relative to icon top-right (matching component)
@@ -55,7 +58,7 @@ function iconGroup(x, y, { dots, letterDY }) {
       <rect x="${x}" y="${y}" width="${ICON}" height="${ICON}" rx="${r}" fill="url(#innerHi)"/>
       <g filter="url(#letterGlow)" text-anchor="middle" dominant-baseline="central">
         <text x="${cx + aDX}" y="${cy + letterDY[0]}" style="${letterStyle}">A</text>
-        <text x="${cx + cDX + LETTER * 0.52}" y="${cy + letterDY[1]}" style="${letterStyle}">C</text>
+        <text x="${cx + cDX}" y="${cy + letterDY[1]}" style="${letterStyle}">C</text>
       </g>
       ${dotEls}
     </g>`
@@ -168,13 +171,17 @@ for (let f = 0; f < FRAMES; f++) {
     }
   })
   const state = { dots, letterDY: [aDY, cDY] }
-  const svg = svgDoc({ width: hW, height: hH, withText: true, frameState: state })
+  // Render on a solid white background (no transparency). GIF transparency
+  // quantizes anti-aliased letter edges against an empty background, which
+  // produces the dark/black fringe. A solid bg removes it so the GIF matches
+  // the on-site home AnimatedLogo exactly.
+  const svg = svgDoc({ width: hW, height: hH, withText: true, frameState: state, bg: "#ffffff" })
   const png = renderPNG(svg, gifW)
   const { width, height, pixels } = png // pixels = RGBA buffer
   const data = new Uint8ClampedArray(pixels.buffer, pixels.byteOffset, pixels.length)
-  const palette = quantize(data, 256, { format: "rgba4444" })
-  const index = applyPalette(data, palette, "rgba4444")
-  enc.writeFrame(index, width, height, { palette, delay, transparent: true, transparentIndex: 0 })
+  const palette = quantize(data, 256, { format: "rgb565" })
+  const index = applyPalette(data, palette, "rgb565")
+  enc.writeFrame(index, width, height, { palette, delay })
 }
 enc.finish()
 writeFileSync(`${OUT}/alfacall-logo-animated.gif`, enc.bytes())
