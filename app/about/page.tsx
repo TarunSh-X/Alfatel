@@ -8,7 +8,7 @@ import { PageHero } from "@/components/page-hero"
 import { StaticLogo } from "@/components/static-logo"
 
 const stats = [
-  { value: "2015", label: "Founded" },
+  { value: "2012", label: "Founded" },
   { value: "500+", label: "Enterprise Clients" },
   { value: "180+", label: "Countries Served" },
   { value: "100+", label: "Team Members" },
@@ -38,7 +38,8 @@ const values = [
 ]
 
 const milestones = [
-  { year: "2015", event: "AlfaCall founded with a mission to democratize enterprise telecom" },
+  { year: "2012", event: "AlfaCall founded with a mission to democratize enterprise telecom" },
+  { year: "2015", event: "Surpassed 50+ countries and launched our wholesale voice termination network" },
   { year: "2017", event: "Reached 100+ countries coverage for voice termination" },
   { year: "2019", event: "Launched our developer API platform and SDK suite" },
   { year: "2021", event: "Expanded to 500+ enterprise clients globally" },
@@ -56,13 +57,13 @@ export default function AboutPage() {
           eyebrowIcon={Sparkles}
           title="About AlfaCall"
           highlightLastWord
-          description="Empowering businesses with enterprise-grade telecom infrastructure since 2015 — connecting people across 180+ countries."
+          description="Empowering businesses with enterprise-grade telecom infrastructure since 2012 — connecting people across 180+ countries."
           align="left"
           breadcrumbs={[
             { name: "Home", href: "/" },
             { name: "About Us", href: "/about" },
           ]}
-          highlights={["Founded 2015", "500+ Enterprise Clients", "100+ Team Members"]}
+          highlights={["Founded 2012", "500+ Enterprise Clients", "100+ Team Members"]}
           topSlot={<StaticLogo size="lg" showText variant="onDark" />}
         />
 
