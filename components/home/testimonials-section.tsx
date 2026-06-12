@@ -1,7 +1,8 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Star, Quote, MessageSquare } from "lucide-react"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Star, Quote, MessageSquare, ChevronLeft, ChevronRight } from "lucide-react"
 import { GlassCard, PulsingGlow } from "./animated-elements"
 import { AnimatedWaveBackground } from "./animated-wave-bg"
 
@@ -30,9 +31,51 @@ const testimonials = [
     rating: 5,
     color: "#10b981",
   },
+  {
+    content: "As a small regional carrier, we needed a partner who would treat us like a priority. AlfaCall's wholesale voice routes cut our termination costs by 28% and the onboarding took just two days.",
+    author: "Daniel Okafor",
+    role: "Founder",
+    company: "BrightLink Telecom",
+    rating: 5,
+    color: "#FFBE32",
+  },
+  {
+    content: "We run a lean team and AlfaCall feels like an extension of it. Their support actually picks up the phone, and the call quality on our long-distance routes has been flawless.",
+    author: "Priya Nair",
+    role: "Operations Lead",
+    company: "Sahara Voice Networks",
+    rating: 5,
+    color: "#8b5cf6",
+  },
+  {
+    content: "Switching our DID and SMS traffic to AlfaCall was painless. Transparent pricing, no hidden fees, and dashboards that finally make sense. Perfect fit for a growing telecom like ours.",
+    author: "Tomás Herrera",
+    role: "Managing Director",
+    company: "Andina Connect",
+    rating: 5,
+    color: "#06b6d4",
+  },
 ]
 
+const PAGE_SIZE = 3
+
 export function TestimonialsSection() {
+  const pageCount = Math.ceil(testimonials.length / PAGE_SIZE)
+  const [page, setPage] = useState(0)
+  const [direction, setDirection] = useState(0)
+
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection)
+    setPage((prev) => (prev + newDirection + pageCount) % pageCount)
+  }
+
+  const goToPage = (target: number) => {
+    setDirection(target > page ? 1 : -1)
+    setPage(target)
+  }
+
+  const visible = testimonials.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE)
+
   return (
     <section className="py-20 relative overflow-hidden bg-secondary/30">
       {/* Background */}
@@ -79,67 +122,108 @@ export function TestimonialsSection() {
           </motion.h2>
         </div>
 
-        {/* Testimonials grid */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.author}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.15, duration: 0.6 }}
-            >
-              <GlassCard 
-                className="p-8 h-full"
-                glowColor={`${testimonial.color}40`}
+        {/* Testimonials carousel */}
+        <div className="relative">
+          {/* Arrow controls */}
+          <button
+            type="button"
+            onClick={() => paginate(-1)}
+            aria-label="Previous testimonials"
+            className="absolute -left-3 lg:-left-6 top-1/2 -translate-y-1/2 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-secondary/80 text-foreground backdrop-blur transition-all hover:scale-110 hover:border-[#FFBE32]/60 hover:text-[#FFBE32]"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          <button
+            type="button"
+            onClick={() => paginate(1)}
+            aria-label="Next testimonials"
+            className="absolute -right-3 lg:-right-6 top-1/2 -translate-y-1/2 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-secondary/80 text-foreground backdrop-blur transition-all hover:scale-110 hover:border-[#FFBE32]/60 hover:text-[#FFBE32]"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+
+          <div className="overflow-hidden px-2">
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={page}
+                custom={direction}
+                initial={{ opacity: 0, x: direction >= 0 ? 60 : -60 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: direction >= 0 ? -60 : 60 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="grid md:grid-cols-3 gap-8"
               >
-                {/* Quote icon */}
-                <Quote 
-                  className="w-10 h-10 mb-6 opacity-30" 
-                  style={{ color: testimonial.color }}
-                />
-                
-                {/* Rating */}
-                <div className="flex gap-1 mb-6">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.15 + i * 0.05 }}
+                {visible.map((testimonial, index) => (
+                  <div key={testimonial.author}>
+                    <GlassCard 
+                      className="p-8 h-full"
+                      glowColor={`${testimonial.color}40`}
                     >
-                      <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
-                    </motion.div>
-                  ))}
-                </div>
+                      {/* Quote icon */}
+                      <Quote 
+                        className="w-10 h-10 mb-6 opacity-30" 
+                        style={{ color: testimonial.color }}
+                      />
+                      
+                      {/* Rating */}
+                      <div className="flex gap-1 mb-6">
+                        {Array.from({ length: testimonial.rating }).map((_, i) => (
+                          <motion.div
+                            key={i}
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: index * 0.1 + i * 0.05 }}
+                          >
+                            <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
+                          </motion.div>
+                        ))}
+                      </div>
 
-                {/* Content */}
-                <p className="text-foreground/90 leading-relaxed text-lg mb-8">
-                  {`"${testimonial.content}"`}
-                </p>
+                      {/* Content */}
+                      <p className="text-foreground/90 leading-relaxed text-lg mb-8">
+                        {`"${testimonial.content}"`}
+                      </p>
 
-                {/* Author */}
-                <div className="flex items-center gap-4 pt-6 border-t border-white/10">
-                  <div 
-                    className="w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold"
-                    style={{ 
-                      background: `linear-gradient(135deg, ${testimonial.color}30, ${testimonial.color}10)`,
-                      color: testimonial.color,
-                    }}
-                  >
-                    {testimonial.author.split(' ').map(n => n[0]).join('')}
+                      {/* Author */}
+                      <div className="flex items-center gap-4 pt-6 border-t border-white/10">
+                        <div 
+                          className="w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold"
+                          style={{ 
+                            background: `linear-gradient(135deg, ${testimonial.color}30, ${testimonial.color}10)`,
+                            color: testimonial.color,
+                          }}
+                        >
+                          {testimonial.author.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <div>
+                          <div className="font-semibold text-foreground">{testimonial.author}</div>
+                          <div className="text-sm text-muted-foreground">
+                            {testimonial.role}, {testimonial.company}
+                          </div>
+                        </div>
+                      </div>
+                    </GlassCard>
                   </div>
-                  <div>
-                    <div className="font-semibold text-foreground">{testimonial.author}</div>
-                    <div className="text-sm text-muted-foreground">
-                      {testimonial.role}, {testimonial.company}
-                    </div>
-                  </div>
-                </div>
-              </GlassCard>
-            </motion.div>
-          ))}
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Pagination dots */}
+          <div className="flex items-center justify-center gap-2 mt-10">
+            {Array.from({ length: pageCount }).map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => goToPage(i)}
+                aria-label={`Go to testimonials page ${i + 1}`}
+                aria-current={i === page}
+                className={`h-2.5 rounded-full transition-all ${
+                  i === page ? "w-8 bg-[#FFBE32]" : "w-2.5 bg-white/25 hover:bg-white/40"
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Featured section with text overlaying animated wave */}
