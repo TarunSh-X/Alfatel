@@ -25,7 +25,7 @@ export function CTASection() {
               animate={{ rotate: 360 }}
               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
             >
-              <Sparkles className="w-4 h-4 text-[#FFBE32]" />
+              <Sparkles className="w-4 h-4 text-[#b89850]" />
             </motion.div>
             <span className="text-sm font-medium text-[#0f2744]">Start Building Today</span>
           </motion.div>
@@ -40,7 +40,7 @@ export function CTASection() {
           >
             Ready to Transform Your
             <br />
-            <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #0f2744 0%, #FFBE32 100%)" }}>
+            <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #0f2744 0%, #b89850 100%)" }}>
               Communications?
             </span>
           </motion.h2>

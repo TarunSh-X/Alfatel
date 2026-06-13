@@ -14,6 +14,7 @@ const testimonials = [
     company: "TechCorp Global",
     rating: 5,
     color: "#06b6d4",
+    image: "/testimonials/sarah-chen.png",
   },
   {
     content: "The 99.99% uptime they promise is real. We process millions of calls monthly, and AlfaCall has never let us down. Their support team is exceptional.",
@@ -22,6 +23,7 @@ const testimonials = [
     company: "CloudSystems Inc",
     rating: 5,
     color: "#f97316",
+    image: "/testimonials/marcus-johnson.png",
   },
   {
     content: "Moving to AlfaCall for our SMS infrastructure was the best decision we made. Delivery rates improved dramatically, and the analytics are incredibly detailed.",
@@ -30,6 +32,7 @@ const testimonials = [
     company: "DataFlow Networks",
     rating: 5,
     color: "#10b981",
+    image: "/testimonials/emily-rodriguez.png",
   },
   {
     content: "As a small regional carrier, we needed a partner who would treat us like a priority. AlfaCall's wholesale voice routes cut our termination costs by 28% and the onboarding took just two days.",
@@ -37,7 +40,8 @@ const testimonials = [
     role: "Founder",
     company: "BrightLink Telecom",
     rating: 5,
-    color: "#FFBE32",
+    color: "#b89850",
+    image: "/testimonials/daniel-okafor.png",
   },
   {
     content: "We run a lean team and AlfaCall feels like an extension of it. Their support actually picks up the phone, and the call quality on our long-distance routes has been flawless.",
@@ -46,6 +50,7 @@ const testimonials = [
     company: "Sahara Voice Networks",
     rating: 5,
     color: "#8b5cf6",
+    image: "/testimonials/priya-nair.png",
   },
   {
     content: "Switching our DID and SMS traffic to AlfaCall was painless. Transparent pricing, no hidden fees, and dashboards that finally make sense. Perfect fit for a growing telecom like ours.",
@@ -54,6 +59,7 @@ const testimonials = [
     company: "Andina Connect",
     rating: 5,
     color: "#06b6d4",
+    image: "/testimonials/tomas-herrera.png",
   },
 ]
 
@@ -129,7 +135,7 @@ export function TestimonialsSection() {
             type="button"
             onClick={() => paginate(-1)}
             aria-label="Previous testimonials"
-            className="absolute -left-3 lg:-left-6 top-1/2 -translate-y-1/2 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-secondary/80 text-foreground backdrop-blur transition-all hover:scale-110 hover:border-[#FFBE32]/60 hover:text-[#FFBE32]"
+            className="absolute -left-3 lg:-left-6 top-1/2 -translate-y-1/2 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-secondary/80 text-foreground backdrop-blur transition-all hover:scale-110 hover:border-[#b89850]/60 hover:text-[#b89850]"
           >
             <ChevronLeft className="h-6 w-6" />
           </button>
@@ -137,7 +143,7 @@ export function TestimonialsSection() {
             type="button"
             onClick={() => paginate(1)}
             aria-label="Next testimonials"
-            className="absolute -right-3 lg:-right-6 top-1/2 -translate-y-1/2 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-secondary/80 text-foreground backdrop-blur transition-all hover:scale-110 hover:border-[#FFBE32]/60 hover:text-[#FFBE32]"
+            className="absolute -right-3 lg:-right-6 top-1/2 -translate-y-1/2 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-secondary/80 text-foreground backdrop-blur transition-all hover:scale-110 hover:border-[#b89850]/60 hover:text-[#b89850]"
           >
             <ChevronRight className="h-6 w-6" />
           </button>
@@ -171,7 +177,7 @@ export function TestimonialsSection() {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: index * 0.1 + i * 0.05 }}
                           >
-                            <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
+                            <Star className="w-5 h-5 fill-[#b89850] text-[#b89850]" />
                           </motion.div>
                         ))}
                       </div>
@@ -183,15 +189,13 @@ export function TestimonialsSection() {
 
                       {/* Author */}
                       <div className="flex items-center gap-4 pt-6 border-t border-white/10">
-                        <div 
-                          className="w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold"
-                          style={{ 
-                            background: `linear-gradient(135deg, ${testimonial.color}30, ${testimonial.color}10)`,
-                            color: testimonial.color,
-                          }}
-                        >
-                          {testimonial.author.split(' ').map(n => n[0]).join('')}
-                        </div>
+                        <img
+                          src={testimonial.image || "/placeholder.svg"}
+                          alt={`${testimonial.author}, ${testimonial.role} at ${testimonial.company}`}
+                          className="w-14 h-14 rounded-full object-cover ring-2"
+                          style={{ ["--tw-ring-color" as string]: `${testimonial.color}66` }}
+                          loading="lazy"
+                        />
                         <div>
                           <div className="font-semibold text-foreground">{testimonial.author}</div>
                           <div className="text-sm text-muted-foreground">
@@ -215,7 +219,7 @@ export function TestimonialsSection() {
                 aria-label={`Go to testimonials page ${i + 1}`}
                 aria-current={i === page}
                 className={`h-2.5 rounded-full transition-all ${
-                  i === page ? "w-8 bg-[#FFBE32]" : "w-2.5 bg-white/25 hover:bg-white/40"
+                  i === page ? "w-8 bg-[#b89850]" : "w-2.5 bg-white/25 hover:bg-white/40"
                 }`}
               />
             ))}
@@ -247,7 +251,7 @@ export function TestimonialsSection() {
                     Join{" "}
                     <span 
                       className="text-transparent bg-clip-text"
-                      style={{ backgroundImage: "linear-gradient(135deg, #FFBE32, #FFD700)" }}
+                      style={{ backgroundImage: "linear-gradient(135deg, #b89850, #b89850)" }}
                     >
                       500+ companies
                     </span>
@@ -276,8 +280,8 @@ export function TestimonialsSection() {
                       href="/contact"
                       className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-[#0f2744] transition-all hover:scale-105"
                       style={{
-                        background: "linear-gradient(135deg, #FFBE32, #e5a82e)",
-                        boxShadow: "0 4px 20px rgba(255, 190, 50, 0.5)",
+                        background: "linear-gradient(135deg, #b89850, #9c8144)",
+                        boxShadow: "0 4px 20px rgba(184, 152, 80, 0.5)",
                       }}
                     >
                       Get Started Today
@@ -295,7 +299,7 @@ export function TestimonialsSection() {
           <div 
             className="absolute -inset-4 rounded-3xl blur-3xl -z-10 opacity-30"
             style={{
-              background: "linear-gradient(135deg, rgba(15, 39, 68, 0.4) 0%, rgba(255, 190, 50, 0.2) 100%)",
+              background: "linear-gradient(135deg, rgba(15, 39, 68, 0.4) 0%, rgba(184, 152, 80, 0.2) 100%)",
             }}
           />
         </motion.div>

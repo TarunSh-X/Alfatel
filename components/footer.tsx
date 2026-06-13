@@ -62,18 +62,18 @@ export function Footer() {
               <div className="mt-8 space-y-4">
                 <a
                   href="mailto:info@alfacall.net"
-                  className="flex items-center gap-3 text-white/70 hover:text-[#FFBE32] transition-colors group"
+                  className="flex items-center gap-3 text-white/70 hover:text-[#b89850] transition-colors group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-[#FFBE32]/20 transition-colors">
+                  <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-[#b89850]/20 transition-colors">
                     <Mail className="w-5 h-5" />
                   </div>
                   info@alfacall.net
                 </a>
                 <a
                   href="tel:+12082447477"
-                  className="flex items-center gap-3 text-white/70 hover:text-[#FFBE32] transition-colors group"
+                  className="flex items-center gap-3 text-white/70 hover:text-[#b89850] transition-colors group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-[#FFBE32]/20 transition-colors">
+                  <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-[#b89850]/20 transition-colors">
                     <Phone className="w-5 h-5" />
                   </div>
                   +1 (208) 244-7477
@@ -89,7 +89,7 @@ export function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-white/70 hover:text-[#FFBE32] transition-colors"
+                      className="text-white/70 hover:text-[#b89850] transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -106,7 +106,7 @@ export function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-white/70 hover:text-[#FFBE32] transition-colors"
+                      className="text-white/70 hover:text-[#b89850] transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -123,7 +123,7 @@ export function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-white/70 hover:text-[#FFBE32] transition-colors"
+                      className="text-white/70 hover:text-[#b89850] transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -140,7 +140,7 @@ export function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-white/70 hover:text-[#FFBE32] transition-colors"
+                      className="text-white/70 hover:text-[#b89850] transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -152,7 +152,7 @@ export function Footer() {
               <ul className="space-y-6">
                 {offices.map((office) => (
                   <li key={office.name} className="flex items-start gap-3 text-white/70">
-                    <Flag code={office.code} className="w-6 h-auto rounded-sm shadow-sm mt-1 shrink-0" />
+                    <Flag code={office.code} name={office.name} className="w-6 h-auto rounded-sm shadow-sm mt-1 shrink-0" />
                     <div className="text-sm leading-relaxed">
                       <div className="font-medium text-white">{office.name}</div>
                       {office.lines.map((line) => (
@@ -180,7 +180,7 @@ export function Footer() {
                   href="https://www.linkedin.com/company/alfacall-limited/?originalSubdomain=hk"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/70 hover:text-[#FFBE32] hover:bg-[#FFBE32]/20 transition-all"
+                  className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/70 hover:text-[#b89850] hover:bg-[#b89850]/20 transition-all"
                   aria-label="LinkedIn"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -191,7 +191,7 @@ export function Footer() {
                   href="https://www.instagram.com/alfacall_limited/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/70 hover:text-[#FFBE32] hover:bg-[#FFBE32]/20 transition-all"
+                  className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white/70 hover:text-[#b89850] hover:bg-[#b89850]/20 transition-all"
                   aria-label="Instagram"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

@@ -109,7 +109,7 @@ export function DeveloperSection() {
             Build with{" "}
             <span 
               className="text-transparent bg-clip-text"
-              style={{ backgroundImage: "linear-gradient(135deg, #FFBE32, #e5a82e)" }}
+              style={{ backgroundImage: "linear-gradient(135deg, #b89850, #9c8144)" }}
             >
               Powerful APIs
             </span>
@@ -153,8 +153,8 @@ export function DeveloperSection() {
                   {/* Content */}
                   <div className="flex-1 min-w-0 pt-1">
                     <div className="flex items-center gap-2 sm:gap-3 mb-2 flex-wrap">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#FFBE32]/10 flex items-center justify-center flex-shrink-0">
-                        <feature.icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFBE32]" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#b89850]/10 flex items-center justify-center flex-shrink-0">
+                        <feature.icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#b89850]" />
                       </div>
                       <h3 className="text-sm sm:text-xl font-bold text-[#0f2744]">{feature.title}</h3>
                     </div>
@@ -162,7 +162,7 @@ export function DeveloperSection() {
                       {feature.description}
                     </p>
                     {/* Underline accent */}
-                    <div className="mt-4 h-px bg-gradient-to-r from-[#FFBE32]/50 via-[#0f2744]/10 to-transparent w-full" />
+                    <div className="mt-4 h-px bg-gradient-to-r from-[#b89850]/50 via-[#0f2744]/10 to-transparent w-full" />
                   </div>
                 </div>
               </motion.div>
@@ -181,7 +181,7 @@ export function DeveloperSection() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#0f2744] bg-white border border-[#0f2744]/10 rounded-lg hover:border-[#FFBE32] hover:bg-[#FFBE32]/5 transition-all duration-300"
+                    className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#0f2744] bg-white border border-[#0f2744]/10 rounded-lg hover:border-[#b89850] hover:bg-[#b89850]/5 transition-all duration-300"
                   >
                     {link.label}
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -262,8 +262,8 @@ export function DeveloperSection() {
                 href="/services"
                 className="group inline-flex items-center gap-2 px-8 py-4 font-semibold rounded-xl text-[#0f2744] transition-all duration-300 hover:scale-105"
                 style={{
-                  background: "linear-gradient(135deg, #FFBE32, #e5a82e)",
-                  boxShadow: "0 4px 20px rgba(255, 190, 50, 0.3)",
+                  background: "linear-gradient(135deg, #b89850, #9c8144)",
+                  boxShadow: "0 4px 20px rgba(184, 152, 80, 0.3)",
                 }}
               >
                 <span>View Documentation</span>
@@ -275,7 +275,7 @@ export function DeveloperSection() {
             <div 
               className="absolute -inset-4 rounded-3xl blur-3xl -z-10 opacity-20"
               style={{
-                background: "linear-gradient(135deg, rgba(15, 39, 68, 0.3) 0%, rgba(255, 190, 50, 0.15) 100%)",
+                background: "linear-gradient(135deg, rgba(15, 39, 68, 0.3) 0%, rgba(184, 152, 80, 0.15) 100%)",
               }}
             />
           </motion.div>

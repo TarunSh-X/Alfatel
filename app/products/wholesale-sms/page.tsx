@@ -98,7 +98,7 @@ export default function WholesaleSMSPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-6 rounded-2xl bg-card border border-border hover:border-[#FFBE32]/40 transition-colors"
+                  className="p-6 rounded-2xl bg-card border border-border hover:border-[#b89850]/40 transition-colors"
                 >
                   <div className="w-12 h-12 rounded-xl bg-[#0f2744]/10 flex items-center justify-center mb-4">
                     <feature.icon className="w-6 h-6 text-[#0f2744]" />
@@ -137,7 +137,7 @@ export default function WholesaleSMSPage() {
                   <ul className="mt-6 space-y-3">
                     {useCase.examples.map((example) => (
                       <li key={example} className="flex items-center gap-2 text-sm">
-                        <Check className="w-4 h-4 text-[#FFBE32]" />
+                        <Check className="w-4 h-4 text-[#b89850]" />
                         <span className="text-foreground">{example}</span>
                       </li>
                     ))}
@@ -157,15 +157,12 @@ export default function WholesaleSMSPage() {
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
               Get access to our global SMS network with competitive rates and powerful APIs.
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="mt-8 flex items-center justify-center">
               <Button size="lg" asChild>
                 <Link href="/contact">
                   Get Started
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/contact">Request Demo</Link>
               </Button>
             </div>
           </div>

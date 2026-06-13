@@ -109,7 +109,7 @@ export default function SIPTrunkingPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-6 rounded-2xl bg-card border border-border hover:border-[#FFBE32]/40 transition-colors"
+                  className="p-6 rounded-2xl bg-card border border-border hover:border-[#b89850]/40 transition-colors"
                 >
                   <div className="w-12 h-12 rounded-xl bg-[#0f2744]/10 flex items-center justify-center mb-4">
                     <feature.icon className="w-6 h-6 text-[#0f2744]" />
@@ -136,7 +136,7 @@ export default function SIPTrunkingPage() {
                 <ul className="mt-8 space-y-4">
                   {["Asterisk & FreePBX", "3CX Phone System", "Microsoft Teams", "Cisco Unified CM", "Avaya IP Office", "Any SIP-compliant PBX"].map((item) => (
                     <li key={item} className="flex items-center gap-3">
-                      <Check className="w-5 h-5 text-[#FFBE32]" />
+                      <Check className="w-5 h-5 text-[#b89850]" />
                       <span className="text-foreground">{item}</span>
                     </li>
                   ))}

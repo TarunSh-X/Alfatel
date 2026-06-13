@@ -18,7 +18,7 @@ export function HeroSection() {
       />
 
       {/* Subtle geometric shapes */}
-      <div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-[#FFBE32]/10 blur-3xl" />
+      <div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-[#b89850]/10 blur-3xl" />
       <div className="absolute bottom-40 left-10 w-96 h-96 rounded-full bg-[#0f2744]/5 blur-3xl" />
 
       {/* Grid pattern overlay */}
@@ -48,7 +48,7 @@ export function HeroSection() {
                   animate={{ rotate: 360 }}
                   transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                 >
-                  <Sparkles className="w-4 h-4 text-[#FFBE32]" />
+                  <Sparkles className="w-4 h-4 text-[#b89850]" />
                 </motion.div>
                 <span className="text-sm font-medium text-foreground">Enterprise-Grade Infrastructure</span>
               </div>
@@ -66,7 +66,7 @@ export function HeroSection() {
               <span 
                 className="text-transparent bg-clip-text"
                 style={{
-                  backgroundImage: "linear-gradient(135deg, #0f2744 0%, #1e3a5f 50%, #FFBE32 100%)",
+                  backgroundImage: "linear-gradient(135deg, #0f2744 0%, #1e3a5f 50%, #b89850 100%)",
                   WebkitBackgroundClip: "text",
                 }}
               >
@@ -107,12 +107,12 @@ export function HeroSection() {
                 className="group inline-flex items-center gap-3 px-5 py-3.5 rounded-xl border border-border hover:border-[#0f2744]/30 hover:bg-white/50 transition-all duration-300 bg-white shadow-soft"
               >
                 <motion.div 
-                  className="w-10 h-10 rounded-full flex items-center justify-center bg-[#FFBE32]/20"
+                  className="w-10 h-10 rounded-full flex items-center justify-center bg-[#b89850]/20"
                   whileHover={{ scale: 1.1 }}
                 >
-                  <Play className="w-4 h-4 text-[#FFBE32] fill-[#FFBE32] ml-0.5" />
+                  <Play className="w-4 h-4 text-[#b89850] fill-[#b89850] ml-0.5" />
                 </motion.div>
-                <span className="text-[#0f2744] font-medium">Watch Demo</span>
+                <span className="text-[#0f2744] font-medium">Book a Demo</span>
               </Link>
             </motion.div>
 
@@ -126,7 +126,7 @@ export function HeroSection() {
               {[
                 { end: 180, suffix: "+", label: "Countries", color: "text-[#0f2744]" },
                 { end: 99.99, suffix: "%", label: "Uptime SLA", color: "text-emerald-600" },
-                { end: 100, suffix: "K+", label: "API Calls/Day", color: "text-[#FFBE32]" },
+                { end: 100, suffix: "K+", label: "API Calls/Day", color: "text-[#b89850]" },
               ].map((stat, i) => (
                 <motion.div 
                   key={stat.label}
@@ -192,7 +192,7 @@ export function HeroSection() {
               >
                 <div className="bg-white/95 backdrop-blur-sm rounded-xl p-3 shadow-lg border border-white/50">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#FFBE32]">
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#b89850]">
                       <Zap className="w-5 h-5 text-[#0f2744]" />
                     </div>
                     <div>
