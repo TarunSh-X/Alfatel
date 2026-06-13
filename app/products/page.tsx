@@ -179,12 +179,9 @@ export default function ProductsPage() {
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
               Our team can help design a tailored telecom infrastructure that meets your specific requirements.
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="mt-8 flex items-center justify-center">
               <Button size="lg" asChild>
                 <Link href="/contact">Contact Sales</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/contact">Request Demo</Link>
               </Button>
             </div>
           </div>

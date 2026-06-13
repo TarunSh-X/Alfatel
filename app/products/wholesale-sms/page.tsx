@@ -157,15 +157,12 @@ export default function WholesaleSMSPage() {
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
               Get access to our global SMS network with competitive rates and powerful APIs.
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="mt-8 flex items-center justify-center">
               <Button size="lg" asChild>
                 <Link href="/contact">
                   Get Started
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/contact">Request Demo</Link>
               </Button>
             </div>
           </div>

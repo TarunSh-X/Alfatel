@@ -104,12 +104,6 @@ export function Header() {
           <div className="hidden lg:flex lg:items-center lg:gap-3">
             <Link
               href="/contact"
-              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Request Demo
-            </Link>
-            <Link
-              href="/contact"
               className="px-5 py-2.5 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:scale-105 transition-transform shadow-medium"
             >
               Get Started
@@ -167,13 +161,6 @@ export function Header() {
                 </div>
               ))}
               <div className="pt-4 flex flex-col gap-2">
-                <Link
-                  href="/contact"
-                  className="w-full text-center px-4 py-2.5 text-sm font-medium border border-border rounded-lg hover:bg-secondary transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Request Demo
-                </Link>
                 <Link
                   href="/contact"
                   className="w-full text-center px-4 py-2.5 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
