@@ -14,6 +14,7 @@ const testimonials = [
     company: "TechCorp Global",
     rating: 5,
     color: "#06b6d4",
+    image: "/testimonials/sarah-chen.png",
   },
   {
     content: "The 99.99% uptime they promise is real. We process millions of calls monthly, and AlfaCall has never let us down. Their support team is exceptional.",
@@ -22,6 +23,7 @@ const testimonials = [
     company: "CloudSystems Inc",
     rating: 5,
     color: "#f97316",
+    image: "/testimonials/marcus-johnson.png",
   },
   {
     content: "Moving to AlfaCall for our SMS infrastructure was the best decision we made. Delivery rates improved dramatically, and the analytics are incredibly detailed.",
@@ -30,6 +32,7 @@ const testimonials = [
     company: "DataFlow Networks",
     rating: 5,
     color: "#10b981",
+    image: "/testimonials/emily-rodriguez.png",
   },
   {
     content: "As a small regional carrier, we needed a partner who would treat us like a priority. AlfaCall's wholesale voice routes cut our termination costs by 28% and the onboarding took just two days.",
@@ -38,6 +41,7 @@ const testimonials = [
     company: "BrightLink Telecom",
     rating: 5,
     color: "#b89850",
+    image: "/testimonials/daniel-okafor.png",
   },
   {
     content: "We run a lean team and AlfaCall feels like an extension of it. Their support actually picks up the phone, and the call quality on our long-distance routes has been flawless.",
@@ -46,6 +50,7 @@ const testimonials = [
     company: "Sahara Voice Networks",
     rating: 5,
     color: "#8b5cf6",
+    image: "/testimonials/priya-nair.png",
   },
   {
     content: "Switching our DID and SMS traffic to AlfaCall was painless. Transparent pricing, no hidden fees, and dashboards that finally make sense. Perfect fit for a growing telecom like ours.",
@@ -54,6 +59,7 @@ const testimonials = [
     company: "Andina Connect",
     rating: 5,
     color: "#06b6d4",
+    image: "/testimonials/tomas-herrera.png",
   },
 ]
 
@@ -183,15 +189,13 @@ export function TestimonialsSection() {
 
                       {/* Author */}
                       <div className="flex items-center gap-4 pt-6 border-t border-white/10">
-                        <div 
-                          className="w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold"
-                          style={{ 
-                            background: `linear-gradient(135deg, ${testimonial.color}30, ${testimonial.color}10)`,
-                            color: testimonial.color,
-                          }}
-                        >
-                          {testimonial.author.split(' ').map(n => n[0]).join('')}
-                        </div>
+                        <img
+                          src={testimonial.image || "/placeholder.svg"}
+                          alt={`${testimonial.author}, ${testimonial.role} at ${testimonial.company}`}
+                          className="w-14 h-14 rounded-full object-cover ring-2"
+                          style={{ ["--tw-ring-color" as string]: `${testimonial.color}66` }}
+                          loading="lazy"
+                        />
                         <div>
                           <div className="font-semibold text-foreground">{testimonial.author}</div>
                           <div className="text-sm text-muted-foreground">
