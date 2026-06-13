@@ -5,7 +5,6 @@ import { Users, Target, Award, Globe, Check, Sparkles } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { PageHero } from "@/components/page-hero"
-import { StaticLogo } from "@/components/static-logo"
 
 const stats = [
   { value: "2012", label: "Founded" },
@@ -53,7 +52,7 @@ export default function AboutPage() {
       <Header />
       <main>
         <PageHero
-          eyebrow="About AlfaCall"
+          eyebrow="Who We Are"
           eyebrowIcon={Sparkles}
           title="About AlfaCall"
           highlightLastWord
@@ -64,7 +63,6 @@ export default function AboutPage() {
             { name: "About Us", href: "/about" },
           ]}
           highlights={["Founded 2012", "500+ Enterprise Clients", "100+ Team Members"]}
-          topSlot={<StaticLogo size="lg" showText variant="onDark" />}
         />
 
         {/* Stats */}

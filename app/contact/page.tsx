@@ -166,7 +166,7 @@ export default function ContactPage() {
                         </span>
                         <div className="text-sm leading-relaxed text-white/80">
                           <div className="font-medium text-white flex items-center gap-2">
-                            <Flag code={office.code} className="w-5 h-auto rounded-sm shadow-sm" />
+                            <Flag code={office.code} name={office.name} className="w-5 h-auto rounded-sm shadow-sm" />
                             {office.name}
                           </div>
                           {office.lines.map((line) => (

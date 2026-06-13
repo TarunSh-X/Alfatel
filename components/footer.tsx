@@ -152,7 +152,7 @@ export function Footer() {
               <ul className="space-y-6">
                 {offices.map((office) => (
                   <li key={office.name} className="flex items-start gap-3 text-white/70">
-                    <Flag code={office.code} className="w-6 h-auto rounded-sm shadow-sm mt-1 shrink-0" />
+                    <Flag code={office.code} name={office.name} className="w-6 h-auto rounded-sm shadow-sm mt-1 shrink-0" />
                     <div className="text-sm leading-relaxed">
                       <div className="font-medium text-white">{office.name}</div>
                       {office.lines.map((line) => (

@@ -141,15 +141,17 @@ export function PageHero({
 
             <h1 className="text-4xl lg:text-6xl font-bold text-white text-balance leading-[1.05]">
               {words.map((word, i) => (
-                <motion.span
-                  key={`${word}-${i}`}
-                  variants={item}
-                  className={`inline-block mr-[0.25em] ${
-                    highlightLastWord && i === words.length - 1 ? "text-[#b89850]" : ""
-                  }`}
-                >
-                  {word}
-                </motion.span>
+                <span key={`${word}-${i}`}>
+                  <motion.span
+                    variants={item}
+                    className={`inline-block ${
+                      highlightLastWord && i === words.length - 1 ? "text-[#b89850]" : ""
+                    }`}
+                  >
+                    {word}
+                  </motion.span>
+                  {i < words.length - 1 ? " " : ""}
+                </span>
               ))}
             </h1>
 

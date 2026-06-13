@@ -112,7 +112,7 @@ export function HeroSection() {
                 >
                   <Play className="w-4 h-4 text-[#b89850] fill-[#b89850] ml-0.5" />
                 </motion.div>
-                <span className="text-[#0f2744] font-medium">Watch Demo</span>
+                <span className="text-[#0f2744] font-medium">Book a Demo</span>
               </Link>
             </motion.div>
 

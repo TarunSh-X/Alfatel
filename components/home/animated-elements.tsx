@@ -18,14 +18,23 @@ export function AnimatedCounter({
   duration = 2,
   className = "" 
 }: AnimatedCounterProps) {
-  const [count, setCount] = useState(0)
+  // Initialize to the final value so the server-rendered HTML (and first client
+  // render) contain the real number. This keeps the value visible to crawlers
+  // and avoids hydration mismatches. The count-up animation runs after mount.
+  const [count, setCount] = useState(end)
+  const [mounted, setMounted] = useState(false)
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, margin: "-100px" })
   const hasAnimated = useRef(false)
 
   useEffect(() => {
-    if (inView && !hasAnimated.current) {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (mounted && inView && !hasAnimated.current) {
       hasAnimated.current = true
+      setCount(0)
       const startTime = Date.now()
       const endTime = startTime + duration * 1000
 
@@ -48,7 +57,7 @@ export function AnimatedCounter({
 
       requestAnimationFrame(updateCount)
     }
-  }, [inView, end, duration])
+  }, [mounted, inView, end, duration])
 
   return (
     <span ref={ref} className={className}>

@@ -9,6 +9,9 @@ const inter = Inter({
   display: 'swap',
 })
 
+// Only the real production deployment should be indexable by search engines.
+const isProduction = process.env.VERCEL_ENV === 'production'
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://alfacall.net'),
   title: {
@@ -16,7 +19,6 @@ export const metadata: Metadata = {
     template: '%s | AlfaCall',
   },
   description: 'Enterprise-grade wholesale voice, DID numbers, SMS API, and SIP trunking solutions. Connect globally with 99.99% uptime, powerful APIs, and 24/7 support.',
-  keywords: ['wholesale voice', 'DID numbers', 'SMS API', 'SIP trunking', 'telecom SaaS', 'VoIP', 'cloud communications', 'telecom API', 'bulk SMS', 'international calling'],
   authors: [{ name: 'AlfaCall' }],
   creator: 'AlfaCall',
   publisher: 'AlfaCall',
@@ -47,17 +49,22 @@ export const metadata: Metadata = {
     description: 'Enterprise-grade wholesale voice, DID, SMS, and SIP trunking solutions.',
     images: ['/og-image.png'],
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+  robots: isProduction
+    ? {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          'max-video-preview': -1,
+          'max-image-preview': 'large',
+          'max-snippet': -1,
+        },
+      }
+    : {
+        index: false,
+        follow: false,
+      },
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon-16x16.png',

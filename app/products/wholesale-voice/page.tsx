@@ -143,7 +143,7 @@ export default function WholesaleVoicePage() {
                   className="rounded-2xl bg-white/5 border border-white/10 p-5 hover:border-[#b89850]/40 transition-colors"
                 >
                   <div className="flex items-center gap-3">
-                    <Flag code={country.code} className="w-8 h-auto rounded-sm shadow-sm shrink-0" />
+                    <Flag code={country.code} name={country.name} className="w-8 h-auto rounded-sm shadow-sm shrink-0" />
                     <h3 className="font-semibold text-white">{country.name}</h3>
                   </div>
                   <div className="mt-4 flex flex-wrap items-center gap-2">
