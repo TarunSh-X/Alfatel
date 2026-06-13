@@ -7,7 +7,7 @@ import { PartnerCarousel } from "./partner-carousel"
 
 const stats = [
   { icon: Globe, value: 180, suffix: "+", label: "Countries Covered", color: "#0f2744" },
-  { icon: Users, value: 500, suffix: "+", label: "Enterprise Clients", color: "#FFBE32" },
+  { icon: Users, value: 500, suffix: "+", label: "Enterprise Clients", color: "#b89850" },
   { icon: TrendingUp, value: 99.99, suffix: "%", label: "Uptime Guarantee", color: "#10b981" },
   { icon: Headphones, value: 24, suffix: "/7", label: "Expert Support", color: "#3b82f6" },
 ]
@@ -28,7 +28,7 @@ export function TrustSection() {
           </p>
           <h2 className="text-2xl lg:text-3xl font-bold text-[#0f2744]">
             Powering Communications for{" "}
-            <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #0f2744, #FFBE32)" }}>
+            <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #0f2744, #b89850)" }}>
               Fortune 500 Companies
             </span>
           </h2>
