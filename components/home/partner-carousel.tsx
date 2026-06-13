@@ -28,7 +28,7 @@ function PartnerLogo({ partner }: { partner: Partner }) {
 
   return (
     <div
-      className="group/item relative flex h-28 w-52 flex-shrink-0 items-center justify-center rounded-xl border border-[#E6EAF0] bg-white px-8 opacity-70 shadow-sm transition-all duration-300 hover:z-20 hover:-translate-y-1 hover:scale-105 hover:border-[#b89850] hover:opacity-100 hover:shadow-[0_14px_34px_rgba(10,22,40,0.18)] group-hover/carousel:opacity-40 hover:group-hover/carousel:opacity-100"
+      className="group/item relative flex h-28 w-52 flex-shrink-0 items-center justify-center rounded-xl border border-[#E6EAF0] bg-white px-8 opacity-70 shadow-sm transition-all duration-300 hover:z-20 hover:-translate-y-1 hover:scale-105 hover:border-[#FFBE32] hover:opacity-100 hover:shadow-[0_14px_34px_rgba(10,22,40,0.18)] group-hover/carousel:opacity-40 hover:group-hover/carousel:opacity-100"
     >
       {failed ? (
         <span className="text-center text-sm font-semibold text-[#0A1628]">{partner.name}</span>

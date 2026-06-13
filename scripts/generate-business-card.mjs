@@ -1,5 +1,5 @@
 // Generates the AlfaCall CEO business card (wide layout) as a high-res PNG.
-// Matches the brand system: navy #0f2744, gold #b89850, cream background,
+// Matches the brand system: navy #0f2744, gold #FFBE32, cream background,
 // the AC logo lockup from components/static-logo.tsx, Great Vibes script name,
 // and Inter for title/contact text.
 // Run: node scripts/generate-business-card.mjs
@@ -12,7 +12,7 @@ mkdirSync(OUT, { recursive: true })
 // ---- Brand palette ----
 const NAVY = "#0f2744"
 const NAVY_DEEP = "#0a1628"
-const GOLD = "#b89850"
+const GOLD = "#FFBE32"
 const CREAM = "#f7f1e8"
 const CREAM_HI = "#fbf7f0"
 const INK = "#1f2937"

@@ -118,7 +118,7 @@ export default function ProductsPage() {
                   key={s.label}
                   className="rounded-2xl bg-white/5 border border-white/10 p-6 backdrop-blur-sm"
                 >
-                  <div className="text-3xl font-bold text-[#b89850]">{s.value}</div>
+                  <div className="text-3xl font-bold text-[#FFBE32]">{s.value}</div>
                   <div className="mt-1 text-sm text-white/70">{s.label}</div>
                 </div>
               ))}
@@ -140,7 +140,7 @@ export default function ProductsPage() {
                 >
                   <Link
                     href={product.href}
-                    className="group block h-full p-8 rounded-2xl bg-card border border-border hover:border-[#b89850]/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                    className="group block h-full p-8 rounded-2xl bg-card border border-border hover:border-[#FFBE32]/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                   >
                     <div className="w-14 h-14 rounded-xl bg-[#0f2744]/10 flex items-center justify-center group-hover:bg-[#0f2744] group-hover:scale-110 transition-all duration-300 mb-6">
                       <product.icon className="w-7 h-7 text-[#0f2744] group-hover:text-white transition-colors" />
@@ -154,7 +154,7 @@ export default function ProductsPage() {
                     <ul className="mt-6 space-y-2">
                       {product.features.map((feature) => (
                         <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <Check className="w-4 h-4 text-[#b89850]" />
+                          <Check className="w-4 h-4 text-[#FFBE32]" />
                           {feature}
                         </li>
                       ))}

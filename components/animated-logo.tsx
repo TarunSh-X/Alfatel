@@ -50,8 +50,8 @@ export function AnimatedLogo({ size = "md", showText = true, href = "/" }: Anima
           <motion.span
             style={{ 
               fontSize: config.letterSize,
-              color: "#b89850",
-              textShadow: "0 0 15px rgba(184, 152, 80, 0.7), 0 2px 4px rgba(0,0,0,0.5)",
+              color: "#FFBE32",
+              textShadow: "0 0 15px rgba(255, 190, 50, 0.7), 0 2px 4px rgba(0,0,0,0.5)",
               fontFamily: "'Arial Black', 'Helvetica Neue', sans-serif",
               fontWeight: 900,
               letterSpacing: "-0.02em",
@@ -73,8 +73,8 @@ export function AnimatedLogo({ size = "md", showText = true, href = "/" }: Anima
           <motion.span
             style={{ 
               fontSize: config.letterSize,
-              color: "#b89850",
-              textShadow: "0 0 15px rgba(184, 152, 80, 0.7), 0 2px 4px rgba(0,0,0,0.5)",
+              color: "#FFBE32",
+              textShadow: "0 0 15px rgba(255, 190, 50, 0.7), 0 2px 4px rgba(0,0,0,0.5)",
               fontFamily: "'Arial Black', 'Helvetica Neue', sans-serif",
               fontWeight: 900,
               letterSpacing: "-0.02em",
@@ -98,8 +98,8 @@ export function AnimatedLogo({ size = "md", showText = true, href = "/" }: Anima
         <motion.div
           className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full"
           style={{ 
-            backgroundColor: "#b89850",
-            boxShadow: "0 0 10px rgba(184, 152, 80, 0.9)",
+            backgroundColor: "#FFBE32",
+            boxShadow: "0 0 10px rgba(255, 190, 50, 0.9)",
           }}
           animate={{
             scale: [1, 1.4, 1],
@@ -114,8 +114,8 @@ export function AnimatedLogo({ size = "md", showText = true, href = "/" }: Anima
         <motion.div
           className="absolute top-1 right-3 w-1.5 h-1.5 rounded-full"
           style={{ 
-            backgroundColor: "#b89850",
-            boxShadow: "0 0 6px rgba(184, 152, 80, 0.7)",
+            backgroundColor: "#FFBE32",
+            boxShadow: "0 0 6px rgba(255, 190, 50, 0.7)",
           }}
           animate={{
             scale: [1, 1.5, 1],
@@ -131,8 +131,8 @@ export function AnimatedLogo({ size = "md", showText = true, href = "/" }: Anima
         <motion.div
           className="absolute top-2.5 right-5 w-1 h-1 rounded-full"
           style={{ 
-            backgroundColor: "#b89850",
-            boxShadow: "0 0 4px rgba(184, 152, 80, 0.6)",
+            backgroundColor: "#FFBE32",
+            boxShadow: "0 0 4px rgba(255, 190, 50, 0.6)",
           }}
           animate={{
             scale: [1, 1.6, 1],
@@ -157,7 +157,7 @@ export function AnimatedLogo({ size = "md", showText = true, href = "/" }: Anima
         <div className="flex flex-col">
           <motion.span
             className={`font-bold ${config.text} leading-none tracking-tight`}
-            style={{ color: "#b89850" }}
+            style={{ color: "#FFBE32" }}
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}

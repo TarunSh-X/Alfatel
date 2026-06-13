@@ -347,7 +347,7 @@ export default function ServicesPage() {
                   <ul className="mt-8 grid sm:grid-cols-2 gap-3">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-2 text-foreground">
-                        <Zap className="w-4 h-4 text-[#b89850]" />
+                        <Zap className="w-4 h-4 text-[#FFBE32]" />
                         {feature}
                       </li>
                     ))}
@@ -395,9 +395,9 @@ export default function ServicesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.08 }}
-                  className="group p-6 rounded-2xl bg-card border border-border hover:border-[#b89850]/40 hover:shadow-soft transition-all duration-300"
+                  className="group p-6 rounded-2xl bg-card border border-border hover:border-[#FFBE32]/40 hover:shadow-soft transition-all duration-300"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#0f2744] flex items-center justify-center mb-4 group-hover:bg-[#b89850] transition-colors duration-300">
+                  <div className="w-12 h-12 rounded-xl bg-[#0f2744] flex items-center justify-center mb-4 group-hover:bg-[#FFBE32] transition-colors duration-300">
                     <industry.icon className="w-6 h-6 text-white group-hover:text-[#0f2744] transition-colors duration-300" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">{industry.name}</h3>
@@ -424,9 +424,9 @@ export default function ServicesPage() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  className="p-6 rounded-xl bg-white/5 border border-white/10 text-center hover:bg-white/10 hover:border-[#b89850]/40 transition-colors"
+                  className="p-6 rounded-xl bg-white/5 border border-white/10 text-center hover:bg-white/10 hover:border-[#FFBE32]/40 transition-colors"
                 >
-                  <div className="text-2xl font-mono font-bold text-[#b89850] mb-2">{sdk.icon}</div>
+                  <div className="text-2xl font-mono font-bold text-[#FFBE32] mb-2">{sdk.icon}</div>
                   <div className="text-sm text-white/70">{sdk.name}</div>
                 </motion.div>
               ))}
@@ -450,8 +450,8 @@ export default function ServicesPage() {
                 },
               ].map((item) => (
                 <div key={item.title} className="text-center">
-                  <div className="w-12 h-12 rounded-xl bg-[#b89850]/20 flex items-center justify-center mx-auto mb-4">
-                    <item.icon className="w-6 h-6 text-[#b89850]" />
+                  <div className="w-12 h-12 rounded-xl bg-[#FFBE32]/20 flex items-center justify-center mx-auto mb-4">
+                    <item.icon className="w-6 h-6 text-[#FFBE32]" />
                   </div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="mt-2 text-sm text-white/60">{item.description}</p>

@@ -43,7 +43,7 @@ function highlight(line: string): ReactNode[] {
     if (comment !== undefined) {
       nodes.push(<span key={key++} className="text-slate-500">{comment}</span>)
     } else if (str !== undefined) {
-      nodes.push(<span key={key++} className="text-[#b89850]">{str}</span>)
+      nodes.push(<span key={key++} className="text-[#FFBE32]">{str}</span>)
     } else if (word !== undefined) {
       if (KEYWORDS.has(word)) {
         nodes.push(<span key={key++} className="text-sky-400">{word}</span>)
@@ -131,7 +131,7 @@ export function CodeTerminal({ snippets, output }: CodeTerminalProps) {
             type="button"
             onClick={handleRun}
             disabled={running}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#b89850] hover:bg-[#9e8344] disabled:opacity-70 transition-colors text-xs font-semibold text-[#0f2744]"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#FFBE32] hover:bg-[#e5a82e] disabled:opacity-70 transition-colors text-xs font-semibold text-[#0f2744]"
           >
             {running ? (
               <>

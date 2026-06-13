@@ -9,7 +9,7 @@ export function AnimatedWaveBackground() {
       <motion.div
         className="absolute w-[600px] h-[600px] rounded-full opacity-30"
         style={{
-          background: "radial-gradient(circle, rgba(184, 152, 80, 0.4) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255, 190, 50, 0.4) 0%, transparent 70%)",
           top: "-20%",
           right: "-10%",
         }}
@@ -26,7 +26,7 @@ export function AnimatedWaveBackground() {
       <motion.div
         className="absolute w-[400px] h-[400px] rounded-full opacity-20"
         style={{
-          background: "radial-gradient(circle, rgba(184, 152, 80, 0.3) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255, 190, 50, 0.3) 0%, transparent 70%)",
           bottom: "10%",
           left: "20%",
         }}
@@ -50,14 +50,14 @@ export function AnimatedWaveBackground() {
       >
         <defs>
           <linearGradient id="waveGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(184, 152, 80, 0)" />
-            <stop offset="50%" stopColor="rgba(184, 152, 80, 0.5)" />
-            <stop offset="100%" stopColor="rgba(184, 152, 80, 0)" />
+            <stop offset="0%" stopColor="rgba(255, 190, 50, 0)" />
+            <stop offset="50%" stopColor="rgba(255, 190, 50, 0.5)" />
+            <stop offset="100%" stopColor="rgba(255, 190, 50, 0)" />
           </linearGradient>
           <linearGradient id="waveGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(184, 152, 80, 0)" />
-            <stop offset="50%" stopColor="rgba(184, 152, 80, 0.3)" />
-            <stop offset="100%" stopColor="rgba(184, 152, 80, 0)" />
+            <stop offset="0%" stopColor="rgba(255, 190, 50, 0)" />
+            <stop offset="50%" stopColor="rgba(255, 190, 50, 0.3)" />
+            <stop offset="100%" stopColor="rgba(255, 190, 50, 0)" />
           </linearGradient>
           <linearGradient id="waveGradient3" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="rgba(255, 255, 255, 0)" />
@@ -147,7 +147,7 @@ export function AnimatedWaveBackground() {
           style={{
             width: particle.size,
             height: particle.size,
-            background: particle.gold ? "rgba(184, 152, 80, 0.6)" : "rgba(255, 255, 255, 0.3)",
+            background: particle.gold ? "rgba(255, 190, 50, 0.6)" : "rgba(255, 255, 255, 0.3)",
             left: `${particle.left}%`,
             top: `${particle.top}%`,
           }}
@@ -170,8 +170,8 @@ export function AnimatedWaveBackground() {
         className="absolute inset-0 opacity-10"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(184, 152, 80, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(184, 152, 80, 0.1) 1px, transparent 1px)
+            linear-gradient(rgba(255, 190, 50, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 190, 50, 0.1) 1px, transparent 1px)
           `,
           backgroundSize: "50px 50px",
         }}
@@ -185,7 +185,7 @@ export function AnimatedWaveBackground() {
         style={{ height: "80px" }}
       >
         <motion.path
-          fill="rgba(184, 152, 80, 0.1)"
+          fill="rgba(255, 190, 50, 0.1)"
           animate={{
             d: [
               "M0,60 C360,120 720,0 1080,60 C1260,90 1380,30 1440,60 L1440,120 L0,120 Z",

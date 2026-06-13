@@ -21,9 +21,9 @@ const products = [
     description: "Local and toll-free numbers from 100+ countries. Instant provisioning with full number portability and management.",
     href: "/products/wholesale-did",
     features: ["100+ Countries", "Instant Setup", "Number Porting", "API Access"],
-    iconBg: "bg-[#b89850]",
+    iconBg: "bg-[#FFBE32]",
     iconColor: "text-[#0f2744]",
-    accentColor: "text-[#b89850]",
+    accentColor: "text-[#FFBE32]",
   },
   {
     icon: MessageSquare,
@@ -58,13 +58,13 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
     >
       <Link href={product.href} className="block">
         {/* Main card with enhanced hover effects */}
-        <div className="relative h-full p-8 rounded-2xl bg-white border border-border shadow-soft overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:border-[#b89850]/30 group-hover:-translate-y-2">
+        <div className="relative h-full p-8 rounded-2xl bg-white border border-border shadow-soft overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:border-[#FFBE32]/30 group-hover:-translate-y-2">
           
           {/* Animated gradient border on hover */}
           <div 
             className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
             style={{
-              background: "linear-gradient(135deg, transparent 0%, rgba(184, 152, 80, 0.1) 50%, rgba(15, 39, 68, 0.05) 100%)",
+              background: "linear-gradient(135deg, transparent 0%, rgba(255, 190, 50, 0.1) 50%, rgba(15, 39, 68, 0.05) 100%)",
             }}
           />
           
@@ -72,7 +72,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
           <div 
             className="absolute top-0 right-0 w-32 h-32 translate-x-16 -translate-y-16 group-hover:translate-x-8 group-hover:-translate-y-8 transition-transform duration-500 rounded-full opacity-0 group-hover:opacity-100"
             style={{
-              background: "radial-gradient(circle, rgba(184, 152, 80, 0.3) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(255, 190, 50, 0.3) 0%, transparent 70%)",
             }}
           />
           
@@ -80,7 +80,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
           <div 
             className="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-500 ease-out"
             style={{
-              background: "linear-gradient(90deg, #b89850 0%, #0f2744 100%)",
+              background: "linear-gradient(90deg, #FFBE32 0%, #0f2744 100%)",
             }}
           />
 
@@ -158,7 +158,7 @@ export function ProductsSection() {
           >
             Enterprise Communication
             <br />
-            <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #0f2744 0%, #b89850 100%)" }}>
+            <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #0f2744 0%, #FFBE32 100%)" }}>
               Infrastructure
             </span>
           </motion.h2>

@@ -6,7 +6,7 @@ import gifenc from "gifenc"
 const { GIFEncoder, quantize, applyPalette } = gifenc
 import { writeFileSync, mkdirSync } from "node:fs"
 
-const GOLD = "#b89850"
+const GOLD = "#FFBE32"
 const OUT = "public/brand"
 mkdirSync(OUT, { recursive: true })
 

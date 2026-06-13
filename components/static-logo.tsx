@@ -53,8 +53,8 @@ export function StaticLogo({
               key={letter}
               style={{
                 fontSize: config.letterSize,
-                color: "#b89850",
-                textShadow: "0 0 15px rgba(184, 152, 80, 0.7), 0 2px 4px rgba(0,0,0,0.5)",
+                color: "#FFBE32",
+                textShadow: "0 0 15px rgba(255, 190, 50, 0.7), 0 2px 4px rgba(0,0,0,0.5)",
                 fontFamily: "'Arial Black', 'Helvetica Neue', sans-serif",
                 fontWeight: 900,
                 letterSpacing: "-0.02em",
@@ -69,22 +69,22 @@ export function StaticLogo({
         {/* Signal dots (static) */}
         <div
           className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full"
-          style={{ backgroundColor: "#b89850", boxShadow: "0 0 10px rgba(184, 152, 80, 0.9)" }}
+          style={{ backgroundColor: "#FFBE32", boxShadow: "0 0 10px rgba(255, 190, 50, 0.9)" }}
         />
         <div
           className="absolute top-1 right-3 w-1.5 h-1.5 rounded-full"
-          style={{ backgroundColor: "#b89850", boxShadow: "0 0 6px rgba(184, 152, 80, 0.7)" }}
+          style={{ backgroundColor: "#FFBE32", boxShadow: "0 0 6px rgba(255, 190, 50, 0.7)" }}
         />
         <div
           className="absolute top-2.5 right-5 w-1 h-1 rounded-full"
-          style={{ backgroundColor: "#b89850", boxShadow: "0 0 4px rgba(184, 152, 80, 0.6)" }}
+          style={{ backgroundColor: "#FFBE32", boxShadow: "0 0 4px rgba(255, 190, 50, 0.6)" }}
         />
       </div>
 
       {/* Text */}
       {showText && (
         <div className="flex flex-col">
-          <span className={`font-bold ${config.text} leading-none tracking-tight`} style={{ color: "#b89850" }}>
+          <span className={`font-bold ${config.text} leading-none tracking-tight`} style={{ color: "#FFBE32" }}>
             AlfaCall
           </span>
         </div>
