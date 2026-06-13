@@ -63,7 +63,7 @@ export function PageHero({
       {/* Light animated brand glows (replaces the blocky grid pattern) */}
       <motion.div
         aria-hidden="true"
-        className="absolute -top-32 -right-20 w-[28rem] h-[28rem] rounded-full bg-[#FFBE32]/10 blur-3xl"
+        className="absolute -top-32 -right-20 w-[28rem] h-[28rem] rounded-full bg-[#b89850]/10 blur-3xl"
         animate={{ x: [0, 30, 0], y: [0, 20, 0], opacity: [0.5, 0.8, 0.5] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -75,7 +75,7 @@ export function PageHero({
       />
       <motion.div
         aria-hidden="true"
-        className="absolute top-1/3 left-1/4 w-72 h-72 rounded-full bg-[#FFBE32]/5 blur-3xl"
+        className="absolute top-1/3 left-1/4 w-72 h-72 rounded-full bg-[#b89850]/5 blur-3xl"
         animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.55, 0.3] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
       />
@@ -105,7 +105,7 @@ export function PageHero({
               <span key={crumb.href} className="flex items-center gap-1.5">
                 {i > 0 && <ChevronRight className="w-3.5 h-3.5 text-white/30" />}
                 {i === breadcrumbs.length - 1 ? (
-                  <span className="text-[#FFBE32]">{crumb.name}</span>
+                  <span className="text-[#b89850]">{crumb.name}</span>
                 ) : (
                   <Link href={crumb.href} className="hover:text-white transition-colors">
                     {crumb.name}
@@ -132,7 +132,7 @@ export function PageHero({
             {eyebrow && (
               <motion.div
                 variants={item}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFBE32]/15 border border-[#FFBE32]/30 text-[#FFBE32] text-sm font-medium mb-6"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#b89850]/15 border border-[#b89850]/30 text-[#b89850] text-sm font-medium mb-6"
               >
                 {EyebrowIcon && <EyebrowIcon className="w-4 h-4" />}
                 {eyebrow}
@@ -145,7 +145,7 @@ export function PageHero({
                   key={`${word}-${i}`}
                   variants={item}
                   className={`inline-block mr-[0.25em] ${
-                    highlightLastWord && i === words.length - 1 ? "text-[#FFBE32]" : ""
+                    highlightLastWord && i === words.length - 1 ? "text-[#b89850]" : ""
                   }`}
                 >
                   {word}
@@ -174,7 +174,7 @@ export function PageHero({
                     key={h}
                     className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-sm text-white/80"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FFBE32]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#b89850]" />
                     {h}
                   </li>
                 ))}

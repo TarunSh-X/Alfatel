@@ -117,7 +117,7 @@ export default function WholesaleDIDPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-6 rounded-2xl bg-card border border-border hover:border-[#FFBE32]/40 transition-colors"
+                  className="p-6 rounded-2xl bg-card border border-border hover:border-[#b89850]/40 transition-colors"
                 >
                   <div className="w-12 h-12 rounded-xl bg-[#0f2744]/10 flex items-center justify-center mb-4">
                     <feature.icon className="w-6 h-6 text-[#0f2744]" />

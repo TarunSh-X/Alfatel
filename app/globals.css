@@ -62,14 +62,14 @@
   --secondary-foreground: #0f172a;
   --muted: #f8fafc;
   --muted-foreground: #64748b;
-  --accent: #FFBE32;
+  --accent: #b89850;
   --accent-foreground: #0f172a;
   --destructive: #ef4444;
   --border: #e2e8f0;
   --input: #e2e8f0;
   --ring: #0f2744;
   --chart-1: #0f2744;
-  --chart-2: #FFBE32;
+  --chart-2: #b89850;
   --chart-3: #3b82f6;
   --chart-4: #10b981;
   --chart-5: #8b5cf6;
@@ -196,14 +196,14 @@
 }
 
 .gradient-text-gold {
-  background: linear-gradient(135deg, #FFBE32 0%, #f59e0b 100%);
+  background: linear-gradient(135deg, #b89850 0%, #9c8144 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-border {
-  background: linear-gradient(135deg, rgba(15, 39, 68, 0.2), rgba(255, 190, 50, 0.3));
+  background: linear-gradient(135deg, rgba(15, 39, 68, 0.2), rgba(184, 152, 80, 0.3));
 }
 
 /* Glass effect for light theme */
@@ -224,7 +224,7 @@
 }
 
 .shadow-gold {
-  box-shadow: 0 4px 20px rgba(255, 190, 50, 0.2), 0 2px 8px rgba(255, 190, 50, 0.1);
+  box-shadow: 0 4px 20px rgba(184, 152, 80, 0.2), 0 2px 8px rgba(184, 152, 80, 0.1);
 }
 
 .text-glow-navy {
@@ -232,7 +232,7 @@
 }
 
 .text-glow-gold {
-  text-shadow: 0 2px 10px rgba(255, 190, 50, 0.3);
+  text-shadow: 0 2px 10px rgba(184, 152, 80, 0.3);
 }
 
 /* Neon border effect for light theme */
@@ -246,7 +246,7 @@
   inset: -2px;
   border-radius: inherit;
   padding: 2px;
-  background: linear-gradient(135deg, #0f2744, #FFBE32, #0f2744);
+  background: linear-gradient(135deg, #0f2744, #b89850, #0f2744);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
