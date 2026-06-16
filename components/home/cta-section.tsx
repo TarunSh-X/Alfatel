@@ -87,7 +87,7 @@ export function CTASection() {
           >
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 px-10 py-5 font-bold text-lg rounded-xl bg-[#0f2744] text-white hover:scale-105 transition-all duration-300 shadow-medium"
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 font-bold text-lg rounded-xl bg-[#0f2744] text-white hover:scale-105 transition-all duration-300 shadow-medium"
             >
               <span>Get Started Free</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -95,7 +95,7 @@ export function CTASection() {
             
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-5 font-semibold text-lg rounded-xl border border-border text-[#0f2744] hover:bg-secondary transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 font-bold text-lg rounded-xl border border-border text-[#0f2744] hover:bg-secondary hover:scale-105 transition-all duration-300"
             >
               Contact Sales
             </Link>

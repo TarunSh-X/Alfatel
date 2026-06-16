@@ -34,9 +34,9 @@ const footerLinks = {
   ],
   company: [
     { name: "About Us", href: "/about" },
-    { name: "Contact", href: "/contact" },
-    { name: "Careers", href: "/about#careers" },
+    { name: "Our Team", href: "/about#team" },
     { name: "Partners", href: "/about#partners" },
+    { name: "Contact", href: "/contact" },
   ],
   legal: [
     { name: "Privacy Policy", href: "/privacy" },

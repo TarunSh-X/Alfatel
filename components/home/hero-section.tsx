@@ -96,7 +96,7 @@ export function HeroSection() {
             >
               <Link
                 href="/contact"
-                className="group relative inline-flex items-center gap-2 px-7 py-3.5 font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 bg-[#0f2744] text-white shadow-medium"
+                className="group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 bg-[#0f2744] text-white shadow-medium"
               >
                 <span className="relative z-10">Get Started Free</span>
                 <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -104,15 +104,10 @@ export function HeroSection() {
               
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-3 px-5 py-3.5 rounded-xl border border-border hover:border-[#0f2744]/30 hover:bg-white/50 transition-all duration-300 bg-white shadow-soft"
+                className="group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold rounded-xl border border-border bg-white text-[#0f2744] shadow-soft transition-all duration-300 hover:scale-105 hover:border-[#b89850]/40"
               >
-                <motion.div 
-                  className="w-10 h-10 rounded-full flex items-center justify-center bg-[#b89850]/20"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <Play className="w-4 h-4 text-[#b89850] fill-[#b89850] ml-0.5" />
-                </motion.div>
-                <span className="text-[#0f2744] font-medium">Book a Demo</span>
+                <Play className="w-4 h-4 text-[#b89850] fill-[#b89850]" />
+                <span>Book a Demo</span>
               </Link>
             </motion.div>
 
