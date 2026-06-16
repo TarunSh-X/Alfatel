@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server"
+import nodemailer from "nodemailer"
 
 export const runtime = "nodejs"
 
 const TO_EMAIL = "info@alfacall.net"
-// Use Resend's shared onboarding sender until a verified domain is configured.
-const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "AlfaCall Website <onboarding@resend.dev>"
 
 type ContactPayload = {
   fullName?: string
@@ -48,12 +47,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid email address." }, { status: 400 })
   }
 
-  const apiKey = process.env.RESEND_API_KEY
-  if (!apiKey) {
-    console.log("[v0] RESEND_API_KEY is not set — cannot send contact email.")
+  const host = process.env.SMTP_HOST
+  const port = Number(process.env.SMTP_PORT || 587)
+  const user = process.env.SMTP_USER
+  const pass = process.env.SMTP_PASSWORD
+
+  if (!host || !user || !pass) {
+    console.log("[v0] SMTP not configured. Missing SMTP_HOST, SMTP_USER, or SMTP_PASSWORD.")
     return NextResponse.json(
-      { error: "Email service is not configured. Please try again later." },
-      { status: 500 },
+      { error: "Email service is not configured yet. Please try again later." },
+      { status: 503 },
     )
   }
 
@@ -83,31 +86,25 @@ ${message}
 `
 
   try {
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: FROM_EMAIL,
-        to: [TO_EMAIL],
-        reply_to: email,
-        subject: `[Contact] ${subject} — ${fullName}`,
-        html,
-        text,
-      }),
+    const transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure: port === 465, // true for 465 (SSL), false for 587/25 (STARTTLS)
+      auth: { user, pass },
     })
 
-    if (!res.ok) {
-      const detail = await res.text()
-      console.log("[v0] Resend API error:", res.status, detail)
-      return NextResponse.json({ error: "Failed to send message." }, { status: 502 })
-    }
+    await transporter.sendMail({
+      from: `"AlfaCall Website" <${process.env.SMTP_FROM || user}>`,
+      to: TO_EMAIL,
+      replyTo: `"${fullName}" <${email}>`,
+      subject: `[Contact] ${subject} — ${fullName}`,
+      text,
+      html,
+    })
 
     return NextResponse.json({ success: true })
   } catch (err) {
-    console.log("[v0] Contact route exception:", err)
-    return NextResponse.json({ error: "Failed to send message." }, { status: 500 })
+    console.log("[v0] Contact route SMTP error:", err instanceof Error ? err.message : err)
+    return NextResponse.json({ error: "Failed to send message. Please try again later." }, { status: 500 })
   }
 }
