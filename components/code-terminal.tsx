@@ -167,7 +167,7 @@ export function CodeTerminal({ snippets, output }: CodeTerminalProps) {
       </div>
 
       {/* Code */}
-      <div className="p-5 overflow-x-auto">
+      <div className="p-5 overflow-auto max-h-[320px]">
         <pre className="text-sm font-mono leading-7">
           <code>
             {active.code.split("\n").map((line, i) => (

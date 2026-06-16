@@ -53,9 +53,6 @@ function PartnerLogo({ partner }: { partner: Partner }) {
 }
 
 export function PartnerCarousel() {
-  // Duplicate the list for seamless infinite looping
-  const loop = [...partners, ...partners]
-
   return (
     <div className="group/carousel relative overflow-hidden py-10">
       {/* Edge fade masks */}
@@ -63,9 +60,22 @@ export function PartnerCarousel() {
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[#F7F9FC] to-transparent" />
 
       <div className="flex w-max animate-partner-scroll gap-8 [animation-play-state:running] group-hover/carousel:[animation-play-state:paused]">
-        {loop.map((partner, index) => (
-          <PartnerLogo key={`${partner.name}-${index}`} partner={partner} />
-        ))}
+        {/* Primary set — the only content exposed to assistive tech */}
+        <ul className="flex gap-8 list-none m-0 p-0">
+          {partners.map((partner) => (
+            <li key={partner.name}>
+              <PartnerLogo partner={partner} />
+            </li>
+          ))}
+        </ul>
+        {/* Visual duplicate for the seamless loop — hidden from screen readers */}
+        <ul className="flex gap-8 list-none m-0 p-0" aria-hidden="true">
+          {partners.map((partner) => (
+            <li key={`dup-${partner.name}`}>
+              <PartnerLogo partner={partner} />
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   )

@@ -92,10 +92,10 @@ const products: Product[] = [
       { icon: Code, title: "API Access", description: "Manage numbers via powerful APIs." },
     ],
     theme: {
-      accent: "#f59e0b",
-      tint: "rgba(245, 158, 11, 0.1)",
-      gradient: "linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)",
-      hoverShadow: "rgba(245, 158, 11, 0.22)",
+      accent: "#b89850",
+      tint: "rgba(184, 152, 80, 0.1)",
+      gradient: "linear-gradient(135deg, #cbac63 0%, #b89850 100%)",
+      hoverShadow: "rgba(184, 152, 80, 0.22)",
     },
   },
   {
@@ -106,7 +106,7 @@ const products: Product[] = [
     href: "/products/wholesale-sms",
     illustration: "/panels/wholesale-sms.png",
     features: [
-      { icon: Globe, title: "Global Reach", description: "Connect with 200+ countries worldwide." },
+      { icon: Globe, title: "Global Reach", description: "Connect with 180+ countries worldwide." },
       { icon: Send, title: "High Delivery", description: "Industry-leading delivery rates." },
       { icon: MessageSquare, title: "Two-Way SMS", description: "Engage in real-time conversations." },
       { icon: Webhook, title: "Webhooks", description: "Real-time event notifications." },
@@ -155,7 +155,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       className="group relative h-full"
     >
       <div
-        className="relative h-full flex flex-col overflow-hidden rounded-3xl border border-border bg-white p-8 lg:p-10 transition-all duration-500 group-hover:-translate-y-2"
+        className="relative h-full flex flex-col overflow-hidden rounded-2xl border border-border bg-white p-5 transition-all duration-500 group-hover:-translate-y-1.5"
         style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}
         onMouseEnter={(e) => {
           e.currentTarget.style.boxShadow = `0 24px 50px -12px ${theme.hoverShadow}`
@@ -173,29 +173,29 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         />
 
         {/* Illustration top-right */}
-        <div className="pointer-events-none absolute right-4 top-6 w-40 h-40 lg:w-52 lg:h-52 opacity-90 transition-transform duration-500 group-hover:scale-105">
+        <div className="pointer-events-none absolute right-3 top-3 w-20 h-20 lg:w-24 lg:h-24 opacity-90 transition-transform duration-500 group-hover:scale-105">
           <Image
             src={product.illustration || "/placeholder.svg"}
             alt=""
             fill
             className="object-contain"
-            sizes="(max-width: 1024px) 160px, 208px"
+            sizes="(max-width: 1024px) 80px, 96px"
           />
         </div>
 
         {/* Header: icon + title + description */}
-        <div className="relative z-10 max-w-[60%]">
+        <div className="relative z-10 max-w-[64%]">
           <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+            className="w-10 h-10 rounded-lg flex items-center justify-center mb-3 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
             style={{ background: theme.gradient, boxShadow: `0 8px 20px -6px ${theme.hoverShadow}` }}
           >
-            <product.icon className="w-8 h-8 text-white" />
+            <product.icon className="w-5 h-5 text-white" />
           </div>
 
-          <h3 className="text-2xl lg:text-3xl font-bold text-[#0f2744] mb-4">{product.title}</h3>
+          <h3 className="text-lg lg:text-xl font-bold text-[#0f2744] mb-1.5">{product.title}</h3>
         </div>
 
-        <p className="relative z-10 text-muted-foreground leading-relaxed mb-5 max-w-md">
+        <p className="relative z-10 text-xs text-muted-foreground leading-relaxed mb-2.5 max-w-md">
           {highlightParts[0]}
           {product.highlight && (
             <span className="font-semibold" style={{ color: theme.accent }}>
@@ -206,24 +206,24 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         </p>
 
         {/* Accent underline */}
-        <div className="relative z-10 h-1 w-12 rounded-full mb-6" style={{ background: theme.gradient }} />
+        <div className="relative z-10 h-1 w-10 rounded-full mb-3" style={{ background: theme.gradient }} />
 
         {/* Divider */}
-        <div className="relative z-10 border-t border-border mb-6" />
+        <div className="relative z-10 border-t border-border mb-3" />
 
         {/* Features 2x2 grid */}
-        <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5 mb-8">
+        <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-2.5 mb-4">
           {product.features.map((feature) => (
-            <div key={feature.title} className="flex items-start gap-3">
+            <div key={feature.title} className="flex items-start gap-2">
               <div
-                className="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                className="shrink-0 w-7 h-7 rounded-md flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
                 style={{ backgroundColor: theme.tint }}
               >
-                <feature.icon className="w-5 h-5" style={{ color: theme.accent }} />
+                <feature.icon className="w-3.5 h-3.5" style={{ color: theme.accent }} />
               </div>
               <div className="min-w-0">
-                <div className="text-sm font-semibold text-[#0f2744]">{feature.title}</div>
-                <div className="text-xs text-muted-foreground leading-snug">{feature.description}</div>
+                <div className="text-xs font-semibold text-[#0f2744] leading-tight">{feature.title}</div>
+                <div className="text-[11px] text-muted-foreground leading-snug">{feature.description}</div>
               </div>
             </div>
           ))}
@@ -233,11 +233,11 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         <div className="relative z-10 mt-auto">
           <Link
             href={product.href}
-            className="group/btn inline-flex items-center gap-3 rounded-xl px-6 py-3.5 font-semibold text-white transition-all duration-300 hover:shadow-lg hover:brightness-105"
+            className="group/btn inline-flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-semibold text-white transition-all duration-300 hover:shadow-lg hover:brightness-105"
             style={{ background: theme.gradient }}
           >
             <span>Learn more</span>
-            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1.5" />
+            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1.5" />
           </Link>
         </div>
       </div>
@@ -247,15 +247,15 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
 export function ProductsSection() {
   return (
-    <section className="py-24 relative overflow-hidden bg-white">
+    <section className="py-12 relative overflow-hidden bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-secondary mb-8"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-secondary mb-5"
           >
             <Wifi className="w-4 h-4 text-[#0f2744]" />
             <span className="text-sm font-medium text-[#0f2744]">Our Products</span>
@@ -266,7 +266,7 @@ export function ProductsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl lg:text-5xl font-bold text-[#0f2744] mb-6"
+            className="text-3xl lg:text-4xl font-bold text-[#0f2744] mb-4"
           >
             Enterprise Communication
             <br />
@@ -283,7 +283,7 @@ export function ProductsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-muted-foreground max-w-2xl mx-auto"
+            className="text-base text-muted-foreground max-w-2xl mx-auto"
           >
             Everything you need to build, scale, and manage global telecommunications
             with enterprise-grade reliability and performance.
@@ -291,7 +291,7 @@ export function ProductsSection() {
         </div>
 
         {/* Product Cards Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-5">
           {products.map((product, index) => (
             <ProductCard key={product.title} product={product} index={index} />
           ))}

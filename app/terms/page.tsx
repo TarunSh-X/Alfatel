@@ -63,9 +63,10 @@ const sections: LegalSection[] = [
     ],
   },
   {
-    heading: "10. Governing Law",
+    heading: "10. Governing Law and Jurisdiction",
     body: [
-      "These Terms are governed by the laws of the jurisdiction in which AlfaCall is registered, without regard to its conflict of laws principles. Any disputes will be subject to the exclusive jurisdiction of the courts located in that jurisdiction.",
+      "These Terms, and any dispute or claim arising out of or in connection with them or their subject matter (including non-contractual disputes or claims), are governed by and construed in accordance with the laws of the State of Wyoming, United States, where AlfaCall maintains its registered office, without regard to its conflict of laws principles. The United Nations Convention on Contracts for the International Sale of Goods does not apply.",
+      "The parties agree that the state and federal courts located in Sheridan County, Wyoming shall have exclusive jurisdiction to settle any such dispute or claim, and each party irrevocably submits to the jurisdiction of those courts. Notwithstanding the foregoing, AlfaCall may seek injunctive or other equitable relief to protect its intellectual property or confidential information in any court of competent jurisdiction. Where required by mandatory local law, nothing in this section limits the statutory rights of consumers.",
     ],
   },
   {

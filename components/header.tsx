@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -32,6 +33,7 @@ const navigation = [
 ]
 
 export function Header() {
+  const pathname = usePathname()
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
@@ -43,6 +45,14 @@ export function Header() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  // When already on the homepage, clicking "Home" smoothly scrolls to the top
+  const handleHomeClick = (href: string) => (e: React.MouseEvent) => {
+    if (href === "/" && pathname === "/") {
+      e.preventDefault()
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+  }
 
   return (
     <header
@@ -68,6 +78,7 @@ export function Header() {
               >
                 <Link
                   href={item.href}
+                  onClick={handleHomeClick(item.href)}
                   className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary"
                 >
                   {item.name}
@@ -140,7 +151,10 @@ export function Header() {
                   <Link
                     href={item.href}
                     className="block px-4 py-3 text-base font-medium text-foreground hover:bg-secondary rounded-lg"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      handleHomeClick(item.href)(e)
+                      setMobileMenuOpen(false)
+                    }}
                   >
                     {item.name}
                   </Link>

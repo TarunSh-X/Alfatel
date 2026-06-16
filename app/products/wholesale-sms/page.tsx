@@ -32,7 +32,7 @@ const features = [
   {
     icon: Globe,
     title: "Global Reach",
-    description: "Send SMS to 200+ countries with localized sender IDs and compliance.",
+    description: "Send SMS to 180+ countries with localized sender IDs and compliance.",
   },
   {
     icon: Zap,
@@ -135,14 +135,14 @@ export default function WholesaleSMSPage() {
           eyebrowIcon={MessageSquare}
           title="Global SMS Delivery at Scale"
           highlightLastWord
-          description="Reach customers in 200+ countries with exceptional delivery rates. High throughput, real-time analytics, and full compliance support."
+          description="Reach customers in 180+ countries with exceptional delivery rates. High throughput, real-time analytics, and full compliance support."
           align="left"
           breadcrumbs={[
             { name: "Home", href: "/" },
             { name: "Products", href: "/products" },
             { name: "Wholesale SMS", href: "/products/wholesale-sms" },
           ]}
-          highlights={["200+ Countries", "High Throughput", "Delivery Reports", "Two-Way Messaging"]}
+          highlights={["180+ Countries", "High Throughput", "Delivery Reports", "Two-Way Messaging"]}
         />
 
         {/* Features */}

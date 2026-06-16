@@ -22,6 +22,8 @@ interface PageHeroProps {
   breadcrumbs?: Breadcrumb[]
   /** small feature chips shown under the description */
   highlights?: string[]
+  /** optional CTA buttons rendered under the highlights */
+  actions?: ReactNode
   /** optional slot rendered above the eyebrow (e.g. a logo) */
   topSlot?: ReactNode
   /** optional slot rendered to the right on large screens */
@@ -46,6 +48,7 @@ export function PageHero({
   align = "center",
   breadcrumbs,
   highlights,
+  actions,
   topSlot,
   aside,
 }: PageHeroProps) {
@@ -181,6 +184,15 @@ export function PageHero({
                   </li>
                 ))}
               </motion.ul>
+            )}
+
+            {actions && (
+              <motion.div
+                variants={item}
+                className={`mt-8 flex flex-wrap gap-4 ${isCenter && !aside ? "justify-center" : ""}`}
+              >
+                {actions}
+              </motion.div>
             )}
           </motion.div>
 

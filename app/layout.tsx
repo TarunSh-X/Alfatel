@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   formatDetection: {
     email: false,
     address: false,
-    telephone: false,
+    telephone: true,
   },
   openGraph: {
     title: 'AlfaCall - Global Telecom Solutions',
