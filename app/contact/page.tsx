@@ -72,6 +72,8 @@ export default function ContactPage() {
   const [form, setForm] = useState<FormState>(initialState)
   const [errors, setErrors] = useState<FormErrors>({})
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const validate = (): FormErrors => {
     const next: FormErrors = {}
@@ -87,12 +89,39 @@ export default function ContactPage() {
     return next
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const next = validate()
     setErrors(next)
-    if (Object.keys(next).length === 0) {
+    if (Object.keys(next).length > 0) return
+
+    setSubmitting(true)
+    setSubmitError(null)
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: form.fullName,
+          company: form.company,
+          email: form.email,
+          countryCode: form.countryCode,
+          phone: form.phone,
+          subject: form.subject,
+          message: form.message,
+        }),
+      })
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.error || "Something went wrong. Please try again.")
+      }
+
       setSubmitted(true)
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "Something went wrong. Please try again.")
+    } finally {
+      setSubmitting(false)
     }
   }
 
@@ -375,11 +404,18 @@ export default function ContactPage() {
                       {errors.agree && <p className="mt-1.5 text-sm text-red-400">{errors.agree}</p>}
                     </div>
 
+                    {submitError && (
+                      <p className="mt-6 rounded-lg bg-red-500/10 border border-red-500/30 px-4 py-3 text-sm text-red-300">
+                        {submitError}
+                      </p>
+                    )}
+
                     <button
                       type="submit"
-                      className="mt-8 w-full rounded-lg bg-[#b89850] px-6 py-3.5 font-bold text-[#0f2744] hover:bg-[#b89850]/90 transition-colors"
+                      disabled={submitting}
+                      className="mt-8 w-full rounded-lg bg-[#b89850] px-6 py-3.5 font-bold text-[#0f2744] hover:bg-[#b89850]/90 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                      Send Message
+                      {submitting ? "Sending..." : "Send Message"}
                     </button>
                   </form>
                 )}

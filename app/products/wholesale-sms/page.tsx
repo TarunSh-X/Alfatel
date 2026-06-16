@@ -2,7 +2,27 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { MessageSquare, Globe, Zap, BarChart3, Shield, ArrowLeftRight, Check, ArrowRight } from "lucide-react"
+import {
+  MessageSquare,
+  Globe,
+  Zap,
+  BarChart3,
+  Shield,
+  ArrowLeftRight,
+  ArrowRight,
+  ShieldCheck,
+  Bell,
+  Megaphone,
+  Repeat,
+  PhoneCall,
+  Users,
+  Landmark,
+  Gamepad2,
+  ShoppingCart,
+  Share2,
+  Truck,
+  type LucideIcon,
+} from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
@@ -41,23 +61,69 @@ const features = [
   },
 ]
 
-const useCases = [
-  {
-    title: "Transactional SMS",
-    description: "OTPs, alerts, notifications, and confirmations with high deliverability.",
-    examples: ["Two-factor authentication", "Order confirmations", "Appointment reminders"],
-  },
-  {
-    title: "Marketing Campaigns",
-    description: "Promotional messages with targeting, scheduling, and analytics.",
-    examples: ["Product launches", "Flash sales", "Loyalty programs"],
-  },
-  {
-    title: "Conversational",
-    description: "Two-way messaging for customer support and engagement.",
-    examples: ["Customer support", "Surveys and feedback", "Chatbots"],
-  },
+type ServiceItem = {
+  icon: LucideIcon
+  name: string
+  description: string
+}
+
+const productItems: ServiceItem[] = [
+  { icon: ShieldCheck, name: "Verification SMS", description: "OTP and 2FA codes with industry-leading delivery." },
+  { icon: Bell, name: "Notification SMS", description: "Alerts, reminders, and transactional updates." },
+  { icon: Megaphone, name: "Marketing SMS", description: "Promotional campaigns with targeting and scheduling." },
+  { icon: Repeat, name: "Two-way SMS", description: "Interactive, conversational messaging at scale." },
+  { icon: PhoneCall, name: "Voice Verification Code", description: "Voice OTP delivery as a reliable fallback." },
+  { icon: Users, name: "Voice Group Call", description: "Broadcast voice messages to large groups instantly." },
 ]
+
+const solutionItems: ServiceItem[] = [
+  { icon: Landmark, name: "FinTech", description: "Secure verification and fraud alerts for finance." },
+  { icon: Gamepad2, name: "Game", description: "Player onboarding, retention, and event notifications." },
+  { icon: ShoppingCart, name: "E-commerce", description: "Order confirmations, shipping, and promotions." },
+  { icon: Share2, name: "Social Entertainment", description: "Account security and real-time engagement." },
+  { icon: Truck, name: "Logistics", description: "Delivery tracking and dispatch notifications." },
+]
+
+function ServiceColumn({
+  title,
+  subtitle,
+  items,
+}: {
+  title: string
+  subtitle: string
+  items: ServiceItem[]
+}) {
+  return (
+    <div className="rounded-2xl bg-card border border-border p-8 lg:p-10">
+      <div className="flex items-center gap-3">
+        <span className="h-7 w-1.5 rounded-full bg-[#b89850]" />
+        <h3 className="text-2xl font-bold text-[#0f2744]">{title}</h3>
+      </div>
+      <p className="mt-3 text-muted-foreground">{subtitle}</p>
+
+      <ul className="mt-8 space-y-2">
+        {items.map((item) => (
+          <li key={item.name}>
+            <div className="group flex items-start gap-4 rounded-xl p-4 -mx-2 transition-colors hover:bg-secondary cursor-default">
+              <span className="shrink-0 w-11 h-11 rounded-xl bg-[#0f2744]/10 flex items-center justify-center transition-colors group-hover:bg-[#b89850]/20">
+                <item.icon className="w-5 h-5 text-[#0f2744] transition-colors group-hover:text-[#b89850]" />
+              </span>
+              <div className="min-w-0">
+                <div className="flex items-center gap-2">
+                  <span className="text-base font-semibold text-foreground transition-colors group-hover:text-[#0f2744]">
+                    {item.name}
+                  </span>
+                  <ArrowRight className="w-4 h-4 text-[#b89850] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                </div>
+                <p className="mt-0.5 text-sm text-muted-foreground leading-snug">{item.description}</p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
 
 export default function WholesaleSMSPage() {
   return (
@@ -83,9 +149,7 @@ export default function WholesaleSMSPage() {
         <section className="py-24 bg-background">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
-                Enterprise SMS Infrastructure
-              </h2>
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground">Enterprise SMS Infrastructure</h2>
               <p className="mt-4 text-lg text-muted-foreground">
                 Everything you need to send messages at scale with confidence.
               </p>
@@ -111,39 +175,30 @@ export default function WholesaleSMSPage() {
           </div>
         </section>
 
-        {/* Use Cases */}
+        {/* SMS Services: Products & Solution */}
         <section className="py-24 bg-secondary/50">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
-                Built for Every Use Case
-              </h2>
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-card mb-6">
+                <MessageSquare className="w-4 h-4 text-[#b89850]" />
+                <span className="text-sm font-medium text-[#0f2744]">SMS Services</span>
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground">SMS Products &amp; Solutions</h2>
               <p className="mt-4 text-lg text-muted-foreground">
-                From transactional alerts to marketing campaigns, we have you covered.
+                A complete SMS suite, organized by product capability and by the industries we serve.
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {useCases.map((useCase, index) => (
-                <motion.div
-                  key={useCase.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="p-8 rounded-2xl bg-card border border-border"
-                >
-                  <h3 className="text-xl font-semibold text-foreground">{useCase.title}</h3>
-                  <p className="mt-2 text-muted-foreground">{useCase.description}</p>
-                  <ul className="mt-6 space-y-3">
-                    {useCase.examples.map((example) => (
-                      <li key={example} className="flex items-center gap-2 text-sm">
-                        <Check className="w-4 h-4 text-[#b89850]" />
-                        <span className="text-foreground">{example}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
+            <div className="grid md:grid-cols-2 gap-8 items-start">
+              <ServiceColumn
+                title="Products"
+                subtitle="Messaging products built for reliability and scale."
+                items={productItems}
+              />
+              <ServiceColumn
+                title="Solution"
+                subtitle="Tailored SMS solutions for every industry."
+                items={solutionItems}
+              />
             </div>
           </div>
         </section>
@@ -151,9 +206,7 @@ export default function WholesaleSMSPage() {
         {/* CTA */}
         <section className="py-20 bg-background">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
-              Start messaging today
-            </h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground">Start messaging today</h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
               Get access to our global SMS network with competitive rates and powerful APIs.
             </p>
