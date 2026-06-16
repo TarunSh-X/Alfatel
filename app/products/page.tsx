@@ -124,8 +124,8 @@ function ProductCard({ product, index }: { product: ProductItem; index: number }
         href={product.href}
         className="group block h-full p-8 rounded-2xl bg-card border border-border hover:border-[#b89850]/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
       >
-        <div className="w-14 h-14 rounded-xl bg-[#0f2744]/10 flex items-center justify-center group-hover:bg-[#0f2744] group-hover:scale-110 transition-all duration-300 mb-6">
-          <product.icon className="w-7 h-7 text-[#0f2744] group-hover:text-white transition-colors" />
+        <div className="w-14 h-14 rounded-xl bg-[#0f2744] flex items-center justify-center group-hover:bg-[#b89850] group-hover:scale-110 transition-all duration-300 mb-6">
+          <product.icon className="w-7 h-7 text-white group-hover:text-[#0f2744] transition-colors duration-300" />
         </div>
         <h3 className="text-xl font-semibold text-foreground group-hover:text-[#0f2744] transition-colors">
           {product.title}

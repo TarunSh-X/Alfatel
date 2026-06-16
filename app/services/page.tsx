@@ -332,8 +332,8 @@ export default function ServicesPage() {
                   viewport={{ once: true }}
                   className={index % 2 === 1 ? "lg:order-2" : ""}
                 >
-                  <div className="w-14 h-14 rounded-xl bg-[#0f2744]/10 flex items-center justify-center mb-6">
-                    <service.icon className="w-7 h-7 text-[#0f2744]" />
+                  <div className="w-14 h-14 rounded-xl bg-[#0f2744] flex items-center justify-center mb-6">
+                    <service.icon className="w-7 h-7 text-white" />
                   </div>
                   <h2 className="text-3xl lg:text-4xl font-bold text-foreground">{service.title}</h2>
                   <p className="mt-4 text-lg text-muted-foreground">{service.description}</p>

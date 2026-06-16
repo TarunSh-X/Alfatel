@@ -105,8 +105,8 @@ function ServiceColumn({
         {items.map((item) => (
           <li key={item.name}>
             <div className="group flex items-start gap-4 rounded-xl p-4 -mx-2 transition-colors hover:bg-secondary cursor-default">
-              <span className="shrink-0 w-11 h-11 rounded-xl bg-[#0f2744]/10 flex items-center justify-center transition-colors group-hover:bg-[#b89850]/20">
-                <item.icon className="w-5 h-5 text-[#0f2744] transition-colors group-hover:text-[#b89850]" />
+              <span className="shrink-0 w-11 h-11 rounded-xl bg-[#0f2744] flex items-center justify-center transition-colors duration-300 group-hover:bg-[#b89850]">
+                <item.icon className="w-5 h-5 text-white transition-colors duration-300 group-hover:text-[#0f2744]" />
               </span>
               <div className="min-w-0">
                 <div className="flex items-center gap-2">
@@ -162,10 +162,10 @@ export default function WholesaleSMSPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-6 rounded-2xl bg-card border border-border hover:border-[#b89850]/40 transition-colors"
+                  className="group p-6 rounded-2xl bg-card border border-border hover:border-[#b89850]/40 hover:shadow-soft transition-all duration-300"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#0f2744]/10 flex items-center justify-center mb-4">
-                    <feature.icon className="w-6 h-6 text-[#0f2744]" />
+                  <div className="w-12 h-12 rounded-xl bg-[#0f2744] flex items-center justify-center mb-4 group-hover:bg-[#b89850] transition-colors duration-300">
+                    <feature.icon className="w-6 h-6 text-white group-hover:text-[#0f2744] transition-colors duration-300" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">{feature.title}</h3>
                   <p className="mt-2 text-muted-foreground">{feature.description}</p>

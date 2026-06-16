@@ -116,10 +116,10 @@ export default function WholesaleDIDPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-6 rounded-2xl bg-card border border-border hover:border-[#b89850]/40 transition-colors"
+                  className="group p-6 rounded-2xl bg-card border border-border hover:border-[#b89850]/40 hover:shadow-soft transition-all duration-300"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#b89850]/15 flex items-center justify-center mb-4">
-                    <feature.icon className="w-6 h-6 text-[#b89850]" />
+                  <div className="w-12 h-12 rounded-xl bg-[#0f2744] flex items-center justify-center mb-4 group-hover:bg-[#b89850] transition-colors duration-300">
+                    <feature.icon className="w-6 h-6 text-white group-hover:text-[#0f2744] transition-colors duration-300" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">{feature.title}</h3>
                   <p className="mt-2 text-muted-foreground">{feature.description}</p>

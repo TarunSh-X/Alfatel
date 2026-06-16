@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Image from "next/image"
 import { Users, Target, Award, Globe, Check, Sparkles } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -46,33 +45,6 @@ const milestones = [
   { year: "2021", event: "Expanded to 500+ enterprise clients globally" },
   { year: "2023", event: "Achieved 180+ countries coverage with 99.99% uptime" },
   { year: "2024", event: "Launched next-generation AI-powered voice features" },
-]
-
-const team = [
-  {
-    name: "Daniel Whitman",
-    role: "Chief Executive Officer",
-    image: "/team/ceo.png",
-    bio: "20+ years in global telecommunications and carrier relations.",
-  },
-  {
-    name: "Sophia Chen",
-    role: "Chief Technology Officer",
-    image: "/team/cto.png",
-    bio: "Leads platform engineering, network architecture, and API strategy.",
-  },
-  {
-    name: "Marcus Reed",
-    role: "VP of Global Sales",
-    image: "/team/vp-sales.png",
-    bio: "Builds wholesale partnerships with carriers and enterprises worldwide.",
-  },
-  {
-    name: "Amara Okafor",
-    role: "Head of Operations",
-    image: "/team/head-ops.png",
-    bio: "Oversees our 24/7 NOC, service delivery, and customer success.",
-  },
 ]
 
 export default function AboutPage() {
@@ -146,10 +118,10 @@ export default function AboutPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="p-6 rounded-2xl bg-card border border-border"
+                    className="group p-6 rounded-2xl bg-card border border-border hover:border-[#b89850]/40 hover:shadow-soft transition-all duration-300"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                      <value.icon className="w-5 h-5 text-primary" />
+                    <div className="w-12 h-12 rounded-xl bg-[#0f2744] flex items-center justify-center mb-4 group-hover:bg-[#b89850] transition-colors duration-300">
+                      <value.icon className="w-6 h-6 text-white group-hover:text-[#0f2744] transition-colors duration-300" />
                     </div>
                     <h3 className="font-semibold text-foreground">{value.title}</h3>
                     <p className="mt-2 text-sm text-muted-foreground">{value.description}</p>
@@ -196,53 +168,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Team */}
-        <section id="team" className="py-24 bg-secondary/50 scroll-mt-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0f2744]/5 border border-[#0f2744]/10 mb-6">
-                <Users className="w-4 h-4 text-[#0f2744]" />
-                <span className="text-sm font-medium text-[#0f2744]">Our Team</span>
-              </div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
-                Meet the People Behind AlfaCall
-              </h2>
-              <p className="mt-4 text-lg text-muted-foreground">
-                A global team of telecom veterans, engineers, and operators dedicated to keeping the world connected.
-              </p>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {team.map((member, index) => (
-                <motion.div
-                  key={member.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="group rounded-2xl bg-card border border-border overflow-hidden hover:border-[#b89850]/40 hover:shadow-soft transition-all duration-300"
-                >
-                  <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
-                    <Image
-                      src={member.image || "/placeholder.svg"}
-                      alt={`Portrait of ${member.name}, ${member.role}`}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-lg font-semibold text-foreground">{member.name}</h3>
-                    <p className="text-sm font-medium text-[#b89850]">{member.role}</p>
-                    <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{member.bio}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Partners */}
-        <section id="partners" className="py-24 bg-background scroll-mt-24">
+        <section id="partners" className="py-24 bg-secondary/50 scroll-mt-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0f2744]/5 border border-[#0f2744]/10 mb-6">
