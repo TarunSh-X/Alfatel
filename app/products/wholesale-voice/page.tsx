@@ -5,7 +5,6 @@ import Link from "next/link"
 import { Phone, Globe, Zap, BarChart3, Shield, Clock, ArrowRight } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Button } from "@/components/ui/button"
 import { PageHero } from "@/components/page-hero"
 import { Flag } from "@/components/flag"
 
@@ -83,6 +82,23 @@ export default function WholesaleVoicePage() {
             { name: "Wholesale Voice", href: "/products/wholesale-voice" },
           ]}
           highlights={["180+ Countries", "HD Voice Quality", "99.99% Uptime", "24/7 NOC"]}
+          actions={
+            <>
+              <Link
+                href="/contact"
+                className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold rounded-xl bg-[#b89850] text-[#0f2744] hover:brightness-105 hover:scale-105 transition-all duration-300 shadow-medium"
+              >
+                Get Started Free
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold rounded-xl border border-white/20 text-white hover:bg-white/10 hover:scale-105 transition-all duration-300"
+              >
+                Talk to Sales
+              </Link>
+            </>
+          }
         />
 
         {/* Features */}
@@ -159,12 +175,13 @@ export default function WholesaleVoicePage() {
               ))}
             </div>
             <div className="mt-12 text-center">
-              <Button size="lg" asChild>
-                <Link href="/contact">
-                  Get Custom Quote
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
-              </Button>
+              <Link
+                href="/contact"
+                className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold rounded-xl bg-[#b89850] text-[#0f2744] hover:brightness-105 hover:scale-105 transition-all duration-300 shadow-medium"
+              >
+                Get Custom Quote
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </div>
         </section>

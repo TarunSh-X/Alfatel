@@ -5,10 +5,9 @@ import Link from "next/link"
 import { Phone, Hash, MessageSquare, Radio, Code, Headphones, ArrowRight, Check, Boxes } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Button } from "@/components/ui/button"
 import { PageHero } from "@/components/page-hero"
 
-const products = [
+const telecomProducts = [
   {
     icon: Phone,
     title: "Wholesale Voice",
@@ -61,6 +60,9 @@ const products = [
       "TLS Encryption",
     ],
   },
+]
+
+const apiProducts = [
   {
     icon: Code,
     title: "Voice API",
@@ -87,7 +89,64 @@ const products = [
       "Rate Limiting",
     ],
   },
+  {
+    icon: Hash,
+    title: "Number Management",
+    description: "Search, provision, and manage numbers programmatically across 100+ countries.",
+    href: "/services#number-management",
+    features: [
+      "Number Search API",
+      "Instant Provisioning",
+      "Porting Management",
+      "Lifecycle Control",
+      "Regulatory Compliance",
+    ],
+  },
 ]
+
+interface ProductItem {
+  icon: typeof Phone
+  title: string
+  description: string
+  href: string
+  features: string[]
+}
+
+function ProductCard({ product, index }: { product: ProductItem; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1 }}
+    >
+      <Link
+        href={product.href}
+        className="group block h-full p-8 rounded-2xl bg-card border border-border hover:border-[#b89850]/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+      >
+        <div className="w-14 h-14 rounded-xl bg-[#0f2744]/10 flex items-center justify-center group-hover:bg-[#0f2744] group-hover:scale-110 transition-all duration-300 mb-6">
+          <product.icon className="w-7 h-7 text-[#0f2744] group-hover:text-white transition-colors" />
+        </div>
+        <h3 className="text-xl font-semibold text-foreground group-hover:text-[#0f2744] transition-colors">
+          {product.title}
+        </h3>
+        <p className="mt-2 text-muted-foreground">{product.description}</p>
+        <ul className="mt-6 space-y-2">
+          {product.features.map((feature) => (
+            <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Check className="w-4 h-4 text-[#b89850]" />
+              {feature}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-6 inline-flex items-center text-[#0f2744] font-medium group-hover:gap-3 gap-2 transition-all">
+          Learn more
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </div>
+      </Link>
+    </motion.div>
+  )
+}
 
 export default function ProductsPage() {
   return (
@@ -126,45 +185,47 @@ export default function ProductsPage() {
           }
         />
 
-        {/* Products Grid */}
+        {/* Telecom Products */}
         <section className="py-24 bg-background">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0f2744]/5 border border-[#0f2744]/10 mb-5">
+                <Boxes className="w-4 h-4 text-[#0f2744]" />
+                <span className="text-sm font-medium text-[#0f2744]">Telecom Products</span>
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
+                Carrier-Grade Wholesale Infrastructure
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Voice, numbering, messaging, and connectivity built for carriers and enterprises operating at global scale.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {telecomProducts.map((product, index) => (
+                <ProductCard key={product.title} product={product} index={index} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* API Solutions */}
+        <section id="api-solutions" className="py-24 bg-secondary/50 scroll-mt-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#b89850]/15 border border-[#b89850]/30 mb-5">
+                <Code className="w-4 h-4 text-[#b89850]" />
+                <span className="text-sm font-medium text-[#9c8144]">API Solutions</span>
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
+                Programmable Communications APIs
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Embed voice, messaging, and number management directly into your product with developer-first REST APIs and SDKs.
+              </p>
+            </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {products.map((product, index) => (
-                <motion.div
-                  key={product.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Link
-                    href={product.href}
-                    className="group block h-full p-8 rounded-2xl bg-card border border-border hover:border-[#b89850]/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-                  >
-                    <div className="w-14 h-14 rounded-xl bg-[#0f2744]/10 flex items-center justify-center group-hover:bg-[#0f2744] group-hover:scale-110 transition-all duration-300 mb-6">
-                      <product.icon className="w-7 h-7 text-[#0f2744] group-hover:text-white transition-colors" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-foreground group-hover:text-[#0f2744] transition-colors">
-                      {product.title}
-                    </h3>
-                    <p className="mt-2 text-muted-foreground">
-                      {product.description}
-                    </p>
-                    <ul className="mt-6 space-y-2">
-                      {product.features.map((feature) => (
-                        <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <Check className="w-4 h-4 text-[#b89850]" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-6 inline-flex items-center text-[#0f2744] font-medium group-hover:gap-3 gap-2 transition-all">
-                      Learn more
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </Link>
-                </motion.div>
+              {apiProducts.map((product, index) => (
+                <ProductCard key={product.title} product={product} index={index} />
               ))}
             </div>
           </div>
@@ -180,9 +241,13 @@ export default function ProductsPage() {
               Our team can help design a tailored telecom infrastructure that meets your specific requirements.
             </p>
             <div className="mt-8 flex items-center justify-center">
-              <Button size="lg" asChild>
-                <Link href="/contact">Contact Sales</Link>
-              </Button>
+              <Link
+                href="/contact"
+                className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold rounded-xl bg-[#0f2744] text-white hover:scale-105 transition-all duration-300 shadow-medium"
+              >
+                Contact Sales
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </div>
         </section>

@@ -5,7 +5,6 @@ import Link from "next/link"
 import { Hash, Globe, Zap, Settings, Shield, Clock, Check, ArrowRight } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Button } from "@/components/ui/button"
 import { PageHero } from "@/components/page-hero"
 
 const features = [
@@ -89,7 +88,7 @@ export default function WholesaleDIDPage() {
                   transition={{ delay: index * 0.1 }}
                   className="p-6 rounded-2xl bg-card border border-border text-center"
                 >
-                  <div className="text-3xl font-bold text-[#0f2744] mb-2">{item.countries}</div>
+                  <div className="text-3xl font-bold text-[#b89850] mb-2">{item.countries}</div>
                   <h3 className="text-lg font-semibold text-foreground">{item.type}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
                 </motion.div>
@@ -119,8 +118,8 @@ export default function WholesaleDIDPage() {
                   transition={{ delay: index * 0.1 }}
                   className="p-6 rounded-2xl bg-card border border-border hover:border-[#b89850]/40 transition-colors"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#0f2744]/10 flex items-center justify-center mb-4">
-                    <feature.icon className="w-6 h-6 text-[#0f2744]" />
+                  <div className="w-12 h-12 rounded-xl bg-[#b89850]/15 flex items-center justify-center mb-4">
+                    <feature.icon className="w-6 h-6 text-[#b89850]" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">{feature.title}</h3>
                   <p className="mt-2 text-muted-foreground">{feature.description}</p>
@@ -140,15 +139,19 @@ export default function WholesaleDIDPage() {
               Get instant access to our global DID inventory with flexible pricing and full API support.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" asChild>
-                <Link href="/contact">
-                  Get Started
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/contact">Talk to Sales</Link>
-              </Button>
+              <Link
+                href="/contact"
+                className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold rounded-xl bg-[#b89850] text-[#0f2744] hover:brightness-105 hover:scale-105 transition-all duration-300 shadow-medium"
+              >
+                Get Started
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold rounded-xl border border-[#b89850]/50 text-[#0f2744] hover:bg-[#b89850]/10 hover:scale-105 transition-all duration-300"
+              >
+                Talk to Sales
+              </Link>
             </div>
           </div>
         </section>

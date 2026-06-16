@@ -20,7 +20,6 @@ import {
 } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Button } from "@/components/ui/button"
 import { PageHero } from "@/components/page-hero"
 import { CodeTerminal, type CodeSnippet } from "@/components/code-terminal"
 
@@ -212,16 +211,12 @@ const client = new AlfaCall({ apiKey: process.env.ALFACALL_API_KEY });
 
 // Search and instantly provision a local number
 const [available] = await client.numbers.search({
-  country: 'US',
-  type: 'local',
-  areaCode: '212',
-  capabilities: ['voice', 'sms'],
+  country: 'US', type: 'local', areaCode: '212',
 });
 
-const number = await client.numbers.buy({ phoneNumber: available.phoneNumber });
+const number = await client.numbers.buy(available);
 
-console.log('Provisioned:', number.phoneNumber);
-console.log('Monthly:', number.monthlyPrice);`,
+console.log('Provisioned:', number.phoneNumber);`,
       },
       {
         label: "Python",
@@ -234,13 +229,11 @@ client = AlfaCall(api_key=os.environ["ALFACALL_API_KEY"])
 # Search and instantly provision a local number
 available = client.numbers.search(
     country="US", type="local", area_code="212",
-    capabilities=["voice", "sms"],
 )[0]
 
-number = client.numbers.buy(phone_number=available.phone_number)
+number = client.numbers.buy(available)
 
-print("Provisioned:", number.phone_number)
-print("Monthly:", number.monthly_price)`,
+print("Provisioned:", number.phone_number)`,
       },
       {
         label: "cURL",
@@ -352,12 +345,13 @@ export default function ServicesPage() {
                       </li>
                     ))}
                   </ul>
-                  <Button size="lg" asChild className="mt-8">
-                    <Link href="/contact">
-                      Get API Access
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </Link>
-                  </Button>
+                  <Link
+                    href="/contact"
+                    className="group mt-8 inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold rounded-xl bg-[#0f2744] text-white hover:scale-105 transition-all duration-300 shadow-medium"
+                  >
+                    Get API Access
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
@@ -469,15 +463,19 @@ export default function ServicesPage() {
               Sign up for a free account and start integrating voice and messaging into your applications.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" asChild>
-                <Link href="/contact">
-                  Get API Access
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/contact">Talk to Sales</Link>
-              </Button>
+              <Link
+                href="/contact"
+                className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold rounded-xl bg-[#0f2744] text-white hover:scale-105 transition-all duration-300 shadow-medium"
+              >
+                Get API Access
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold rounded-xl border border-border text-[#0f2744] hover:bg-secondary hover:scale-105 transition-all duration-300"
+              >
+                Talk to Sales
+              </Link>
             </div>
           </div>
         </section>
